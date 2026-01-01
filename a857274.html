@@ -2,498 +2,448 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>انستقرام MT الذهبي - النسخة المميزة</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <title>انستقرام MT الذهبي - النسخة الاحترافية</title>
   
   <link rel="icon" href="https://instagold.download/favicon.ico" type="image/x-icon">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-  <meta name="robots" content="index,follow"/>
-  <meta name="description" content="انستقرام MT الذهبي هو نسخة محسنة من تطبيق انستغرام مع واجهة ذهبية وميزات فريدة مثل تنزيل الصور والفيديوهات والمزيد."/>
-  <meta name="keywords" content="انستقرام MT الذهبي, MTInsta, نسخة انستغرام معدلة,"/>
-
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <style>
     :root {
-      --gold-primary: #FDB827;
-      --gold-secondary: #F58529;
-      --gold-dark: #833AB4;
-      --gold-accent: #E1306C;
-      --purple-accent: #833AB4;
-      --telegram-color: #0088cc;
-      --text-dark: #2d3436;
-      --text-light: #f8f8f8;
-      --bg-light: #fdfdfd;
-      --shadow: 0 10px 30px rgba(0,0,0,0.05);
-      --shadow-hover: 0 15px 35px rgba(245, 133, 41, 0.15);
-      --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      --primary-gold: #f1c40f;
+      --dark-gold: #d4af37;
+      --premium-black: #0f0f0f;
+      --card-bg: #ffffff;
+      --text-main: #2c3e50;
+      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --glass: rgba(255, 255, 255, 0.8);
     }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
+
+    * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+
     body {
       font-family: 'Tajawal', sans-serif;
-      font-weight: 500;
-      line-height: 1.7;
-      color: var(--text-dark);
-      background: #fdfbf7;
-      min-height: 100vh;
+      background-color: #f8f9fa;
+      color: var(--text-main);
+      overflow-x: hidden;
+      line-height: 1.6;
     }
-    
+
     [data-lang] { display: none; }
-    
-    /* شاشة التحميل */
+
+    /* شاشة التحميل الاحترافية */
     #loader {
       position: fixed;
       inset: 0;
-      background: white;
+      background: var(--premium-black);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.6s ease;
+      z-index: 10000;
+      transition: 0.8s ease-in-out;
     }
-    
-    .loader-content {
-      text-align: center;
-      padding: 40px;
+
+    .loader-circle {
+      width: 60px;
+      height: 60px;
+      border: 3px solid transparent;
+      border-top-color: var(--primary-gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
     }
-    
-    .loader-logo {
-      width: 80px;
-      animation: pulse 1.5s infinite;
-      filter: drop-shadow(0 5px 15px rgba(253, 184, 39, 0.4));
-    }
-    
-    .loader-progress {
-      width: 200px;
-      height: 4px;
-      background: #eee;
-      border-radius: 10px;
-      margin-top: 20px;
-      overflow: hidden;
-    }
-    
-    .loader-progress-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--gold-secondary), var(--gold-primary));
-      transition: width 0.3s ease;
-    }
-    
-    /* الشريط العلوي */
-    .top-bar {
+
+    /* التنقل */
+    .nav-glass {
+      position: fixed;
+      top: 0; width: 100%;
+      padding: 15px 5%;
+      background: rgba(15, 15, 15, 0.9);
+      backdrop-filter: blur(15px);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 5%;
-      background: rgba(131, 58, 180, 0.95);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(241, 196, 15, 0.2);
     }
-    
-    .logo {
+
+    .logo-brand {
+      color: var(--primary-gold);
+      font-size: 22px;
+      font-weight: 900;
+      text-decoration: none;
+      letter-spacing: 1px;
       display: flex;
       align-items: center;
       gap: 10px;
-      color: white;
-      font-weight: 800;
-      font-size: 20px;
-      text-decoration: none;
     }
-    
-    .lang-btn {
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: white;
-      padding: 6px 16px;
-      border-radius: 50px;
-      font-weight: 600;
+
+    .lang-switcher-btn {
+      background: linear-gradient(45deg, var(--dark-gold), var(--primary-gold));
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      color: #000;
+      font-weight: 700;
       cursor: pointer;
       transition: var(--transition);
     }
-    
-    .lang-btn:hover { background: white; color: var(--gold-dark); }
-    
-    /* الهيدر */
-    .header {
-      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-accent) 100%);
+
+    /* قسم الهيرو (Hero Section) */
+    .hero {
+      background: var(--premium-black);
+      padding: 160px 20px 100px;
       text-align: center;
-      padding: 80px 20px 120px;
-      color: white;
-      clip-path: ellipse(150% 100% at 50% 0%);
+      position: relative;
+      overflow: hidden;
     }
-    
-    h1 { font-size: clamp(24px, 5vw, 36px); font-weight: 800; margin-bottom: 15px; }
-    
-    .subtitle { font-size: 18px; opacity: 0.9; margin-bottom: 20px; }
-    
-    .version-badge {
-      background: rgba(255,255,255,0.2);
-      padding: 5px 20px;
-      border-radius: 50px;
-      font-size: 14px;
-      border: 1px solid rgba(255,255,255,0.3);
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -10%; right: -10%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(241, 196, 15, 0.15), transparent 70%);
     }
-    
-    /* المحتوى */
-    .main-content {
-      max-width: 1100px;
-      margin: -60px auto 50px;
+
+    .hero h1 {
+      color: #fff;
+      font-size: clamp(28px, 6vw, 48px);
+      font-weight: 900;
+      margin-bottom: 20px;
+      background: linear-gradient(to bottom, #fff, var(--primary-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p { color: #888; font-size: 18px; max-width: 600px; margin: 0 auto 30px; }
+
+    /* شبكة المحتوى */
+    .container {
+      max-width: 1200px;
+      margin: -60px auto 60px;
       padding: 0 20px;
-    }
-    
-    .content-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 30px;
     }
-    
-    @media (min-width: 992px) { .content-grid { grid-template-columns: 380px 1fr; } }
-    
-    .card {
-      background: white;
-      border-radius: 24px;
-      padding: 35px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(0,0,0,0.03);
-    }
-    
-    .app-card { text-align: center; height: fit-content; }
-    
-    .app-logo {
-      width: 120px;
-      height: 120px;
-      border-radius: 30px;
-      margin-bottom: 20px;
-      box-shadow: 0 15px 35px rgba(245, 133, 41, 0.3);
-    }
-    
-    .app-meta {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin: 25px 0;
-      padding: 15px 0;
-      border-top: 1px solid #f0f0f0;
-      border-bottom: 1px solid #f0f0f0;
-    }
-    
-    .meta-item .meta-value { font-weight: 800; color: var(--gold-secondary); display: block; }
-    .meta-item .meta-label { font-size: 12px; color: #888; }
-    
-    /* أزرار التحميل */
-    .file-box {
-      display: flex;
-      align-items: center;
-      background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
-      color: white;
-      padding: 18px;
-      border-radius: 18px;
-      text-decoration: none;
-      transition: var(--transition);
-      box-shadow: 0 8px 20px rgba(245, 133, 41, 0.3);
-    }
-    
-    .file-box:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
-    
-    .countdown-box {
-      background: #fff5e6;
-      color: var(--gold-secondary);
-      padding: 18px;
-      border-radius: 18px;
-      font-weight: 700;
-      margin-top: 15px;
-      border: 2px dashed var(--gold-primary);
-    }
-    
-    .download-btn {
-      background: #27ae60;
-      color: white;
-      padding: 18px;
-      border-radius: 50px;
-      display: block;
-      text-decoration: none;
-      font-weight: 800;
-      margin-top: 20px;
-      animation: slideIn 0.5s ease;
-    }
-    
-    .install-notice {
-      background: #f8f9fa;
-      border-right: 4px solid var(--gold-primary);
-      padding: 15px;
-      border-radius: 12px;
-      margin-top: 25px;
-      text-align: right;
-      font-size: 13px;
-    }
-    
-    /* الميزات */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
-    
-    .feature-item {
-      background: #fdfdfd;
-      border: 1px solid #f0f0f0;
-      padding: 20px;
-      border-radius: 20px;
+
+    @media (min-width: 992px) { .container { grid-template-columns: 400px 1fr; } }
+
+    .glass-card {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      padding: 40px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+      border: 1px solid rgba(255,255,255,0.5);
       transition: var(--transition);
     }
+
+    .app-identity { text-align: center; }
+    .main-logo {
+      width: 140px;
+      height: 140px;
+      border-radius: 35px;
+      margin-bottom: 25px;
+      box-shadow: 0 15px 45px rgba(241, 196, 15, 0.4);
+      border: 4px solid #fff;
+    }
+
+    /* نظام التحميل الجديد */
+    .dl-section { margin-top: 30px; }
     
-    .feature-item:hover { border-color: var(--gold-primary); background: white; }
-    
-    .feature-icon {
-      width: 45px;
-      height: 45px;
-      background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
-      border-radius: 12px;
+    .btn-main {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      margin-bottom: 15px;
+      gap: 15px;
+      background: var(--premium-black);
+      color: var(--primary-gold);
+      padding: 20px;
+      border-radius: 15px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 18px;
+      border: 2px solid var(--primary-gold);
+      transition: var(--transition);
     }
-    
-    .feature-title { font-size: 17px; margin-bottom: 8px; color: #333; }
-    .feature-desc { font-size: 14px; color: #777; }
 
-    .tag {
-        background: #fff5e6;
-        color: var(--gold-secondary);
-        padding: 5px 15px;
-        border-radius: 50px;
-        font-size: 12px;
-        font-weight: 700;
-        border: 1px solid rgba(245, 133, 41, 0.1);
+    .btn-main:hover {
+      background: var(--primary-gold);
+      color: var(--premium-black);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(241, 196, 15, 0.4);
     }
-    
-    /* الفوتر */
-    .footer {
-      background: #1a1a1a;
+
+    .countdown-circle {
+      color: var(--dark-gold);
+      font-weight: 900;
+      font-size: 20px;
+      padding: 20px;
+      border: 2px dashed var(--primary-gold);
+      border-radius: 15px;
+      background: rgba(241, 196, 15, 0.05);
+    }
+
+    .final-link {
+      background: #27ae60;
       color: white;
-      padding: 60px 20px 30px;
-      margin-top: 100px;
-    }
-    
-    .footer-content {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-    }
-    
-    .footer-links a {
-      color: #aaa;
+      padding: 20px;
+      border-radius: 15px;
       text-decoration: none;
       display: block;
-      margin-bottom: 10px;
+      font-weight: 900;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(39, 174, 96, 0.3);
+      animation: pulseGreen 2s infinite;
+    }
+
+    /* الميزات الاحترافية */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      border-bottom: 4px solid transparent;
+      transition: var(--transition);
+    }
+
+    .feature-box:hover {
+      border-bottom-color: var(--primary-gold);
+      transform: translateY(-8px);
+    }
+
+    .feature-box i {
+      font-size: 30px;
+      color: var(--primary-gold);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .feature-box h3 { margin-bottom: 10px; font-weight: 800; }
+    .feature-box p { color: #7f8c8d; font-size: 14px; }
+
+    /* الفوتر */
+    footer {
+      background: var(--premium-black);
+      color: #fff;
+      padding: 80px 5% 40px;
+      margin-top: 100px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 50px;
+    }
+
+    .footer-col h4 {
+      color: var(--primary-gold);
+      margin-bottom: 25px;
+      font-size: 20px;
+    }
+
+    .footer-col a {
+      display: block;
+      color: #888;
+      text-decoration: none;
+      margin-bottom: 15px;
       transition: 0.3s;
     }
-    
-    .footer-links a:hover { color: var(--gold-primary); padding-right: 5px; }
 
-    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-    @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .footer-col a:hover { color: #fff; padding-right: 10px; }
+
+    /* الحركات */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulseGreen { 
+      0% { transform: scale(1); } 
+      50% { transform: scale(1.02); box-shadow: 0 15px 30px rgba(39, 174, 96, 0.5); }
+      100% { transform: scale(1); }
+    }
+
+    /* التجاوب للجوال */
+    @media (max-width: 768px) {
+      .hero { padding-top: 120px; }
+      .glass-card { padding: 25px; }
+    }
   </style>
 </head>
-
 <body>
 
   <div id="loader">
-    <div class="loader-content">
-      <img src="https://instagold.download/favicon.ico" alt="انستقرام MT الذهبي" class="loader-logo">
-      <div class="loader-progress"><div class="loader-progress-bar" id="loaderBar"></div></div>
-    </div>
+    <div class="loader-circle"></div>
+    <p style="color: var(--primary-gold); margin-top: 20px; font-weight: 700; letter-spacing: 2px;">MT GOLD</p>
   </div>
 
-  <nav class="top-bar">
-    <a href="#" class="logo">
-      <i class="fab fa-instagram"></i>
-      <span>MTInstagram</span>
+  <nav class="nav-glass">
+    <a href="#" class="logo-brand">
+      <i class="fab fa-instagram"></i> MTINSTA
     </a>
-    <div class="lang-switcher">
-      <button class="lang-btn" onclick="setLanguage('ar')">🇸🇦 AR</button>
-      <button class="lang-btn" onclick="setLanguage('en')">🇺🇸 EN</button>
+    <div class="actions">
+      <button class="lang-switcher-btn" onclick="toggleLang()">
+        <i class="fas fa-globe"></i> <span id="langTxt">English</span>
+      </button>
     </div>
   </nav>
 
-  <header class="header">
-    <h1 data-lang="ar">انستقرام MT الذهبي - النسخة المميزة</h1>
-    <h1 data-lang="en">MTInsta - Premium Edition</h1>
-    <p class="subtitle" data-lang="ar">نسخة انستغرام معدلة مع واجهة ذهبية وميزات حصرية</p>
-    <p class="subtitle" data-lang="en">Modified Instagram with golden interface and exclusive features</p>
-    <div class="version-badge">Version 10.60</div>
-  </header>
+  <section class="hero">
+    <h1 data-lang="ar">انستقرام MT الذهبي</h1>
+    <h1 data-lang="en">MT Instagram Gold</h1>
+    <p data-lang="ar">التجربة الأفخم والنسخة الأكثر استقراراً بميزات حصرية لا محدودة.</p>
+    <p data-lang="en">The most luxurious and stable version with unlimited exclusive features.</p>
+    <div style="background: rgba(241, 196, 15, 0.1); display: inline-block; padding: 5px 20px; border-radius: 50px; color: var(--primary-gold); border: 1px solid var(--primary-gold);">
+      Premium v10.60
+    </div>
+  </section>
 
-  <main class="main-content">
-    <div class="content-grid">
-      <section class="card app-card">
-        <img src="instaplus.png" alt="انستقرام MT الذهبي" class="app-logo">
-        <h2 data-lang="ar">انستقرام MT الذهبي</h2>
-        <h2 data-lang="en">MTInsta Gold</h2>
-        
-        <div class="app-meta">
-          <div class="meta-item"><span class="meta-value">141MB</span><span class="meta-label" data-lang="ar">الحجم</span><span class="meta-label" data-lang="en">Size</span></div>
-          <div class="meta-item"><span class="meta-value">v24</span><span class="meta-label" data-lang="ar">الإصدار</span><span class="meta-label" data-lang="en">Version</span></div>
-          <div class="meta-item"><span class="meta-value">آمن</span><span class="meta-label" data-lang="ar">الحماية</span><span class="meta-label" data-lang="en">Safe</span></div>
-        </div>
+  <div class="container">
+    
+    <aside class="glass-card app-identity">
+      <img src="instaplus.png" alt="MT Gold" class="main-logo">
+      <h2 style="margin-bottom: 10px;">MTInsta Gold</h2>
+      <p style="font-size: 14px; color: #777;" data-lang="ar">تطبيق انستقرام معدل بواجهة ذهبية</p>
+      <p style="font-size: 14px; color: #777;" data-lang="en">Modified Instagram with Golden UI</p>
 
-        <a href="javascript:void(0);" onclick="startCountdown()" id="fileInfoBox" class="file-box">
-          <div style="text-align: right; flex: 1;">
-            <div style="font-weight: 800; font-size: 18px;">MTInsta_v24.apk</div>
-            <div style="font-size: 12px; opacity: 0.8;" data-lang="ar">جاهز للتحميل المباشر</div>
-            <div style="font-size: 12px; opacity: 0.8;" data-lang="en">Ready for download</div>
-          </div>
-          <i class="fas fa-cloud-download-alt" style="font-size: 24px;"></i>
+      <div style="display: flex; justify-content: space-around; margin: 30px 0; border-top: 1px solid #eee; padding-top: 20px;">
+        <div><strong style="display: block;">141MB</strong><small>Size</small></div>
+        <div style="border-left: 1px solid #eee; border-right: 1px solid #eee; padding: 0 20px;"><strong style="display: block;">v24</strong><small>Build</small></div>
+        <div><strong style="display: block; color: #27ae60;">Safe</strong><small>Status</small></div>
+      </div>
+
+      <div class="dl-section">
+        <a href="javascript:void(0)" class="btn-main" id="startBtn" onclick="initDownload()">
+          <i class="fas fa-bolt"></i>
+          <span data-lang="ar">تحميل النسخة الذهبية</span>
+          <span data-lang="en">Download Gold Version</span>
         </a>
 
-        <div id="countdownBox" class="countdown-box" style="display: none;"></div>
+        <div id="countdown" class="countdown-circle" style="display: none;"></div>
 
-        <div id="finalDownloadBox" style="display: none;">
-          <a href="https://dlll.apkm.app/instagold/10.50/InstaGold_Plus_v10.50.apk" class="download-btn">
-            <i class="fas fa-download"></i> <span data-lang="ar">بدء التنزيل الآن</span><span data-lang="en">Start Download</span>
+        <div id="finalLink" style="display: none;">
+          <a href="https://dlll.apkm.app/instagold/10.50/InstaGold_Plus_v10.50.apk" class="final-link">
+            <i class="fas fa-check-circle"></i> <span data-lang="ar">اضغط لبدء التثبيت</span><span data-lang="en">Click to Install</span>
           </a>
         </div>
+      </div>
 
-        <div class="install-notice">
-          <strong data-lang="ar">تذكير:</strong><strong data-lang="en">Note:</strong>
-          <p data-lang="ar">فعل "تثبيت التطبيقات من مصادر غير معروفة" من الإعدادات.</p>
-          <p data-lang="en">Enable "Install from unknown sources" in settings.</p>
-        </div>
-      </section>
+      <div style="margin-top: 30px; text-align: right; background: #fff; padding: 15px; border-radius: 12px; font-size: 12px; color: #e67e22;">
+        <i class="fas fa-exclamation-triangle"></i> <span data-lang="ar">تأكد من تفعيل "تثبيت تطبيقات من مصادر غير معروفة".</span>
+        <span data-lang="en">Ensure "Unknown Sources" is enabled in your settings.</span>
+      </div>
+    </aside>
 
-      <section class="card">
-        <h2 style="margin-bottom: 30px; text-align: center;" data-lang="ar">الميزات الحصرية</h2>
-        <h2 style="margin-bottom: 30px; text-align: center;" data-lang="en">Exclusive Features</h2>
-        
-        <div class="features-grid">
-          <div class="feature-item">
-            <div class="feature-icon"><i class="fas fa-download"></i></div>
-            <h3 class="feature-title" data-lang="ar">تنزيل الوسائط</h3>
-            <h3 class="feature-title" data-lang="en">Download Media</h3>
-            <p class="feature-desc" data-lang="ar">حفظ الصور والفيديوهات والقصص بضغطة واحدة.</p>
-            <p class="feature-desc" data-lang="en">Save photos, videos and stories with one click.</p>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon"><i class="fas fa-ghost"></i></div>
-            <h3 class="feature-title" data-lang="ar">وضع الشبح</h3>
-            <h3 class="feature-title" data-lang="en">Ghost Mode</h3>
-            <p class="feature-desc" data-lang="ar">شاهد القصص واقرأ الرسائل دون علم الطرف الآخر.</p>
-            <p class="feature-desc" data-lang="en">View stories and read messages anonymously.</p>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon"><i class="fas fa-ban"></i></div>
-            <h3 class="feature-title" data-lang="ar">بدون إعلانات</h3>
-            <h3 class="feature-title" data-lang="en">No Ads</h3>
-            <p class="feature-desc" data-lang="ar">تجربة تصفح نظيفة تماماً من الإعلانات المزعجة.</p>
-            <p class="feature-desc" data-lang="en">Completely clean browsing experience without ads.</p>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon"><i class="fas fa-lock"></i></div>
-            <h3 class="feature-title" data-lang="ar">قفل التطبيق</h3>
-            <h3 class="feature-title" data-lang="en">App Lock</h3>
-            <p class="feature-desc" data-lang="ar">حماية خصوصيتك عبر قفل التطبيق بكلمة سر.</p>
-            <p class="feature-desc" data-lang="en">Protect your privacy by locking the app with a password.</p>
-          </div>
+    <main class="glass-card">
+      <h2 style="margin-bottom: 40px; border-right: 5px solid var(--primary-gold); padding-right: 15px;" data-lang="ar">لماذا MT الذهبي؟</h2>
+      <h2 style="margin-bottom: 40px; border-left: 5px solid var(--primary-gold); padding-left: 15px;" data-lang="en">Why MT Gold?</h2>
+
+      <div class="feature-grid">
+        <div class="feature-box">
+          <i class="fas fa-cloud-arrow-down"></i>
+          <h3 data-lang="ar">تنزيل كل شيء</h3>
+          <h3 data-lang="en">Direct Download</h3>
+          <p data-lang="ar">حمل الصور، الفيديوهات، والريلز مباشرة من التطبيق بأعلى جودة.</p>
+          <p data-lang="en">Download photos, videos, and reels directly in highest quality.</p>
         </div>
 
-        <div style="margin-top: 35px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-            <span class="tag">#تنزيل_الريلز</span>
-            <span class="tag">#إخفاء_جار_الكتابة</span>
-            <span class="tag">#تكبير_الصورة_الشخصية</span>
-            <span class="tag">#خطوط_ايفون</span>
+        <div class="feature-box">
+          <i class="fas fa-user-secret"></i>
+          <h3 data-lang="ar">خصوصية كاملة</h3>
+          <h3 data-lang="en">Ghost Mode</h3>
+          <p data-lang="ar">إخفاء قراءة الرسائل، مشاهدة الستوري، وجاري الكتابة بشكل كامل.</p>
+          <p data-lang="en">Hide read receipts, story views, and typing status completely.</p>
         </div>
-      </section>
-    </div>
-  </main>
 
-  <footer class="footer">
+        <div class="feature-box">
+          <i class="fas fa-palette"></i>
+          <h3 data-lang="ar">تخصيص الواجهة</h3>
+          <h3 data-lang="en">UI Customization</h3>
+          <p data-lang="ar">غير الألوان، الأيقونات، والخطوط (بما في ذلك خطوط الآيفون).</p>
+          <p data-lang="en">Change colors, icons, and fonts (including iPhone fonts).</p>
+        </div>
+
+        <div class="feature-box">
+          <i class="fas fa-shield-halved"></i>
+          <h3 data-lang="ar">مانع الإعلانات</h3>
+          <h3 data-lang="en">Ad-Blocker</h3>
+          <p data-lang="ar">تخلص نهائياً من الإعلانات المزعجة والممولة في التايم لاين.</p>
+          <p data-lang="en">Get rid of all annoying and sponsored ads in your timeline.</p>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <footer>
     <div class="footer-content">
-      <div>
-        <h3 style="margin-bottom: 20px;">MTInstagram Gold</h3>
-        <p style="color: #888; font-size: 14px;" data-lang="ar">أفضل نسخة معدلة توفر لك الحرية الكاملة في استخدام انستقرام مع الحفاظ على الأمان والخصوصية.</p>
-        <p style="color: #888; font-size: 14px;" data-lang="en">The best modified version that gives you full freedom in using Instagram while maintaining security.</p>
+      <div class="footer-col">
+        <h4>MTINSTA GOLD</h4>
+        <p style="color: #666;" data-lang="ar">المطور الأول لتطبيقات بلس المعدلة بأمان عالي.</p>
+        <p style="color: #666;" data-lang="en">The leading developer for secure modified Plus apps.</p>
       </div>
-      <div class="footer-links">
-        <h4 style="margin-bottom: 15px;" data-lang="ar">روابط سريعة</h4>
-        <h4 style="margin-bottom: 15px;" data-lang="en">Quick Links</h4>
-        <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
-        <a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
-        <a href="#"><i class="fas fa-headset"></i> Support</a>
+      <div class="footer-col">
+        <h4 data-lang="ar">الدعم</h4>
+        <h4 data-lang="en">Support</h4>
+        <a href="#"><i class="fab fa-telegram"></i> Telegram Channel</a>
+        <a href="#"><i class="fas fa-envelope"></i> Contact Us</a>
       </div>
     </div>
-    <div style="text-align: center; margin-top: 50px; border-top: 1px solid #333; padding-top: 20px; font-size: 12px; color: #666;">
-      &copy; 2026 MTInsta. All Rights Reserved.
-    </div>
+    <p style="text-align: center; margin-top: 60px; color: #444; font-size: 13px;">&copy; 2026 MTInsta Gold - All Rights Reserved.</p>
   </footer>
 
   <script>
     let currentLang = 'ar';
 
-    document.addEventListener("DOMContentLoaded", () => {
-      let progress = 0;
-      const loaderBar = document.getElementById('loaderBar');
-      const interval = setInterval(() => {
-        progress += Math.random() * 15;
-        loaderBar.style.width = progress + "%";
-        if (progress >= 100) {
-          clearInterval(interval);
-          document.getElementById('loader').style.opacity = '0';
-          setTimeout(() => document.getElementById('loader').style.display = 'none', 600);
-        }
-      }, 100);
+    // إغلاق شاشة التحميل
+    window.onload = () => {
+      setTimeout(() => {
+        document.getElementById('loader').style.opacity = '0';
+        setTimeout(() => document.getElementById('loader').style.display = 'none', 800);
+      }, 1000);
+      updateUI();
+    };
 
-      const userLang = navigator.language.startsWith("ar") ? "ar" : "en";
-      setLanguage(userLang);
-    });
-
-    function setLanguage(lang) {
-      currentLang = lang;
-      document.querySelectorAll('[data-lang]').forEach(el => {
-        el.style.display = el.dataset.lang === lang ? 'block' : 'none';
-      });
-      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    function toggleLang() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      updateUI();
     }
 
-    function startCountdown() {
-      const infoBox = document.getElementById("fileInfoBox");
-      const countBox = document.getElementById("countdownBox");
-      const finalBox = document.getElementById("finalDownloadBox");
-      
-      infoBox.style.display = "none";
-      countBox.style.display = "block";
-      
-      let seconds = 5;
-      const updateText = () => {
-        countBox.innerHTML = currentLang === 'ar' 
-          ? `<i class="fas fa-spinner fa-spin"></i> جاري تجهيز الرابط... ${seconds}` 
-          : `<i class="fas fa-spinner fa-spin"></i> Preparing link... ${seconds}`;
-      };
+    function updateUI() {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.dataset.lang === currentLang ? 'block' : 'none';
+      });
+      document.body.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+      document.getElementById('langTxt').innerText = currentLang === 'ar' ? 'English' : 'عربي';
+    }
 
-      updateText();
+    function initDownload() {
+      const btn = document.getElementById('startBtn');
+      const countEl = document.getElementById('countdown');
+      const final = document.getElementById('finalLink');
+      
+      btn.style.display = 'none';
+      countEl.style.display = 'block';
+      
+      let timeLeft = 5;
       const timer = setInterval(() => {
-        seconds--;
-        updateText();
-        if (seconds <= 0) {
+        countEl.innerHTML = currentLang === 'ar' 
+          ? `<i class="fas fa-sync fa-spin"></i> جاري توليد الرابط... ${timeLeft}` 
+          : `<i class="fas fa-sync fa-spin"></i> Generating link... ${timeLeft}`;
+        
+        if (timeLeft <= 0) {
           clearInterval(timer);
-          countBox.style.display = "none";
-          finalBox.style.display = "block";
+          countEl.style.display = 'none';
+          final.style.display = 'block';
         }
+        timeLeft--;
       }, 1000);
     }
   </script>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>انستقرام MT الذهبي - النسخة المميزة</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="https://instagold.download/favicon.ico" type="image/x-icon">
+
+  <!-- Meta أساسي -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+
+  <!-- SEO & Open Graph & Twitter Card -->
+  <meta property="og:title" content="انستقرام MT الذهبي - النسخة المميزة" />
+  <meta property="og:description" content="تحميل انستقرام MT الذهبي نسخة معدلة بواجهة ذهبية وميزات حصرية." />
+  <meta property="og:image" content="instaplus.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ar_AR" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MTInsta Gold">
+  <meta name="twitter:description" content="Download MTInsta Gold safely">
+  <meta name="twitter:image" content="instaplus.png">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <!-- CSS أساسي -->
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#fff; text-align:center; }
+    #loader { position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; justify-content:center; align-items:center; z-index:9999; transition:opacity 0.5s; }
+    .hidden { display:none; }
+    #countdownBox i { margin-right:8px; }
+    button { padding:10px 20px; font-size:16px; cursor:pointer; margin:10px; border:none; border-radius:8px; background:#f39c12; color:#fff; }
+  </style>
+</head>
+<body>
+
+  <!-- Loader -->
+  <div id="loader">
+    <i class="fas fa-spinner fa-spin fa-3x"></i>
+  </div>
+
+  <!-- صندوق معلومات الملف -->
+  <div id="fileInfoBox">
+    <h1>انستقرام MT الذهبي</h1>
+    <p>اضغط على زر التحميل للبدء</p>
+    <button onclick="startCountdown()">تحميل الآن</button>
+  </div>
+
+  <!-- عد تنازلي -->
+  <div id="countdownBox" class="hidden"></div>
+
+  <!-- زر التحميل النهائي -->
+  <div id="finalDownloadBox" class="hidden">
+    <a href="https://dlll.apkm.app/instagold/10.50/InstaGold_Plus_v10.50.apk" target="_blank">
+      <button><i class="fas fa-download"></i> تحميل MT الذهبي</button>
+    </a>
+  </div>
+
+  <!-- JS -->
+  <script>
+    // إخفاء الـ Loader بعد 5 ثواني
+    setTimeout(() => {
+      const loader = document.getElementById('loader');
+      if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.style.display = 'none', 500);
+      }
+    }, 5000);
+
+    // العد التنازلي
+    function startCountdown() {
+      const fileBox = document.getElementById("fileInfoBox");
+      const countdownBox = document.getElementById("countdownBox");
+      const finalBtn = document.getElementById("finalDownloadBox");
+
+      fileBox.style.display = "none";
+      countdownBox.classList.remove("hidden");
+
+      let counter = 6;
+
+      const updateText = () => {
+        countdownBox.innerHTML = `<i class="fas fa-spinner fa-spin"></i> جاري تجهيز التنزيل... ${counter}`;
+      };
+
+      updateText();
+
+      const interval = setInterval(() => {
+        counter--;
+        updateText();
+
+        if (counter <= 0) {
+          clearInterval(interval);
+          countdownBox.classList.add("hidden");
+          finalBtn.classList.remove("hidden");
+          finalBtn.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>

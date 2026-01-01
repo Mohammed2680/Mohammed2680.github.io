@@ -457,6 +457,78 @@
       pointer-events: none;
     }
     
+    /* زر تابع المطور على تلجرام */
+    .developer-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--telegram-color), #006699);
+      color: white;
+      padding: 14px 25px;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 136, 204, 0.3);
+      transition: var(--transition);
+      width: 100%;
+      max-width: 380px;
+      margin: 15px auto 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .developer-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 136, 204, 0.4);
+    }
+    
+    .developer-btn::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+      pointer-events: none;
+    }
+    
+    /* زر التحديثات */
+    .updates-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--purple-accent), #6928a5);
+      color: white;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 3px 8px rgba(131, 58, 180, 0.3);
+      transition: var(--transition);
+      width: 100%;
+      max-width: 300px;
+      margin: 10px auto 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .updates-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 12px rgba(131, 58, 180, 0.4);
+    }
+    
     /* قسم الأزرار */
     .buttons-section {
       display: flex;
@@ -776,8 +848,8 @@
   <div class="top-bar">
     <a href="#" class="logo">
       <i class="fab fa-instagram logo-icon"></i>
-      <span data-lang="ar">MTInstagram</span>
-      <span data-lang="en">MTInstagram</span>
+      <span data-lang="ar">انستقرام MT الذهبي</span>
+      <span data-lang="en">MTInsta</span>
     </a>
     
     <div class="lang-switcher">

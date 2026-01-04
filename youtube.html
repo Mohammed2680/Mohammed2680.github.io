@@ -35,24 +35,26 @@
   <meta itemprop="image" content="app_icon2.png"/>
   
   <!-- الخطوط -->
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="../external.html?link=https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   
   <!-- أيقونات -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-<script data-cfasync="false" async type="text/javascript" src="//fe.escotsalian.com/rFyagM3QsKIdfyoRS/aBBBO"></script>
+  <script data-cfasync="false" async type="text/javascript" src="../external.html?link=http://zs.bayokagrote.com/rQVxABtXz7SvFu/jLLLL"></script>
   
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L9QVCM3KLR"></script>
+<script async src="../external.html?link=https://www.googletagmanager.com/gtag/js?id=G-W3QKTBZDQ0"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-L9QVCM3KLR');
+  gtag('config', 'G-W3QKTBZDQ0');
 </script>
   
-    <style>
+
+  
+  <style>
     :root {
       --gold-primary: #D4AF37;
       --gold-secondary: #B8860B;
@@ -78,10 +80,11 @@
       font-family: 'Tajawal', sans-serif;
       font-weight: 500;
       line-height: 1.7;
-      color: var(--text-dark);
-      background: linear-gradient(135deg, #fffaf0 0%, #fff5e6 100%);
+      color: var(--text-light);
+      background: linear-gradient(135deg, #0a0a0a 0%, #000 100%);
       min-height: 100vh;
       position: relative;
+      overflow-x: hidden;
     }
     
     [data-lang] { display: none; }
@@ -89,21 +92,24 @@
     /* شاشة التحميل */
     #loader {
       position: fixed;
-      inset: 0;
-      background: var(--bg-light);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--dark-bg);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
     
     .loader-content {
       text-align: center;
       padding: 30px;
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(30, 30, 30, 0.95);
       box-shadow: var(--shadow);
       border: 2px solid var(--gold-primary);
     }
@@ -113,19 +119,24 @@
       height: 70px;
       margin-bottom: 15px;
       animation: pulse 1.5s infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      color: var(--youtube-red);
     }
     
     .loader-text {
       font-size: 18px;
       font-weight: 600;
-      color: var(--gold-dark);
+      color: var(--gold-light);
       margin-bottom: 15px;
     }
     
     .loader-progress {
       width: 100%;
       height: 6px;
-      background: #e0e0e0;
+      background: #333;
       border-radius: 4px;
       overflow: hidden;
       position: relative;
@@ -137,7 +148,7 @@
       top: 0;
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, var(--gold-secondary), var(--gold-primary));
+      background: linear-gradient(90deg, var(--youtube-red), var(--gold-primary));
       border-radius: 4px;
       transition: width 0.5s ease;
     }
@@ -148,18 +159,19 @@
       justify-content: space-between;
       align-items: center;
       padding: 12px 20px;
-      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-accent) 100%);
+      background: linear-gradient(135deg, var(--dark-bg) 0%, #000 100%);
       box-shadow: var(--shadow);
       position: sticky;
       top: 0;
       z-index: 100;
+      border-bottom: 2px solid var(--gold-primary);
     }
     
     .logo {
       display: flex;
       align-items: center;
       gap: 8px;
-      color: white;
+      color: var(--gold-light);
       font-weight: 700;
       font-size: 18px;
       text-decoration: none;
@@ -167,6 +179,7 @@
     
     .logo-icon {
       font-size: 20px;
+      color: var(--gold-light);
     }
     
     .lang-switcher {
@@ -175,9 +188,9 @@
     }
     
     .lang-btn {
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #444;
+      color: var(--gold-light);
       padding: 5px 12px;
       border-radius: 30px;
       font-weight: 600;
@@ -187,16 +200,17 @@
     }
     
     .lang-btn:hover {
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.2);
     }
     
     /* الهيدر */
     .header {
-      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-accent) 100%);
+      background: linear-gradient(135deg, var(--dark-bg) 0%, #000 100%);
       text-align: center;
       padding: 30px 15px;
       position: relative;
       overflow: hidden;
+      border-bottom: 2px solid var(--gold-primary);
     }
     
     .header::before {
@@ -206,7 +220,7 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
       transform: rotate(30deg);
     }
     
@@ -221,33 +235,33 @@
       font-size: 26px;
       font-weight: 800;
       margin-bottom: 8px;
-      color: white;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      color: var(--gold-light);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
     
     .subtitle {
       font-size: 16px;
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(255, 255, 255, 0.8);
       max-width: 600px;
       margin: 0 auto 15px;
     }
     
     .version-badge {
       display: inline-block;
-      background: rgba(0, 0, 0, 0.2);
-      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--gold-light);
       padding: 5px 12px;
       border-radius: 20px;
       font-weight: 600;
       font-size: 13px;
       margin-top: 8px;
-      border: 1px solid rgba(255,255,255,0.3);
+      border: 1px solid var(--gold-primary);
     }
     
     /* المحتوى الرئيسي */
     .main-content {
       max-width: 1200px;
-      margin: -40px auto 30px;
+      margin: 30px auto;
       padding: 0 15px;
       position: relative;
       z-index: 5;
@@ -267,7 +281,7 @@
     
     /* بطاقة التطبيق */
     .app-card {
-      background: white;
+      background: rgba(30, 30, 30, 0.8);
       border-radius: 18px;
       overflow: hidden;
       box-shadow: var(--shadow);
@@ -276,7 +290,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      border: 1px solid rgba(253, 184, 39, 0.1);
+      border: 2px solid var(--gold-primary);
     }
     
     .app-logo-container {
@@ -288,10 +302,16 @@
       width: 130px;
       height: 130px;
       border-radius: 25px;
-      box-shadow: 0 8px 16px rgba(253, 184, 39, 0.3);
-      border: 4px solid white;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+      border: 4px solid var(--gold-primary);
       position: relative;
       z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #121212;
+      font-size: 60px;
+      color: var(--gold-light);
     }
     
     .app-logo-bg {
@@ -300,7 +320,7 @@
       left: -12px;
       width: 154px;
       height: 154px;
-      background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
+      background: radial-gradient(circle, var(--gold-light), var(--gold-primary));
       border-radius: 35px;
       z-index: 1;
       opacity: 0.7;
@@ -310,12 +330,12 @@
     .app-title {
       font-size: 22px;
       font-weight: 800;
-      color: var(--text-dark);
+      color: var(--gold-light);
       margin-bottom: 8px;
     }
     
     .app-description {
-      color: #555;
+      color: var(--text-gray);
       margin-bottom: 25px;
       line-height: 1.7;
       font-size: 15px;
@@ -334,22 +354,26 @@
       flex-direction: column;
       align-items: center;
       min-width: 80px;
+      padding: 10px;
+      border-radius: 10px;
+      background: rgba(212, 175, 55, 0.1);
     }
     
     .meta-icon {
       font-size: 18px;
-      color: var(--gold-primary);
+      color: var(--gold-light);
       margin-bottom: 5px;
     }
     
     .meta-value {
       font-weight: 700;
       font-size: 15px;
+      color: var(--text-light);
     }
     
     .meta-label {
       font-size: 13px;
-      color: #777;
+      color: var(--text-gray);
     }
     
     /* زر التحميل */
@@ -362,20 +386,22 @@
     .file-box {
       display: flex;
       align-items: center;
-      background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
+      background: linear-gradient(135deg, var(--dark-bg), #000);
       color: white;
       padding: 16px;
       border-radius: 14px;
-      box-shadow: 0 5px 12px rgba(253, 184, 39, 0.4);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.6);
       text-decoration: none;
       transition: var(--transition);
       position: relative;
       overflow: hidden;
+      border: 2px solid var(--gold-primary);
     }
     
     .file-box:hover {
       transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+      background: linear-gradient(135deg, #222, #111);
     }
     
     .file-box::after {
@@ -385,18 +411,23 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
       transform: rotate(30deg);
       pointer-events: none;
     }
     
-    .file-box img {
+    .file-box .app-icon {
       width: 55px;
       height: 55px;
       margin-right: 12px;
       border-radius: 10px;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
       padding: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: var(--gold-light);
     }
     
     .file-box .text {
@@ -410,30 +441,34 @@
       font-weight: 700;
       font-size: 18px;
       margin-bottom: 3px;
+      color: var(--gold-light);
     }
     
     .file-box .size {
       font-size: 13px;
-      opacity: 0.9;
+      opacity: 0.8;
+      color: #aaa;
     }
     
     .file-box .download-icon {
       font-size: 22px;
       margin-right: 8px;
+      color: var(--gold-light);
     }
     
     /* العد التنازلي */
     .countdown-box {
-      background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+      background: linear-gradient(135deg, var(--dark-bg), #000);
       padding: 16px;
       margin-top: 18px;
       border-radius: 14px;
       font-size: 17px;
       font-weight: 700;
       text-align: center;
-      color: #fff;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      color: var(--gold-light);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
       display: none;
+      border: 2px solid var(--gold-primary);
     }
     
     /* زر التنزيل النهائي */
@@ -442,7 +477,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
+      background: linear-gradient(135deg, var(--youtube-red), #B22222);
       color: white;
       padding: 16px 30px;
       font-size: 18px;
@@ -452,18 +487,20 @@
       border-radius: 50px;
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 5px 12px rgba(253, 184, 39, 0.4);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.6);
       transition: var(--transition);
       width: 100%;
       max-width: 380px;
-      margin: 20px auto 0;
+      margin: 25px auto 0;
       position: relative;
       overflow: hidden;
+      border: 2px solid var(--gold-dark);
     }
     
     .download-btn:hover {
       transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+      background: linear-gradient(135deg, #FF4500, var(--youtube-red));
     }
     
     .download-btn::after {
@@ -473,109 +510,25 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
       transform: rotate(30deg);
       pointer-events: none;
-    }
-    
-    /* زر تابع المطور على تلجرام */
-    .developer-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: linear-gradient(135deg, var(--telegram-color), #006699);
-      color: white;
-      padding: 14px 25px;
-      font-size: 16px;
-      font-weight: 700;
-      text-align: center;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0, 136, 204, 0.3);
-      transition: var(--transition);
-      width: 100%;
-      max-width: 380px;
-      margin: 15px auto 0;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .developer-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(0, 136, 204, 0.4);
-    }
-    
-    .developer-btn::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
-      transform: rotate(30deg);
-      pointer-events: none;
-    }
-    
-    /* زر التحديثات */
-    .updates-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: linear-gradient(135deg, var(--purple-accent), #6928a5);
-      color: white;
-      padding: 12px 20px;
-      font-size: 14px;
-      font-weight: 600;
-      text-align: center;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 3px 8px rgba(131, 58, 180, 0.3);
-      transition: var(--transition);
-      width: 100%;
-      max-width: 300px;
-      margin: 10px auto 0;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .updates-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 12px rgba(131, 58, 180, 0.4);
-    }
-    
-    /* قسم الأزرار */
-    .buttons-section {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
-      width: 100%;
-      max-width: 380px;
-      margin-left: auto;
-      margin-right: auto;
     }
     
     /* ميزات التطبيق */
     .features-card {
-      background: white;
+      background: rgba(30, 30, 30, 0.8);
       border-radius: 18px;
       overflow: hidden;
       box-shadow: var(--shadow);
       padding: 25px;
-      border: 1px solid rgba(253, 184, 39, 0.1);
+      border: 2px solid var(--gold-primary);
     }
     
     .section-title {
       font-size: 22px;
       font-weight: 800;
-      color: var(--text-dark);
+      color: var(--gold-light);
       text-align: center;
       margin-bottom: 25px;
       position: relative;
@@ -590,7 +543,7 @@
       transform: translateX(-50%);
       width: 70px;
       height: 3px;
-      background: linear-gradient(90deg, var(--gold-secondary), var(--gold-primary));
+      background: linear-gradient(90deg, var(--youtube-red), var(--gold-primary));
       border-radius: 2px;
     }
     
@@ -605,15 +558,16 @@
       gap: 12px;
       padding: 18px;
       border-radius: 14px;
-      background: #fff9e6;
+      background: rgba(40, 40, 40, 0.8);
       transition: var(--transition);
-      border: 1px solid rgba(253, 184, 39, 0.2);
+      border: 1px solid #333;
     }
     
     .feature-item:hover {
       transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      background: #fff4d6;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      background: rgba(50, 50, 50, 0.8);
+      border-color: var(--gold-primary);
     }
     
     .feature-icon {
@@ -621,7 +575,7 @@
       height: 45px;
       min-width: 45px;
       border-radius: 10px;
-      background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
+      background: linear-gradient(135deg, var(--youtube-red), #B22222);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -637,21 +591,22 @@
       font-weight: 700;
       font-size: 16px;
       margin-bottom: 6px;
-      color: var(--text-dark);
+      color: var(--gold-light);
     }
     
     .feature-desc {
       font-size: 14px;
-      color: #666;
+      color: var(--text-gray);
       line-height: 1.6;
     }
     
     /* الفوتر */
     .footer {
-      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-accent) 100%);
-      color: rgba(255,255,255,0.9);
+      background: linear-gradient(135deg, #0a0a0a 0%, #000 100%);
+      color: #888;
       padding: 40px 15px 25px;
       margin-top: 40px;
+      border-top: 2px solid var(--gold-primary);
     }
     
     .footer-content {
@@ -672,7 +627,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      color: white;
+      color: var(--gold-light);
       font-size: 22px;
       font-weight: 700;
       margin-bottom: 15px;
@@ -682,6 +637,7 @@
       font-size: 15px;
       line-height: 1.7;
       margin-bottom: 20px;
+      color: var(--text-gray);
     }
     
     .footer-links {
@@ -693,7 +649,7 @@
     
     .footer-links a {
       text-decoration: none;
-      color: rgba(255,255,255,0.9);
+      color: #888;
       display: flex;
       align-items: center;
       gap: 7px;
@@ -702,13 +658,13 @@
     }
     
     .footer-links a:hover {
-      color: white;
+      color: var(--gold-light);
     }
     
     .footer-section-title {
       font-size: 18px;
       font-weight: 700;
-      color: white;
+      color: var(--gold-light);
       margin-bottom: 20px;
       position: relative;
       padding-bottom: 8px;
@@ -721,53 +677,26 @@
       right: 0;
       width: 45px;
       height: 3px;
-      background: white;
+      background: var(--gold-primary);
     }
     
     .copyright {
       text-align: center;
       padding-top: 25px;
       margin-top: 25px;
-      border-top: 1px solid rgba(255,255,255,0.2);
+      border-top: 1px solid rgba(255,255,255,0.1);
       font-size: 13px;
-      color: rgba(255,255,255,0.8);
+      color: #666;
     }
     
     .disclaimer {
       font-size: 12px;
-      color: rgba(255,255,255,0.8);
+      color: #666;
       margin-top: 12px;
       line-height: 1.7;
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
-    }
-    
-    /* إشعار التثبيت */
-    .install-notice {
-      background: #fff8e1;
-      border-right: 4px solid #ffc107;
-      border-radius: 10px;
-      padding: 15px;
-      margin: 20px auto;
-      max-width: 380px;
-      text-align: right;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    
-    .install-notice h4 {
-      color: #ff9800;
-      margin-bottom: 8px;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .install-notice p {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 5px;
     }
     
     /* الرسوم المتحركة */
@@ -792,6 +721,7 @@
       .app-logo {
         width: 110px;
         height: 110px;
+        font-size: 50px;
       }
       
       .app-logo-bg {
@@ -820,11 +750,6 @@
         padding: 14px 25px;
       }
       
-      .developer-btn {
-        font-size: 15px;
-        padding: 12px 20px;
-      }
-      
       .section-title {
         font-size: 20px;
       }
@@ -838,15 +763,201 @@
       }
     }
     
-    /* تحسينات للأجهزة اللوحية */
-    @media (min-width: 768px) and (max-width: 1024px) {
-      .main-content {
-        max-width: 95%;
+    /* تأثيرات إضافية */
+    .gold-text {
+      color: var(--gold-light);
+    }
+    
+    .featured-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: linear-gradient(135deg, var(--youtube-red), #B22222);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 12px;
+      transform: rotate(5deg);
+      z-index: 10;
+    }
+    
+    /* أنيميشن الخلفية */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+      overflow: hidden;
+    }
+    
+    .bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--gold-light), transparent 70%);
+      opacity: 0.3;
+      animation: float 15s infinite linear;
+    }
+    
+    .bg-circle:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      top: 10%;
+      left: 5%;
+      animation-duration: 20s;
+    }
+    
+    .bg-circle:nth-child(2) {
+      width: 200px;
+      height: 200px;
+      top: 70%;
+      left: 80%;
+      animation-duration: 25s;
+      animation-delay: -5s;
+    }
+    
+    .bg-circle:nth-child(3) {
+      width: 150px;
+      height: 150px;
+      top: 40%;
+      left: 40%;
+      animation-duration: 15s;
+      animation-delay: -2s;
+    }
+    
+    /* أنماط الإعلانات */
+    .ad-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 20px auto;
+      overflow: hidden;
+      background: rgba(30, 30, 30, 0.5);
+      border-radius: 12px;
+      border: 1px solid #444;
+      position: relative;
+    }
+    
+    .ad-label {
+      text-align: center;
+      font-size: 11px;
+      color: #888;
+      padding: 5px 10px;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    
+    .ad-label i {
+      color: var(--gold-primary);
+      font-size: 10px;
+    }
+    
+    .ad-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    /* إعلان 728x90 */
+    .ad-728x90 {
+      width: 728px;
+      height: 90px;
+      max-width: 100%;
+    }
+    
+    /* إعلان 468x60 */
+    .ad-468x60 {
+      width: 468px;
+      height: 60px;
+      max-width: 100%;
+    }
+    
+    /* إعلان 320x50 */
+    .ad-320x50 {
+      width: 320px;
+      height: 50px;
+      max-width: 100%;
+    }
+    
+    /* إعلان 300x250 */
+    .ad-300x250 {
+      width: 300px;
+      height: 250px;
+      max-width: 100%;
+    }
+    
+    /* إعلان 300x600 */
+    .ad-300x600 {
+      width: 300px;
+      height: 600px;
+      max-height: 600px;
+    }
+    
+    /* إعلان 160x600 */
+    .ad-160x600 {
+      width: 160px;
+      height: 600px;
+      max-height: 600px;
+    }
+    
+    /* Native Ad */
+    .native-ad {
+      width: 100%;
+      height: auto;
+      min-height: 200px;
+      margin: 20px auto;
+    }
+    
+    /* تصميم متجاوب للإعلانات */
+    @media (max-width: 768px) {
+      .ad-728x90 {
+        width: 100%;
+        height: 90px;
       }
       
-      .content-grid {
-        gap: 20px;
+      .ad-468x60 {
+        width: 100%;
+        height: 60px;
       }
+      
+      .ad-300x600,
+      .ad-160x600 {
+        width: 100%;
+        height: 300px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .ad-300x250 {
+        width: 100%;
+        height: 250px;
+      }
+      
+      .ad-320x50 {
+        width: 100%;
+        height: 50px;
+      }
+      
+      .native-ad {
+        min-height: 150px;
+      }
+    }
+    
+    /* محاذاة خاصة للإعلانات */
+    .ad-center {
+      margin-left: auto;
+      margin-right: auto;
     }
   </style>
 </head>

@@ -3,269 +3,287 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>تسجيل دخول - شبكة طواف نت</title>
+<title>تسجيل دخول - طواف نت</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-:root {
-    --accent: #00f2ff;
+:root{
+    --accent:#00f2ff;
+    --glass:rgba(255,255,255,.06);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:'Cairo',sans-serif;
+    background:radial-gradient(circle at top,#1a1a3a,#000);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    overflow:hidden;
 }
 
-body {
-    font-family: 'Cairo', sans-serif;
-    background: radial-gradient(circle at center, #1a1a2e 0%, #000 100%);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
+/* خلفية متحركة */
+body::before{
+    content:"";
+    position:absolute;
+    width:200%;
+    height:200%;
+    background:conic-gradient(from 0deg,transparent,#00f2ff22,transparent);
+    animation:rotateBG 25s linear infinite;
+}
+@keyframes rotateBG{to{transform:rotate(360deg)}}
+
+/* الكرت */
+.glass-card{
+    width:92%;
+    max-width:380px;
+    background:rgba(255,255,255,.04);
+    backdrop-filter:blur(25px);
+    border-radius:28px;
+    padding:22px;
+    border:1px solid rgba(255,255,255,.1);
+    box-shadow:0 25px 60px rgba(0,0,0,.7);
+    position:relative;
+    z-index:2;
+    animation:fadeUp .9s ease;
+}
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(30px)}
+    to{opacity:1;transform:none}
 }
 
-.glass-card {
-    width: 92%;
-    max-width: 380px;
-    background: rgba(255,255,255,0.04);
-    backdrop-filter: blur(25px);
-    border-radius: 30px;
-    padding: 22px;
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 20px 50px rgba(0,0,0,.6);
+/* العنوان */
+.header{text-align:center;margin-bottom:15px}
+.network-name{
+    font-size:1.7rem;
+    font-weight:900;
+    background:linear-gradient(to right,#fff,var(--accent));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+.sub-title{font-size:.7rem;opacity:.6}
+
+/* كبسولة الدفع */
+.payment-pill{
+    background:rgba(255,215,0,.08);
+    border:1px solid rgba(255,215,0,.25);
+    border-radius:40px;
+    padding:6px 12px;
+    font-size:.7rem;
+    color:#ffd700;
+    text-align:center;
+    margin-bottom:15px;
 }
 
-.header {
-    text-align: center;
-    margin-bottom: 15px;
+/* الشريط الإعلاني */
+.ticker-wrapper{
+    height:28px;
+    background:rgba(0,0,0,.45);
+    border-radius:6px;
+    overflow:hidden;
+    margin-bottom:18px;
+    border-right:2px solid var(--accent);
+}
+.ticker-track{
+    display:flex;
+    width:max-content;
+    animation:ticker 22s linear infinite;
+}
+.ticker-text{
+    white-space:nowrap;
+    font-size:.75rem;
+    padding-left:40px;
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+@keyframes ticker{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+}
+.highlight{color:var(--accent);font-weight:700}
+
+/* الحقول */
+.input-group{position:relative;margin-bottom:12px}
+.custom-input,.custom-select{
+    width:100%;
+    padding:12px 40px 12px 15px;
+    border-radius:12px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    color:#fff;
+    font-size:.95rem;
+}
+.field-icon{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    opacity:.4;
 }
 
-.network-name {
-    font-size: 1.6rem;
-    font-weight: 900;
-    background: linear-gradient(to right, #fff, var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+/* زر */
+.login-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(90deg,var(--accent),#0072ff);
+    color:#fff;
+    font-weight:800;
+    margin:10px 0 18px;
+    box-shadow:0 0 25px #00f2ff55;
 }
 
-.payment-pill {
-    background: rgba(255,215,0,.08);
-    border: 1px solid rgba(255,215,0,.2);
-    padding: 6px 12px;
-    border-radius: 50px;
-    font-size: .7rem;
-    color: #ffd700;
-    text-align: center;
-    margin-bottom: 15px;
+/* توفير البيانات */
+.tools-box{
+    background:rgba(0,0,0,.25);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:12px;
+    padding:10px 14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+.switch-text{
+    font-size:.8rem;
+}
+.switch-sub{
+    font-size:.65rem;
+    opacity:.6;
 }
 
-/* ===== شريط إعلاني احترافي بدون اهتزاز ===== */
-.ticker-wrapper {
-    overflow: hidden;
-    background: rgba(0,0,0,.4);
-    border-radius: 6px;
-    height: 28px;
-    margin-bottom: 18px;
-    border-right: 2px solid var(--accent);
+/* السويتش */
+.mini-switch{width:36px;height:20px;position:relative}
+.mini-switch input{opacity:0}
+.slider{
+    position:absolute;inset:0;
+    background:#333;border-radius:20px;
+}
+.slider:before{
+    content:"";position:absolute;
+    width:14px;height:14px;
+    background:#fff;border-radius:50%;
+    left:3px;top:3px;
+    transition:.3s;
+}
+input:checked + .slider{background:var(--accent)}
+input:checked + .slider:before{transform:translateX(16px)}
+
+/* روابط سريعة */
+.quick-links{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-bottom:15px;
+}
+.quick-item{
+    background:rgba(255,255,255,.05);
+    border-radius:12px;
+    padding:10px 5px;
+    text-align:center;
+    font-size:.7rem;
+}
+.quick-item i{
+    font-size:1.1rem;
+    color:var(--accent);
+    display:block;
+    margin-bottom:5px;
 }
 
-.ticker-track {
-    display: flex;
-    width: max-content;
-    animation: tickerMove 22s linear infinite;
+/* إشعار الدخول */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    backdrop-filter:blur(8px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:99;
+}
+.modal-box{
+    background:linear-gradient(135deg,#6a1bb1,#3a0f6d);
+    padding:22px;
+    border-radius:18px;
+    text-align:center;
+    width:85%;
+    max-width:320px;
+    border:1px solid rgba(255,255,255,.2);
+    animation:scaleIn .5s ease;
+}
+@keyframes scaleIn{
+    from{transform:scale(.8);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+.modal-box h3{
+    font-size:1.1rem;
+    margin-bottom:10px;
+}
+.modal-box p{
+    font-size:.85rem;
+    opacity:.9;
+}
+.modal-box button{
+    margin-top:15px;
+    padding:8px 25px;
+    border-radius:10px;
+    border:1px solid #fff;
+    background:transparent;
+    color:#fff;
 }
 
-.ticker-text {
-    white-space: nowrap;
-    font-size: .75rem;
-    padding-left: 40px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-@keyframes tickerMove {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-
-.highlight {
-    color: var(--accent);
-    font-weight: 700;
-}
-
-/* ===== الحقول ===== */
-.input-group {
-    margin-bottom: 12px;
-    position: relative;
-}
-
-.custom-input,
-.custom-select {
-    width: 100%;
-    background: rgba(255,255,255,.05);
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 12px;
-    padding: 12px 40px 12px 15px;
-    color: #fff;
-    font-size: .95rem;
-}
-
-.field-icon {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: .4;
-}
-
-.login-btn {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(90deg, var(--accent), #0072ff);
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 700;
-    margin: 10px 0 18px;
-}
-
-/* ===== صندوق توفير البيانات ===== */
-.tools-box {
-    background: rgba(0,0,0,.25);
-    border: 1px solid rgba(255,255,255,.06);
-    border-radius: 10px;
-    padding: 10px 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-}
-
-.switch-text {
-    font-size: .8rem;
-}
-
-.mini-switch {
-    width: 36px;
-    height: 20px;
-    position: relative;
-}
-
-.mini-switch input {
-    opacity: 0;
-}
-
-.slider {
-    position: absolute;
-    inset: 0;
-    background: #333;
-    border-radius: 20px;
-}
-
-.slider:before {
-    content: "";
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    background: #fff;
-    border-radius: 50%;
-    left: 3px;
-    top: 3px;
-    transition: .3s;
-}
-
-input:checked + .slider {
-    background: var(--accent);
-}
-
-input:checked + .slider:before {
-    transform: translateX(16px);
-}
-
-/* ===== قسم جديد أسفل توفير البيانات ===== */
-.quick-links {
-    background: rgba(0,0,0,.22);
-    border: 1px solid rgba(255,255,255,.05);
-    border-radius: 12px;
-    padding: 12px;
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.quick-item {
-    background: rgba(255,255,255,.04);
-    border-radius: 10px;
-    padding: 10px 5px;
-    text-align: center;
-    font-size: .7rem;
-    color: #ccc;
-}
-
-.quick-item i {
-    display: block;
-    font-size: 1.1rem;
-    color: var(--accent);
-    margin-bottom: 5px;
-}
-
-.bottom-nav {
-    display: flex;
-    justify-content: center;
-    gap: 22px;
-    margin-top: 15px;
-}
-
-.bottom-nav i {
-    font-size: 1.2rem;
-    opacity: .6;
-}
-
-.footer-copy {
-    text-align: center;
-    font-size: .6rem;
-    opacity: .3;
-    margin-top: 15px;
+/* الفوتر */
+.footer-copy{
+    text-align:center;
+    font-size:.6rem;
+    opacity:.3;
 }
 </style>
 </head>
 
 <body>
 
+<!-- إشعار الدخول -->
+<div class="modal" id="welcomeModal">
+    <div class="modal-box">
+        <h3>عزيزي العميل 🤍</h3>
+        <p>لا تجعل الله أهون الناظرين إليك</p>
+        <button onclick="closeModal()">فهمت</button>
+    </div>
+</div>
+
 <div class="glass-card">
 
 <div class="header">
     <div class="network-name">طواف نت</div>
-    <div style="font-size:.7rem;opacity:.6;">شبكة لاسلكية فائقة سرعة</div>
+    <div class="sub-title">شبكة لاسلكية فائقة السرعة</div>
 </div>
 
 <div class="payment-pill">
-يمكنك طلب خدمتنا و الدفع متاح عبر: ون كاش • جوالي • كاش • جيب
+    الدفع متاح عبر: ون كاش • جوالي • كاش • جيب
 </div>
 
 <div class="ticker-wrapper">
     <div class="ticker-track">
         <div class="ticker-text">
-            <i class="fas fa-wifi"></i> يتوفر لدينا توصيل إنترنت للمنازل <span class="highlight">مجاناً</span> |
+            <i class="fas fa-wifi"></i> توصيل إنترنت للمنازل <span class="highlight">مجاناً</span>
             <i class="fas fa-headset"></i> دعم فني <span class="highlight">24 ساعة</span>
         </div>
         <div class="ticker-text">
-            <i class="fas fa-tags"></i> عروض خاصة |
+            <i class="fas fa-tags"></i> عروض مميزة
             <i class="fas fa-map-marker-alt"></i> نقاط بيع متعددة
         </div>
     </div>
 </div>
 
 <form>
-
 <div class="input-group">
     <select class="custom-select">
         <option>2M - سرعة عالية</option>
@@ -283,42 +301,34 @@ input:checked + .slider:before {
 <button class="login-btn">تسجيل الدخول</button>
 
 <div class="tools-box">
-    <span class="switch-text"><i class="fas fa-shield-alt"></i> توفير البيانات</span>
+    <div>
+        <div class="switch-text"><i class="fas fa-shield-alt"></i> توفير البيانات</div>
+        <div class="switch-sub">سيتم إيقاف التحديثات تلقائيًا</div>
+    </div>
     <label class="mini-switch">
         <input type="checkbox" checked>
         <span class="slider"></span>
     </label>
 </div>
 
-<!-- القسم المطلوب -->
 <div class="quick-links">
-    <div class="quick-item">
-        <i class="fas fa-map-marker-alt"></i>
-        نقاط البيع
-    </div>
-    <div class="quick-item">
-        <i class="fas fa-tags"></i>
-        الأسعار
-    </div>
-    <div class="quick-item">
-        <i class="fas fa-gift"></i>
-        العروض
-    </div>
+    <div class="quick-item"><i class="fas fa-map-marker-alt"></i>نقاط البيع</div>
+    <div class="quick-item"><i class="fas fa-tags"></i>الأسعار</div>
+    <div class="quick-item"><i class="fas fa-gift"></i>العروض</div>
 </div>
-
 </form>
 
-<div class="bottom-nav">
-    <i class="fab fa-whatsapp"></i>
-    <i class="fas fa-phone"></i>
-    <i class="fas fa-map"></i>
-</div>
-
 <div class="footer-copy">
-    تطوير وبرمجة م.محمد الطواف
+    تطوير وبرمجة م. محمد الطواف
 </div>
 
 </div>
+
+<script>
+function closeModal(){
+    document.getElementById('welcomeModal').style.display='none';
+}
+</script>
 
 </body>
 </html>

@@ -1,428 +1,324 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>تسجيل دخول - شبكة طواف نت</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>تسجيل دخول - شبكة طواف نت</title>
 
-    <style>
-        :root {
-            --glass-bg: rgba(20, 20, 40, 0.6); /* خلفية داكنة أكثر للتباين */
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent-cyan: #00f2ff;
-            --accent-purple: #bd00ff;
-            --text-color: #ffffff;
-            --neon-glow: 0 0 10px rgba(0, 242, 255, 0.4);
-        }
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
-        }
+<style>
+:root {
+    --accent: #00f2ff;
+}
 
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: #000;
-            /* خلفية متدرجة عميقة جداً توحي بالفضاء/المستقبل */
-            background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
-            color: var(--text-color);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-            position: relative;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* مؤثرات الخلفية المتحركة (أضواء الشمال) */
-        body::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent 0deg, #16213e 90deg, transparent 180deg, #1a1a2e 270deg, transparent 360deg);
-            animation: rotateBG 20s linear infinite;
-            opacity: 0.3;
-            z-index: 0;
-        }
+body {
+    font-family: 'Cairo', sans-serif;
+    background: radial-gradient(circle at center, #1a1a2e 0%, #000 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
 
-        @keyframes rotateBG {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+.glass-card {
+    width: 92%;
+    max-width: 380px;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(25px);
+    border-radius: 30px;
+    padding: 22px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 20px 50px rgba(0,0,0,.6);
+}
 
-        /* الكرت الزجاجي */
-        .glass-card {
-            position: relative;
-            z-index: 10;
-            width: 92%;
-            max-width: 380px; /* عرض مثالي للجوال */
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 30px;
-            padding: 25px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            animation: floatUp 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
+.header {
+    text-align: center;
+    margin-bottom: 15px;
+}
 
-        @keyframes floatUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
+.network-name {
+    font-size: 1.6rem;
+    font-weight: 900;
+    background: linear-gradient(to right, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-        /* الشعار والعنوان */
-        .header {
-            text-align: center;
-            margin-bottom: 15px;
-        }
+.payment-pill {
+    background: rgba(255,215,0,.08);
+    border: 1px solid rgba(255,215,0,.2);
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-size: .7rem;
+    color: #ffd700;
+    text-align: center;
+    margin-bottom: 15px;
+}
 
-        .network-name {
-            font-size: 1.6rem;
-            font-weight: 800;
-            background: linear-gradient(to right, #fff, var(--accent-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
-            letter-spacing: -0.5px;
-        }
+/* ===== شريط إعلاني احترافي بدون اهتزاز ===== */
+.ticker-wrapper {
+    overflow: hidden;
+    background: rgba(0,0,0,.4);
+    border-radius: 6px;
+    height: 28px;
+    margin-bottom: 18px;
+    border-right: 2px solid var(--accent);
+}
 
-        /* 1. كبسولة الدفع (ثابتة وأنيقة) */
-        .payment-pill {
-            background: rgba(255, 215, 0, 0.08); /* ذهبي خفيف جداً */
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            padding: 6px 15px;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            color: #ffd700;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.05);
-            width: 100%;
-            justify-content: center;
-        }
-        
-        .pulse-dot {
-            width: 6px;
-            height: 6px;
-            background: #ffd700;
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
-        }
+.ticker-track {
+    display: flex;
+    width: max-content;
+    animation: tickerMove 22s linear infinite;
+}
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.5; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+.ticker-text {
+    white-space: nowrap;
+    font-size: .75rem;
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
-        /* 2. شريط الأخبار المصغر (Slim Ticker) */
-        .ticker-wrapper {
-            width: 100%;
-            height: 28px; /* ارتفاع صغير جداً */
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 6px;
-            overflow: hidden;
-            position: relative;
-            margin-bottom: 20px;
-            border-right: 2px solid var(--accent-cyan); /* زخرفة بسيطة */
-            display: flex;
-            align-items: center;
-        }
+@keyframes tickerMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
 
-        .ticker-text {
-            white-space: nowrap;
-            display: inline-block;
-            animation: tickerMove 15s linear infinite;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.9);
-            padding-right: 100%; /* ليبدأ من الخارج */
-        }
+.highlight {
+    color: var(--accent);
+    font-weight: 700;
+}
 
-        @keyframes tickerMove {
-            0% { transform: translate3d(100%, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
-        }
+/* ===== الحقول ===== */
+.input-group {
+    margin-bottom: 12px;
+    position: relative;
+}
 
-        .highlight-text {
-            color: var(--accent-cyan);
-            font-weight: 700;
-        }
+.custom-input,
+.custom-select {
+    width: 100%;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 12px;
+    padding: 12px 40px 12px 15px;
+    color: #fff;
+    font-size: .95rem;
+}
 
-        /* الفورم */
-        .input-group {
-            position: relative;
-            width: 100%;
-            margin-bottom: 12px;
-        }
+.field-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: .4;
+}
 
-        .custom-input, .custom-select {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 12px 40px 12px 15px;
-            color: #fff;
-            font-family: 'Cairo', sans-serif;
-            font-size: 0.95rem;
-            transition: 0.3s;
-        }
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg, var(--accent), #0072ff);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 10px 0 18px;
+}
 
-        .custom-input:focus, .custom-select:focus {
-            background: rgba(0, 0, 0, 0.3);
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
-        }
+/* ===== صندوق توفير البيانات ===== */
+.tools-box {
+    background: rgba(0,0,0,.25);
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 10px;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
 
-        .field-icon {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 1rem;
-            transition: 0.3s;
-        }
+.switch-text {
+    font-size: .8rem;
+}
 
-        .custom-input:focus + .field-icon { color: var(--accent-cyan); }
+.mini-switch {
+    width: 36px;
+    height: 20px;
+    position: relative;
+}
 
-        /* زر الدخول */
-        .login-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(90deg, var(--accent-cyan), #0072ff);
-            border: none;
-            border-radius: 12px;
-            color: #fff;
-            font-weight: 700;
-            font-size: 1rem;
-            font-family: 'Cairo', sans-serif;
-            cursor: pointer;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 242, 255, 0.3);
-            transition: transform 0.2s;
-        }
+.mini-switch input {
+    opacity: 0;
+}
 
-        .login-btn:active { transform: scale(0.98); }
-        
-        /* لمعة الزر */
-        .login-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            animation: shine 3s infinite;
-        }
+.slider {
+    position: absolute;
+    inset: 0;
+    background: #333;
+    border-radius: 20px;
+}
 
-        @keyframes shine {
-            0% { left: -100%; }
-            20% { left: 100%; }
-            100% { left: 100%; }
-        }
+.slider:before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-radius: 50%;
+    left: 3px;
+    top: 3px;
+    transition: .3s;
+}
 
-        .saved-cards-link {
-            text-align: center;
-            display: block;
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 15px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .saved-cards-link:hover { color: #fff; text-decoration: underline; }
+input:checked + .slider {
+    background: var(--accent);
+}
 
-        /* صندوق الأدوات السفلي (Switch) */
-        .tools-box {
-            background: rgba(0,0,0,0.2);
-            border-radius: 10px;
-            padding: 10px 15px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        
-        .switch-text { font-size: 0.8rem; color: #ccc; }
-        .switch-sub { font-size: 0.6rem; color: #777; display: block;}
+input:checked + .slider:before {
+    transform: translateX(16px);
+}
 
-        /* سويتش صغير */
-        .mini-switch {
-            position: relative;
-            width: 36px;
-            height: 20px;
-        }
-        .mini-switch input { opacity: 0; width: 0; height: 0; }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #333;
-            transition: .4s;
-            border-radius: 34px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 14px;
-            width: 14px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider { background-color: var(--accent-cyan); }
-        input:checked + .slider:before { transform: translateX(16px); }
+/* ===== قسم جديد أسفل توفير البيانات ===== */
+.quick-links {
+    background: rgba(0,0,0,.22);
+    border: 1px solid rgba(255,255,255,.05);
+    border-radius: 12px;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
 
-        /* أيقونات سفلية */
-        .bottom-nav {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 25px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            width: 100%;
-        }
+.quick-item {
+    background: rgba(255,255,255,.04);
+    border-radius: 10px;
+    padding: 10px 5px;
+    text-align: center;
+    font-size: .7rem;
+    color: #ccc;
+}
 
-        .nav-item {
-            color: rgba(255,255,255,0.5);
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: 0.3s;
-            position: relative;
-        }
+.quick-item i {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin-bottom: 5px;
+}
 
-        .nav-item:hover { color: var(--accent-cyan); transform: translateY(-3px); }
-        
-        .nav-tooltip {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.6rem;
-            background: var(--accent-cyan);
-            color: #000;
-            padding: 2px 5px;
-            border-radius: 3px;
-            opacity: 0;
-            transition: 0.3s;
-            pointer-events: none;
-            white-space: nowrap;
-        }
-        .nav-item:hover .nav-tooltip { opacity: 1; bottom: 120%; }
+.bottom-nav {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 15px;
+}
 
-        .footer-copy {
-            margin-top: 20px;
-            font-size: 0.65rem;
-            color: rgba(255,255,255,0.3);
-            letter-spacing: 1px;
-        }
+.bottom-nav i {
+    font-size: 1.2rem;
+    opacity: .6;
+}
 
-    </style>
+.footer-copy {
+    text-align: center;
+    font-size: .6rem;
+    opacity: .3;
+    margin-top: 15px;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="glass-card">
-        
-        <div class="header">
-            <div class="network-name">TAWAF NET</div>
-            <div style="font-size: 0.7rem; color: #aaa; letter-spacing: 2px;">FUTURE CONNECTION</div>
+<div class="glass-card">
+
+<div class="header">
+    <div class="network-name">TAWAF NET</div>
+    <div style="font-size:.7rem;opacity:.6;">FUTURE CONNECTION</div>
+</div>
+
+<div class="payment-pill">
+    الدفع متاح عبر: ون كاش • جوالي • كاش • جيب
+</div>
+
+<div class="ticker-wrapper">
+    <div class="ticker-track">
+        <div class="ticker-text">
+            <i class="fas fa-wifi"></i> إنترنت منزلي <span class="highlight">مجاناً</span> |
+            <i class="fas fa-headset"></i> دعم فني <span class="highlight">24 ساعة</span>
         </div>
-
-        <div class="payment-pill">
-            <div class="pulse-dot"></div>
-            <span>الدفع متاح عبر: ون كاش - جوالي - كاش - جيب</span>
+        <div class="ticker-text">
+            <i class="fas fa-tags"></i> عروض خاصة |
+            <i class="fas fa-map-marker-alt"></i> نقاط بيع متعددة
         </div>
-
-        <div class="ticker-wrapper">
-            <div class="ticker-text">
-                <i class="fas fa-wifi"></i> &nbsp; خدماتنا تشمل توصيل شبكة الإنترنت للمنازل <span class="highlight-text">مجاناً</span> &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-headset"></i> &nbsp; دعم فني وخدمة عملاء على مدار <span class="highlight-text">24 ساعة</span>
-            </div>
-        </div>
-
-        <form method="post" action="$(link-login-only)" style="width: 100%;">
-            
-            <div class="input-group">
-                <select class="custom-select">
-                    <option>2M - سرعة عالية (موصى به)</option>
-                    <option>4M - سرعة التوربو 🚀</option>
-                    <option>1M - باقة اقتصادية</option>
-                </select>
-                <i class="fas fa-tachometer-alt field-icon"></i>
-            </div>
-
-            <div class="input-group">
-                <input type="tel" class="custom-input" placeholder="رقم الكرت" value="">
-                <i class="fas fa-lock field-icon"></i>
-            </div>
-
-            <a class="saved-cards-link">
-                <i class="fas fa-history"></i> الكروت المحفوظة
-            </a>
-
-            <button type="submit" class="login-btn">
-                اتصال سريع
-            </button>
-
-            <div class="tools-box">
-                <div>
-                    <span class="switch-text"><i class="fas fa-shield-alt"></i> توفير البيانات</span>
-                    <span class="switch-sub">إيقاف التحديثات تلقائياً</span>
-                </div>
-                <label class="mini-switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                </label>
-            </div>
-
-        </form>
-
-        <div class="bottom-nav">
-            <a href="#" class="nav-item">
-                <i class="fab fa-whatsapp"></i>
-                <span class="nav-tooltip">راسلنا</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i class="fas fa-phone-alt"></i>
-                <span class="nav-tooltip">اتصل</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <span class="nav-tooltip">النقاط</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i class="fas fa-tags"></i>
-                <span class="nav-tooltip">الأسعار</span>
-            </a>
-        </div>
-
-        <div class="footer-copy">
-            SYSTEM VERSION 3.0 • TAWAF NET
-        </div>
-
     </div>
+</div>
+
+<form>
+
+<div class="input-group">
+    <select class="custom-select">
+        <option>2M - سرعة عالية</option>
+        <option>4M - توربو</option>
+        <option>1M - اقتصادية</option>
+    </select>
+    <i class="fas fa-gauge field-icon"></i>
+</div>
+
+<div class="input-group">
+    <input class="custom-input" placeholder="رقم الكرت">
+    <i class="fas fa-lock field-icon"></i>
+</div>
+
+<button class="login-btn">تسجيل الدخول</button>
+
+<div class="tools-box">
+    <span class="switch-text"><i class="fas fa-shield-alt"></i> توفير البيانات</span>
+    <label class="mini-switch">
+        <input type="checkbox" checked>
+        <span class="slider"></span>
+    </label>
+</div>
+
+<!-- القسم المطلوب -->
+<div class="quick-links">
+    <div class="quick-item">
+        <i class="fas fa-map-marker-alt"></i>
+        نقاط البيع
+    </div>
+    <div class="quick-item">
+        <i class="fas fa-tags"></i>
+        الأسعار
+    </div>
+    <div class="quick-item">
+        <i class="fas fa-gift"></i>
+        العروض
+    </div>
+</div>
+
+</form>
+
+<div class="bottom-nav">
+    <i class="fab fa-whatsapp"></i>
+    <i class="fas fa-phone"></i>
+    <i class="fas fa-map"></i>
+</div>
+
+<div class="footer-copy">
+    SYSTEM VERSION 3.0 • TAWAF NET
+</div>
+
+</div>
 
 </body>
 </html>

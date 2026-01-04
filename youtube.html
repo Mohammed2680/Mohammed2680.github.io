@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>يوتيوب MT الذهبي - MTYouTube</title>
+  
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+
+   <!-- Meta tags الأساسية -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="robots" content="index,follow"/>
+  <meta name="description" content="MTYouTube_v18 is a premium YouTube app with ad-free experience, background playback, and exclusive features."/>
+  <meta name="keywords" content="يوتيوب MT الذهبي, MTYouTube, modified YouTube, تحميل يوتيوب MT الذهبي, تنزيل MTYouTube"/>
+
+  <!-- Open Graph (Facebook, WhatsApp, Telegram) -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="GoldenFire"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="index.html"/>
+  <meta property="og:title" content="MTYouTube_v18"/>
+  <meta property="og:description" content="Download MTYouTube_v18 – Premium YouTube experience with ad-free viewing, background playback, and exclusive features."/>
+  <meta property="og:image" content="app_icon2.png"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@GoldenFire"/>
+  <meta name="twitter:title" content="MTYouTube_v18"/>
+  <meta name="twitter:description" content="Download MTYouTube_v18 – Premium YouTube experience with exclusive features."/>
+  <meta name="twitter:image" content="app_icon2.png"/>
+  <meta name="twitter:url" content="index.html"/>
+
+  <!-- Google -->
+  <meta itemprop="name" content="MTYouTube_v18"/>
+  <meta itemprop="description" content="Download MTYouTube_v18 – Premium YouTube experience with exclusive features."/>
+  <meta itemprop="image" content="app_icon2.png"/>
+  
+  <!-- الخطوط -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- أيقونات -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+<script data-cfasync="false" async type="text/javascript" src="//fe.escotsalian.com/rFyagM3QsKIdfyoRS/aBBBO"></script>
+  
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L9QVCM3KLR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L9QVCM3KLR');
+</script>
+  
+    <style>
+    :root {
+      --gold-primary: #D4AF37;
+      --gold-secondary: #B8860B;
+      --gold-light: #FFD700;
+      --gold-dark: #8B7500;
+      --youtube-red: #FF0000;
+      --dark-bg: #121212;
+      --light-bg: #1a1a1a;
+      --text-light: #f8f8f8;
+      --text-dark: #333333;
+      --text-gray: #cccccc;
+      --shadow: 0 4px 12px rgba(0,0,0,0.2);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 500;
+      line-height: 1.7;
+      color: var(--text-dark);
+      background: linear-gradient(135deg, #fffaf0 0%, #fff5e6 100%);
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    [data-lang] { display: none; }
+    
+    /* شاشة التحميل */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    
+    .loader-content {
+      text-align: center;
+      padding: 30px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow);
+      border: 2px solid var(--gold-primary);
+    }
+    
+    .loader-logo {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 15px;
+      animation: pulse 1.5s infinite;
+    }
+    
+    .loader-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--gold-dark);
+      margin-bottom: 15px;
+    }
+    
+    .loader-progress {
+      width: 100%;
+      height: 6px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .loader-progress-bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold-secondary), var(--gold-primary));
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+    
+    /* الشريط العلوي */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-accent) 100%);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      text-decoration: none;
+    }
+    
+    .logo-icon {
+      font-size: 20px;
+    }
+    
+    .lang-switcher {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* الهيدر */
+    .header {
+      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-accent) 100%);
+      text-align: center;
+      padding: 30px 15px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .subtitle {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 600px;
+      margin: 0 auto 15px;
+    }
+    
+    .version-badge {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.2);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 13px;
+      margin-top: 8px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    
+    /* المحتوى الرئيسي */
+    .main-content {
+      max-width: 1200px;
+      margin: -40px auto 30px;
+      padding: 0 15px;
+      position: relative;
+      z-index: 5;
+    }
+    
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+    
+    @media (min-width: 768px) {
+      .content-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    /* بطاقة التطبيق */
+    .app-card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      text-align: center;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid rgba(253, 184, 39, 0.1);
+    }
+    
+    .app-logo-container {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    .app-logo {
+      width: 130px;
+      height: 130px;
+      border-radius: 25px;
+      box-shadow: 0 8px 16px rgba(253, 184, 39, 0.3);
+      border: 4px solid white;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .app-logo-bg {
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      width: 154px;
+      height: 154px;
+      background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
+      border-radius: 35px;
+      z-index: 1;
+      opacity: 0.7;
+      filter: blur(12px);
+    }
+    
+    .app-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    
+    .app-description {
+      color: #555;
+      margin-bottom: 25px;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    
+    .app-meta {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 80px;
+    }
+    
+    .meta-icon {
+      font-size: 18px;
+      color: var(--gold-primary);
+      margin-bottom: 5px;
+    }
+    
+    .meta-value {
+      font-weight: 700;
+      font-size: 15px;
+    }
+    
+    .meta-label {
+      font-size: 13px;
+      color: #777;
+    }
+    
+    /* زر التحميل */
+    .download-box {
+      width: 100%;
+      max-width: 380px;
+      margin: 15px auto;
+    }
+    
+    .file-box {
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
+      color: white;
+      padding: 16px;
+      border-radius: 14px;
+      box-shadow: 0 5px 12px rgba(253, 184, 39, 0.4);
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .file-box:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .file-box::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+      pointer-events: none;
+    }
+    
+    .file-box img {
+      width: 55px;
+      height: 55px;
+      margin-right: 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 7px;
+    }
+    
+    .file-box .text {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      flex: 1;
+    }
+    
+    .file-box .title {
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 3px;
+    }
+    
+    .file-box .size {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+    
+    .file-box .download-icon {
+      font-size: 22px;
+      margin-right: 8px;
+    }
+    
+    /* العد التنازلي */
+    .countdown-box {
+      background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+      padding: 16px;
+      margin-top: 18px;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 700;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      display: none;
+    }
+    
+    /* زر التنزيل النهائي */
+    .download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
+      color: white;
+      padding: 16px 30px;
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 5px 12px rgba(253, 184, 39, 0.4);
+      transition: var(--transition);
+      width: 100%;
+      max-width: 380px;
+      margin: 20px auto 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .download-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .download-btn::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+      pointer-events: none;
+    }
+    
+    /* زر تابع المطور على تلجرام */
+    .developer-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--telegram-color), #006699);
+      color: white;
+      padding: 14px 25px;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 136, 204, 0.3);
+      transition: var(--transition);
+      width: 100%;
+      max-width: 380px;
+      margin: 15px auto 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .developer-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 136, 204, 0.4);
+    }
+    
+    .developer-btn::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+      pointer-events: none;
+    }
+    
+    /* زر التحديثات */
+    .updates-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--purple-accent), #6928a5);
+      color: white;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 3px 8px rgba(131, 58, 180, 0.3);
+      transition: var(--transition);
+      width: 100%;
+      max-width: 300px;
+      margin: 10px auto 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .updates-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 12px rgba(131, 58, 180, 0.4);
+    }
+    
+    /* قسم الأزرار */
+    .buttons-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+      width: 100%;
+      max-width: 380px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* ميزات التطبيق */
+    .features-card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      padding: 25px;
+      border: 1px solid rgba(253, 184, 39, 0.1);
+    }
+    
+    .section-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-dark);
+      text-align: center;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 12px;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-secondary), var(--gold-primary));
+      border-radius: 2px;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    
+    .feature-item {
+      display: flex;
+      gap: 12px;
+      padding: 18px;
+      border-radius: 14px;
+      background: #fff9e6;
+      transition: var(--transition);
+      border: 1px solid rgba(253, 184, 39, 0.2);
+    }
+    
+    .feature-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      background: #fff4d6;
+    }
+    
+    .feature-icon {
+      width: 45px;
+      height: 45px;
+      min-width: 45px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+    }
+    
+    .feature-content {
+      text-align: right;
+    }
+    
+    .feature-title {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 6px;
+      color: var(--text-dark);
+    }
+    
+    .feature-desc {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    /* الفوتر */
+    .footer {
+      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-accent) 100%);
+      color: rgba(255,255,255,0.9);
+      padding: 40px 15px 25px;
+      margin-top: 40px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 35px;
+    }
+    
+    @media (min-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    
+    .footer-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    
+    .footer-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.9);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: var(--transition);
+      font-size: 14px;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    .footer-section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 8px;
+    }
+    
+    .footer-section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 45px;
+      height: 3px;
+      background: white;
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 25px;
+      margin-top: 25px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .disclaimer {
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+      margin-top: 12px;
+      line-height: 1.7;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* إشعار التثبيت */
+    .install-notice {
+      background: #fff8e1;
+      border-right: 4px solid #ffc107;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 20px auto;
+      max-width: 380px;
+      text-align: right;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    .install-notice h4 {
+      color: #ff9800;
+      margin-bottom: 8px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .install-notice p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    
+    /* الرسوم المتحركة */
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    /* تحسينات للجوال */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 24px;
+      }
+      
+      .app-logo {
+        width: 110px;
+        height: 110px;
+      }
+      
+      .app-logo-bg {
+        width: 134px;
+        height: 134px;
+      }
+      
+      .app-title {
+        font-size: 20px;
+      }
+      
+      .app-description {
+        font-size: 14px;
+      }
+      
+      .feature-title {
+        font-size: 15px;
+      }
+      
+      .feature-desc {
+        font-size: 13px;
+      }
+      
+      .download-btn {
+        font-size: 16px;
+        padding: 14px 25px;
+      }
+      
+      .developer-btn {
+        font-size: 15px;
+        padding: 12px 20px;
+      }
+      
+      .section-title {
+        font-size: 20px;
+      }
+      
+      .footer-logo {
+        font-size: 20px;
+      }
+      
+      .footer-desc {
+        font-size: 14px;
+      }
+    }
+    
+    /* تحسينات للأجهزة اللوحية */
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .main-content {
+        max-width: 95%;
+      }
+      
+      .content-grid {
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- أنيميشن الخلفية -->
+  <div class="bg-animation">
+    <div class="bg-circle"></div>
+    <div class="bg-circle"></div>
+    <div class="bg-circle"></div>
+  </div>
+
+  <!-- شاشة التحميل -->
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <i class="fab fa-youtube"></i>
+      </div>
+      <div class="loader-text" data-lang="ar">جاري تحميل الصفحة...</div>
+      <div class="loader-text" data-lang="en">Loading page...</div>
+      <div class="loader-progress">
+        <div class="loader-progress-bar" id="loaderBar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- الشريط العلوي -->
+  <div class="top-bar">
+    <a href="#" class="logo">
+      <i class="fab fa-youtube logo-icon"></i>
+      <span data-lang="ar">يوتيوب MT الذهبي</span>
+      <span data-lang="en">MTYouTube</span>
+    </a>
+    
+    <div class="lang-switcher">
+      <button class="lang-btn" onclick="setLanguage('ar')">🇸🇦 عربي</button>
+      <button class="lang-btn" onclick="setLanguage('en')">🇺🇸 English</button>
+    </div>
+  </div>
+
+  <!-- الهيدر -->
+  <header class="header">
+    <div class="header-content">
+      <h1 data-lang="ar">يوتيوب MT الذهبي</h1>
+      <h1 data-lang="en">MTYouTube</h1>
+      
+      <p class="subtitle" data-lang="ar">نسخة فاخرة من يوتيوب مع ميزات متقدمة لمشاهدة وتحميل المحتوى</p>
+      <p class="subtitle" data-lang="en">Premium YouTube version with advanced viewing and downloading features</p>
+      
+      <div class="version-badge" data-lang="ar">الإصدار الذهبي v18</div>
+      <div class="version-badge" data-lang="en">Golden Version v18</div>
+    </div>
+  </header>
+
+
+
+  <!-- المحتوى الرئيسي -->
+  <div class="main-content">
+    <div class="content-grid">
+      <!-- بطاقة التطبيق -->
+      <div class="app-card">
+        <div class="featured-badge" data-lang="ar">مميز</div>
+        <div class="featured-badge" data-lang="en">Featured</div>
+        
+        <div class="app-logo-container">
+          <div class="app-logo-bg"></div>
+          <div class="app-logo">
+            <i class="fab fa-youtube"></i>
+          </div>
+        </div>
+        
+        <h2 class="app-title" data-lang="ar">يوتيوب MT الذهبي</h2>
+        <h2 class="app-title" data-lang="en">MTYouTube</h2>
+        
+        <p class="app-description" data-lang="ar">
+          النسخة الذهبية الفاخرة من يوتيوب، تقدم تجربة استثنائية مع ميزات متقدمة مثل مشاهدة بدون إعلانات، تشغيل في الخلفية، دعم 4K، وتنزيل الفيديوهات!
+        </p>
+        <p class="app-description" data-lang="en">
+          The premium golden version of YouTube, offering an exceptional experience with advanced features like ad-free viewing, background playback, 4K support, and video downloads!
+        </p>
+        
+ 
+        
+        <div class="app-meta">
+          <div class="meta-item">
+            <div class="meta-icon"><i class="fas fa-download"></i></div>
+            <div class="meta-value">192MB</div>
+            <div class="meta-label" data-lang="ar">حجم الملف</div>
+            <div class="meta-label" data-lang="en">File Size</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-icon"><i class="fas fa-sync-alt"></i></div>
+            <div class="meta-value">v18</div>
+            <div class="meta-label" data-lang="ar">الإصدار</div>
+            <div class="meta-label" data-lang="en">Version</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="meta-value" data-lang="ar">آمن</div>
+            <div class="meta-value" data-lang="en">Safe</div>
+            <div class="meta-label" data-lang="ar">بدون فيروسات</div>
+            <div class="meta-label" data-lang="en">Virus Free</div>
+          </div>
+        </div>
+	
+        
+        <div class="download-box">
+          <a href="javascript:void(0);" onclick="startCountdown()" id="fileInfoBox" class="file-box">
+            <div class="app-icon">
+              <i class="fab fa-youtube"></i>
+            </div>
+            <div class="text">
+              <div class="title">MTYouTube_v18</div>
+              <div class="size" data-lang="ar">اضغط للتحميل</div>
+              <div class="size" data-lang="en">Click to download</div>
+            </div>
+            <i class="fas fa-arrow-down download-icon"></i>
+          </a>
+
+          <div id="countdownBox" class="countdown-box"></div>
+
+          <a href="../external.html?link=https://dlll.apkm.app/ytgold/18/YouTube_Gold_V18.apk" 
+             id="finalDownloadBox" class="download-btn" style="display: none;">
+            <i class="fas fa-download"></i>
+            <span data-lang="ar">تنزيل النسخة الذهبية</span>
+            <span data-lang="en">Download Gold Edition</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- ميزات التطبيق -->
+      <div class="features-card">
+        <h2 class="section-title" data-lang="ar">الميزات الذهبية</h2>
+        <h2 class="section-title" data-lang="en">Gold Features</h2>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-ban"></i></div>
+            <div class="feature-content">
+              <h3 class="feature-title" data-lang="ar">بدون إعلانات</h3>
+              <h3 class="feature-title" data-lang="en">Ad-Free Experience</h3>
+              <p class="feature-desc" data-lang="ar">استمتع بمشاهدة مقاطع الفيديو دون مقاطعة الإعلانات المزعجة</p>
+              <p class="feature-desc" data-lang="en">Enjoy watching videos without annoying ad interruptions</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-music"></i></div>
+            <div class="feature-content">
+              <h3 class="feature-title" data-lang="ar">تشغيل في الخلفية</h3>
+              <h3 class="feature-title" data-lang="en">Background Playback</h3>
+              <p class="feature-desc" data-lang="ar">استمع إلى الموسيقى والفيديوهات مع إغلاق التطبيق أو شاشة الهاتف</p>
+              <p class="feature-desc" data-lang="en">Listen to music and videos with the app closed or screen off</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-download"></i></div>
+            <div class="feature-content">
+              <h3 class="feature-title" data-lang="ar">تنزيل الفيديوهات</h3>
+              <h3 class="feature-title" data-lang="en">Video Downloads</h3>
+              <p class="feature-desc" data-lang="ar">حفظ الفيديوهات لمشاهدتها لاحقاً بدون إنترنت</p>
+              <p class="feature-desc" data-lang="en">Save videos to watch later without internet</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-video"></i></div>
+            <div class="feature-content">
+              <h3 class="feature-title" data-lang="ar">دعم جودة 4K</h3>
+              <h3 class="feature-title" data-lang="en">4K Quality Support</h3>
+              <p class="feature-desc" data-lang="ar">مشاهدة الفيديوهات بجودة 4K فائقة الوضوح</p>
+              <p class="feature-desc" data-lang="en">Watch videos in ultra-clear 4K quality</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-eye-slash"></i></div>
+            <div class="feature-content">
+              <h3 class="feature-title" data-lang="ar">وضع التخفي</h3>
+              <h3 class="feature-title" data-lang="en">Incognito Mode</h3>
+              <p class="feature-desc" data-lang="ar">تصفح يوتيوب دون حفظ تاريخ المشاهدة</p>
+              <p class="feature-desc" data-lang="en">Browse YouTube without saving watch history</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-play-circle"></i></div>
+            <div class="feature-content">
+              <h3 class="feature-title" data-lang="ar">مشغل متقدم</h3>
+              <h3 class="feature-title" data-lang="en">Advanced Player</h3>
+              <p class="feature-desc" data-lang="ar">ميزات متقدمة للتحكم في السرعة والجودة</p>
+              <p class="feature-desc" data-lang="en">Advanced controls for speed and quality</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+   
+
+  <!-- الفوتر -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <div class="footer-logo">
+          <i class="fab fa-youtube"></i>
+          <span data-lang="ar">يوتيوب MT الذهبي</span>
+          <span data-lang="en">MTYouTube</span>
+        </div>
+        
+        <p class="footer-desc" data-lang="ar">
+          النسخة الذهبية الفاخرة من تطبيق يوتيوب، تقدم تجربة استثنائية مع ميزات متقدمة غير موجودة في التطبيق الرسمي.
+          نسعى لتقديم أفضل تجربة مستخدم مع الحفاظ على الأمان والخصوصية.
+        </p>
+        <p class="footer-desc" data-lang="en">
+          The premium golden version of YouTube, offering an exceptional experience with advanced features not available in the official app.
+          We strive to provide the best user experience while maintaining security and privacy.
+        </p>
+        
+        <div class="footer-links">
+          <a href="javascript:void(0);"><i class="fas fa-shield-alt"></i> <span data-lang="ar">الأمان والخصوصية</span><span data-lang="en">Security & Privacy</span></a>
+          <a href="javascript:void(0);"><i class="fas fa-question-circle"></i> <span data-lang="ar">الأسئلة الشائعة</span><span data-lang="en">FAQ</span></a>
+          <a href="javascript:void(0);"><i class="fas fa-book"></i> <span data-lang="ar">الشروط والأحكام</span><span data-lang="en">Terms & Conditions</span></a>
+          <a href="javascript:void(0);"><i class="fas fa-envelope"></i> <span data-lang="ar">اتصل بنا</span><span data-lang="en">Contact Us</span></a>
+        </div>
+      </div>
+      
+      <div>
+        <h3 class="footer-section-title" data-lang="ar">روابط مفيدة</h3>
+        <h3 class="footer-section-title" data-lang="en">Useful Links</h3>
+        
+     
+        
+        <div class="footer-links">
+          <a href="javascript:void(0);"><i class="fab fa-telegram"></i> <span data-lang="ar">قناة التليجرام</span><span data-lang="en">Telegram Channel</span></a>
+          <a href="javascript:void(0);"><i class="fab fa-youtube"></i> <span data-lang="ar">دليل الاستخدام</span><span data-lang="en">User Guide</span></a>
+          <a href="javascript:void(0);"><i class="fas fa-history"></i> <span data-lang="ar">الإصدارات السابقة</span><span data-lang="en">Previous Versions</span></a>
+          <a href="javascript:void(0);"><i class="fas fa-mobile-alt"></i> <span data-lang="ar">تطبيقات أخرى</span><span data-lang="en">Other Apps</span></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2026 MTYouTube. <span data-lang="ar">جميع الحقوق محفوظة</span><span data-lang="en">All rights reserved</span></p>
+    </div>
+  </footer>
+
+  <script>
+    // شاشة التحميل بسيطة وفعالة
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const loader = document.getElementById('loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(function() {
+            loader.style.display = 'none';
+          }, 500);
+        }
+      }, 1000);
+    });
+
+    // البدء فوراً بمحاكاة التحميل
+    document.addEventListener('DOMContentLoaded', function() {
+      const loaderBar = document.getElementById('loaderBar');
+      let progress = 0;
+      
+      const interval = setInterval(function() {
+        progress += Math.random() * 15;
+        if (loaderBar) {
+          loaderBar.style.width = progress + '%';
+        }
+        if (progress >= 100) {
+          clearInterval(interval);
+        }
+      }, 100);
+      
+      // تعيين اللغة التلقائي
+      const userLang = navigator.language.startsWith("ar") ? "ar" : "en";
+      setLanguage(userLang);
+    });
+
+    let lang = 'ar';
+    function setLanguage(selectedLang) {
+      lang = selectedLang;
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.dataset.lang === lang ? 'block' : 'none';
+      });
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = lang;
+    }
+
+    function startCountdown() {
+      document.getElementById("fileInfoBox").style.display = "none";
+      var counter = 5;
+      var countdownBox = document.getElementById("countdownBox");
+      var finalBtn = document.getElementById("finalDownloadBox");
+
+      countdownBox.style.display = "block";
+      countdownBox.innerHTML = lang === "ar"
+        ? `<i class="fas fa-spinner fa-spin"></i> جاري التحضير للتنزيل... ${counter}`
+        : `<i class="fas fa-spinner fa-spin"></i> Preparing download... ${counter}`;
+
+      var interval = setInterval(function () {
+        counter--;
+        countdownBox.innerHTML = lang === "ar"
+          ? `<i class="fas fa-spinner fa-spin"></i> جاري التحضير للتنزيل... ${counter}`
+          : `<i class="fas fa-spinner fa-spin"></i> Preparing download... ${counter}`;
+
+        if (counter <= 0) {
+          clearInterval(interval);
+          countdownBox.style.display = "none";
+          finalBtn.style.display = "flex";
+          
+          // تمرير سلس للزر الجديد
+          finalBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 1000);
+    }
+    
+    // خطأ استرجاع لشاشة التحميل
+    setTimeout(function() {
+      const loader = document.getElementById('loader');
+      if (loader && loader.style.display !== 'none') {
+        loader.style.opacity = '0';
+        setTimeout(function() {
+          loader.style.display = 'none';
+        }, 500);
+      }
+    }, 3000);
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b866b477b5260c3',t:'MTc2NzQ4NDQ0Mg=='};var a=document.createElement('script');a.src='cdn-cgi/challenge-platform/h/g/scripts/jsd/d39f91d70ce1/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="../external.html?link=https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"1ec1dfdced074dacb861fb3704f4d359","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

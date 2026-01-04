@@ -12,14 +12,12 @@
 
     <style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-bg: rgba(20, 20, 40, 0.6); /* خلفية داكنة أكثر للتباين */
             --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            --accent-color: #00d2ff;
+            --accent-cyan: #00f2ff;
+            --accent-purple: #bd00ff;
             --text-color: #ffffff;
-            --input-bg: rgba(0, 0, 0, 0.2);
-            --neon-glow: 0 0 10px rgba(0, 210, 255, 0.5), 0 0 20px rgba(0, 210, 255, 0.3);
+            --neon-glow: 0 0 10px rgba(0, 242, 255, 0.4);
         }
 
         * {
@@ -32,10 +30,9 @@
 
         body {
             font-family: 'Cairo', sans-serif;
-            background: #0f0c29;
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #4a148c);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: #000;
+            /* خلفية متدرجة عميقة جداً توحي بالفضاء/المستقبل */
+            background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
             color: var(--text-color);
             min-height: 100vh;
             display: flex;
@@ -45,385 +42,301 @@
             position: relative;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        body::before, body::after {
+        /* مؤثرات الخلفية المتحركة (أضواء الشمال) */
+        body::before {
             content: '';
             position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            filter: blur(80px);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent 0deg, #16213e 90deg, transparent 180deg, #1a1a2e 270deg, transparent 360deg);
+            animation: rotateBG 20s linear infinite;
+            opacity: 0.3;
             z-index: 0;
-            opacity: 0.6;
-        }
-        body::before { background: #764ba2; top: -50px; left: -50px; animation: float 6s ease-in-out infinite; }
-        body::after { background: #00d2ff; bottom: -50px; right: -50px; animation: float 8s ease-in-out infinite reverse; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(20px); }
         }
 
+        @keyframes rotateBG {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* الكرت الزجاجي */
         .glass-card {
             position: relative;
-            z-index: 1;
-            width: 90%;
-            max-width: 400px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            box-shadow: var(--glass-shadow);
-            padding: 30px 20px;
+            z-index: 10;
+            width: 92%;
+            max-width: 380px; /* عرض مثالي للجوال */
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 30px;
+            padding: 25px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            animation: floatUp 1s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
+        @keyframes floatUp {
+            from { transform: translateY(30px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
 
+        /* الشعار والعنوان */
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .network-name {
-            font-size: 1.8rem;
-            font-weight: 900;
-            background: linear-gradient(to right, #fff, #00d2ff);
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, var(--accent-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(0, 210, 255, 0.3);
-            margin-bottom: 5px;
-            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+            letter-spacing: -0.5px;
         }
 
-        .sub-title {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.7);
-            font-weight: 300;
-        }
-
-        /* ------------------------------------------------ */
-        /* بداية كود الشريط الإعلاني المتحرك (Ticker) */
-        /* ------------------------------------------------ */
-        .ad-ticker-container {
+        /* 1. كبسولة الدفع (ثابتة وأنيقة) */
+        .payment-pill {
+            background: rgba(255, 215, 0, 0.08); /* ذهبي خفيف جداً */
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.05);
             width: 100%;
+            justify-content: center;
+        }
+        
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* 2. شريط الأخبار المصغر (Slim Ticker) */
+        .ticker-wrapper {
+            width: 100%;
+            height: 28px; /* ارتفاع صغير جداً */
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 6px;
             overflow: hidden;
-            background: rgba(0, 0, 0, 0.3); /* خلفية داكنة للشريط */
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 25px;
-            padding: 8px 0;
             position: relative;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            border-right: 2px solid var(--accent-cyan); /* زخرفة بسيطة */
             display: flex;
             align-items: center;
         }
-        
-        /* أيقونة ثابتة بجانب الشريط */
-        .ticker-icon {
-            background: var(--accent-color);
-            color: #000;
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            margin-right: 5px;
-            margin-left: 5px;
-            font-weight: bold;
-            z-index: 2;
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.6);
-        }
 
-        .ticker-wrapper {
-            width: 100%;
-            overflow: hidden;
+        .ticker-text {
             white-space: nowrap;
-        }
-
-        .ticker-content {
             display: inline-block;
-            white-space: nowrap;
-            padding-left: 100%; /* يبدأ من خارج الشاشة */
-            animation: ticker-move 18s linear infinite; /* سرعة الحركة */
-            font-size: 0.85rem;
-            color: #fff;
+            animation: tickerMove 15s linear infinite;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.9);
+            padding-right: 100%; /* ليبدأ من الخارج */
         }
 
-        /* حركة النص */
-        @keyframes ticker-move {
+        @keyframes tickerMove {
             0% { transform: translate3d(100%, 0, 0); }
-            100% { transform: translate3d(-150%, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
         }
 
-        /* تنسيق النص داخل الإعلان */
-        .highlight {
-            color: var(--accent-color);
-            font-weight: bold;
-            text-shadow: 0 0 5px rgba(0, 210, 255, 0.5);
+        .highlight-text {
+            color: var(--accent-cyan);
+            font-weight: 700;
         }
-        /* ------------------------------------------------ */
-        /* نهاية كود الشريط الإعلاني */
-        /* ------------------------------------------------ */
 
-
-        .form-group {
+        /* الفورم */
+        .input-group {
+            position: relative;
             width: 100%;
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        .label-main {
-            display: block;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #00d2ff;
-            margin-bottom: 15px;
-            font-weight: 600;
-            text-shadow: 0 0 5px rgba(0, 210, 255, 0.5);
-        }
-
-        .input-wrapper {
-            position: relative;
-            transition: transform 0.3s ease;
-        }
-        
-        .input-wrapper:focus-within {
-            transform: scale(1.02);
+            margin-bottom: 12px;
         }
 
         .custom-input, .custom-select {
             width: 100%;
-            background: var(--input-bg);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            padding: 14px 45px 14px 20px;
+            border-radius: 12px;
+            padding: 12px 40px 12px 15px;
             color: #fff;
             font-family: 'Cairo', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            transition: 0.3s;
         }
 
         .custom-input:focus, .custom-select:focus {
-            background: rgba(0, 0, 0, 0.4);
-            border-color: var(--accent-color);
-            box-shadow: var(--neon-glow);
+            background: rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
         }
 
-        .input-icon {
+        .field-icon {
             position: absolute;
             right: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 1.1rem;
-            transition: color 0.3s;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 1rem;
+            transition: 0.3s;
         }
 
-        .custom-input:focus + .input-icon,
-        .custom-select:focus + .input-icon {
-            color: var(--accent-color);
-        }
+        .custom-input:focus + .field-icon { color: var(--accent-cyan); }
 
-        .custom-select {
-            appearance: none;
-            cursor: pointer;
-        }
-        
-        .select-arrow {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.5);
-        }
-
-        option {
-            background: #240046;
-            color: white;
-        }
-
-        .saved-cards {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.8);
-            background: none;
-            border: none;
-            border-bottom: 1px dashed rgba(255,255,255,0.4);
-            padding-bottom: 2px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            transition: color 0.3s;
-        }
-        .saved-cards:hover { color: var(--accent-color); border-color: var(--accent-color); }
-
+        /* زر الدخول */
         .login-btn {
-            background: linear-gradient(90deg, #00d2ff, #3a7bd5);
-            color: white;
-            border: none;
             width: 100%;
-            padding: 15px;
-            font-size: 1.1rem;
+            padding: 14px;
+            background: linear-gradient(90deg, var(--accent-cyan), #0072ff);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
             font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
+            font-size: 1rem;
             font-family: 'Cairo', sans-serif;
-            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            margin-bottom: 25px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-bottom: 20px;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 242, 255, 0.3);
+            transition: transform 0.2s;
         }
 
-        .login-btn::after {
+        .login-btn:active { transform: scale(0.98); }
+        
+        /* لمعة الزر */
+        .login-btn::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(255,255,255,0.2), transparent);
-            opacity: 0;
-            transition: opacity 0.3s;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shine 3s infinite;
         }
 
-        .login-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 210, 255, 0.6);
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
         }
-        .login-btn:active { transform: scale(0.98); }
 
-        .settings-box {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 15px;
+        .saved-cards-link {
+            text-align: center;
+            display: block;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 15px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .saved-cards-link:hover { color: #fff; text-decoration: underline; }
+
+        /* صندوق الأدوات السفلي (Switch) */
+        .tools-box {
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 10px 15px;
             width: 100%;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .switch-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.05);
         }
+        
+        .switch-text { font-size: 0.8rem; color: #ccc; }
+        .switch-sub { font-size: 0.6rem; color: #777; display: block;}
 
-        .switch-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-        }
-
-        .toggle-switch {
+        /* سويتش صغير */
+        .mini-switch {
             position: relative;
-            width: 46px;
-            height: 24px;
+            width: 36px;
+            height: 20px;
         }
-        .toggle-switch input { opacity: 0; width: 0; height: 0; }
-        .toggle-slider {
+        .mini-switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
             position: absolute;
             cursor: pointer;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(255,255,255,0.2);
+            background-color: #333;
             transition: .4s;
             border-radius: 34px;
         }
-        .toggle-slider:before {
+        .slider:before {
             position: absolute;
             content: "";
-            height: 18px;
-            width: 18px;
+            height: 14px;
+            width: 14px;
             left: 3px;
             bottom: 3px;
             background-color: white;
             transition: .4s;
             border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
-        input:checked + .toggle-slider { background-color: var(--accent-color); }
-        input:checked + .toggle-slider:before { transform: translateX(22px); }
+        input:checked + .slider { background-color: var(--accent-cyan); }
+        input:checked + .slider:before { transform: translateX(16px); }
 
-        .glass-nav {
-            display: flex;
-            justify-content: space-evenly;
-            width: 100%;
-            margin-top: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            padding: 10px 0;
-        }
-
-        .nav-link {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.75rem;
-            transition: all 0.3s;
-        }
-
-        .nav-icon-box {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
+        /* أيقونات سفلية */
+        .bottom-nav {
             display: flex;
             justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-            background: rgba(255, 255, 255, 0.05);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .nav-link:hover { color: #fff; }
-        .nav-link:hover .nav-icon-box {
-            background: var(--accent-color);
-            color: #0f0c29;
-            transform: translateY(-5px) rotate(5deg);
-            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
-        }
-
-        .mini-contact {
-            display: flex;
-            gap: 15px;
+            gap: 20px;
             margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.05);
             width: 100%;
         }
 
-        .contact-pill {
-            flex: 1;
-            text-align: center;
-            padding: 8px;
-            border-radius: 10px;
-            background: rgba(255,255,255,0.05);
-            color: #ccc;
+        .nav-item {
+            color: rgba(255,255,255,0.5);
             text-decoration: none;
-            font-size: 0.8rem;
-            border: 1px solid transparent;
+            font-size: 1.2rem;
             transition: 0.3s;
+            position: relative;
         }
 
-        .contact-pill:hover {
-            border-color: rgba(255,255,255,0.3);
-            background: rgba(255,255,255,0.1);
-            color: white;
+        .nav-item:hover { color: var(--accent-cyan); transform: translateY(-3px); }
+        
+        .nav-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6rem;
+            background: var(--accent-cyan);
+            color: #000;
+            padding: 2px 5px;
+            border-radius: 3px;
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+            white-space: nowrap;
         }
+        .nav-item:hover .nav-tooltip { opacity: 1; bottom: 120%; }
 
-        .footer {
+        .footer-copy {
             margin-top: 20px;
-            font-size: 0.7rem;
-            opacity: 0.5;
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.3);
             letter-spacing: 1px;
         }
 
@@ -433,92 +346,80 @@
 
     <div class="glass-card">
         
-        <header class="header">
-            <div class="network-name">
-                <i class="fas fa-wifi" style="font-size: 0.8em; margin-left: 5px;"></i> شبكة طواف نت
-            </div>
-            <div class="sub-title">شبكة لاسلكية فائقة سرعة</div>
-        </header>
+        <div class="header">
+            <div class="network-name">TAWAF NET</div>
+            <div style="font-size: 0.7rem; color: #aaa; letter-spacing: 2px;">FUTURE CONNECTION</div>
+        </div>
 
-        <div class="ad-ticker-container">
-            <div class="ticker-icon">
-                <i class="fas fa-bullhorn"></i> عاجل
-            </div>
-            <div class="ticker-wrapper">
-                <div class="ticker-content">
-                    خدماتنا تشمل توصيل <span class="highlight">شبكة الإنترنت للمنازل مجاناً</span> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; دعم فني وخدمة عملاء على مدار <span class="highlight">24 ساعة</span>
-                </div>
+        <div class="payment-pill">
+            <div class="pulse-dot"></div>
+            <span>الدفع متاح عبر: ون كاش - جوالي - كاش - جيب</span>
+        </div>
+
+        <div class="ticker-wrapper">
+            <div class="ticker-text">
+                <i class="fas fa-wifi"></i> &nbsp; خدماتنا تشمل توصيل شبكة الإنترنت للمنازل <span class="highlight-text">مجاناً</span> &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-headset"></i> &nbsp; دعم فني وخدمة عملاء على مدار <span class="highlight-text">24 ساعة</span>
             </div>
         </div>
+
         <form method="post" action="$(link-login-only)" style="width: 100%;">
             
-            <span class="label-main">اختر سرعتك </span>
-
-            <div class="form-group input-wrapper">
+            <div class="input-group">
                 <select class="custom-select">
-                    <option>1M - باقة اقتصادية</option>
-                    <option selected>2M - سرعة عالية (موصى به)</option>
+                    <option>2M - سرعة عالية (موصى به)</option>
                     <option>4M - سرعة التوربو 🚀</option>
+                    <option>1M - باقة اقتصادية</option>
                 </select>
-                <i class="fas fa-tachometer-alt input-icon"></i>
-                <i class="fas fa-chevron-down select-arrow"></i>
+                <i class="fas fa-tachometer-alt field-icon"></i>
             </div>
 
-            <div class="form-group input-wrapper">
+            <div class="input-group">
                 <input type="tel" class="custom-input" placeholder="رقم الكرت" value="">
-                <i class="fas fa-lock input-icon"></i>
+                <i class="fas fa-lock field-icon"></i>
             </div>
 
-            <div style="text-align: center;">
-                <button type="button" class="saved-cards">
-                    <i class="fas fa-history"></i> استخدام كرت محفوظ
-                </button>
-            </div>
+            <a class="saved-cards-link">
+                <i class="fas fa-history"></i> الكروت المحفوظة
+            </a>
 
             <button type="submit" class="login-btn">
-                اتصال الآن <i class="fas fa-bolt"></i>
+                اتصال سريع
             </button>
 
-            <div class="settings-box">
-                <div class="switch-row">
-                    <div class="switch-label">
-                        <i class="fas fa-shield-alt" style="color: var(--accent-color);"></i>
-                        <div>
-                            <div style="font-size: 0.8rem; color: #fff;">توفير البيانات</div>
-                            <div style="font-size: 0.65rem; color: #aaa;">إيقاف التحديثات التلقائية</div>
-                        </div>
-                    </div>
-                    <label class="toggle-switch">
-                        <input type="checkbox" checked>
-                        <span class="toggle-slider"></span>
-                    </label>
+            <div class="tools-box">
+                <div>
+                    <span class="switch-text"><i class="fas fa-shield-alt"></i> توفير البيانات</span>
+                    <span class="switch-sub">إيقاف التحديثات تلقائياً</span>
                 </div>
+                <label class="mini-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
             </div>
 
         </form>
 
-        <nav class="glass-nav">
-            <a href="#" class="nav-link">
-                <div class="nav-icon-box"><i class="fas fa-fire"></i></div>
-                <span>العروض</span>
+        <div class="bottom-nav">
+            <a href="#" class="nav-item">
+                <i class="fab fa-whatsapp"></i>
+                <span class="nav-tooltip">راسلنا</span>
             </a>
-            <a href="#" class="nav-link">
-                <div class="nav-icon-box"><i class="fas fa-map-marked-alt"></i></div>
-                <span>النقاط</span>
+            <a href="#" class="nav-item">
+                <i class="fas fa-phone-alt"></i>
+                <span class="nav-tooltip">اتصل</span>
             </a>
-            <a href="#" class="nav-link">
-                <div class="nav-icon-box"><i class="fas fa-money-bill-wave"></i></div>
-                <span>الأسعار</span>
+            <a href="#" class="nav-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span class="nav-tooltip">النقاط</span>
             </a>
-        </nav>
-
-        <div class="mini-contact">
-            <a href="#" class="contact-pill"><i class="fab fa-whatsapp"></i> راسلنا</a>
-            <a href="#" class="contact-pill"><i class="fas fa-phone-alt"></i> اتصل بنا</a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-tags"></i>
+                <span class="nav-tooltip">الأسعار</span>
+            </a>
         </div>
 
-        <div class="footer">
-            POWERED BY TAWAF NET © 2026
+        <div class="footer-copy">
+            SYSTEM VERSION 3.0 • TAWAF NET
         </div>
 
     </div>

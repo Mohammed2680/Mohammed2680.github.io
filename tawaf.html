@@ -45,14 +45,12 @@
             position: relative;
         }
 
-        /* خلفية متحركة */
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* دوائر مضيئة في الخلفية لزيادة الجمالية */
         body::before, body::after {
             content: '';
             position: absolute;
@@ -71,7 +69,6 @@
             50% { transform: translateY(20px); }
         }
 
-        /* الحاوية الزجاجية الرئيسية */
         .glass-card {
             position: relative;
             z-index: 1;
@@ -95,10 +92,9 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* الهيدر */
         .header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .network-name {
@@ -118,21 +114,69 @@
             font-weight: 300;
         }
 
-        /* اشعار علوي */
-        .notification {
-            background: rgba(255, 215, 0, 0.1);
-            border-right: 4px solid #ffd700;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            line-height: 1.5;
-            margin-bottom: 25px;
+        /* ------------------------------------------------ */
+        /* بداية كود الشريط الإعلاني المتحرك (Ticker) */
+        /* ------------------------------------------------ */
+        .ad-ticker-container {
             width: 100%;
-            text-align: right;
-            backdrop-filter: blur(5px);
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.3); /* خلفية داكنة للشريط */
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 25px;
+            padding: 8px 0;
+            position: relative;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+        }
+        
+        /* أيقونة ثابتة بجانب الشريط */
+        .ticker-icon {
+            background: var(--accent-color);
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-left: 5px;
+            font-weight: bold;
+            z-index: 2;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.6);
         }
 
-        /* عناصر النموذج */
+        .ticker-wrapper {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%; /* يبدأ من خارج الشاشة */
+            animation: ticker-move 18s linear infinite; /* سرعة الحركة */
+            font-size: 0.85rem;
+            color: #fff;
+        }
+
+        /* حركة النص */
+        @keyframes ticker-move {
+            0% { transform: translate3d(100%, 0, 0); }
+            100% { transform: translate3d(-150%, 0, 0); }
+        }
+
+        /* تنسيق النص داخل الإعلان */
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 210, 255, 0.5);
+        }
+        /* ------------------------------------------------ */
+        /* نهاية كود الشريط الإعلاني */
+        /* ------------------------------------------------ */
+
+
         .form-group {
             width: 100%;
             margin-bottom: 15px;
@@ -191,7 +235,6 @@
             color: var(--accent-color);
         }
 
-        /* تخصيص القائمة المنسدلة */
         .custom-select {
             appearance: none;
             cursor: pointer;
@@ -212,7 +255,6 @@
             color: white;
         }
 
-        /* زر البطاقات المحفوظة */
         .saved-cards {
             font-size: 0.8rem;
             color: rgba(255,255,255,0.8);
@@ -226,7 +268,6 @@
         }
         .saved-cards:hover { color: var(--accent-color); border-color: var(--accent-color); }
 
-        /* زر الدخول */
         .login-btn {
             background: linear-gradient(90deg, #00d2ff, #3a7bd5);
             color: white;
@@ -260,7 +301,6 @@
         }
         .login-btn:active { transform: scale(0.98); }
 
-        /* قسم التنبيه والتبديل */
         .settings-box {
             background: rgba(0, 0, 0, 0.3);
             border-radius: 15px;
@@ -284,7 +324,6 @@
             font-weight: 500;
         }
 
-        /* سويتش احترافي */
         .toggle-switch {
             position: relative;
             width: 46px;
@@ -314,7 +353,6 @@
         input:checked + .toggle-slider { background-color: var(--accent-color); }
         input:checked + .toggle-slider:before { transform: translateX(22px); }
 
-        /* الأيقونات السفلية العائمة */
         .glass-nav {
             display: flex;
             justify-content: space-evenly;
@@ -356,7 +394,6 @@
             box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
         }
 
-        /* أزرار الاتصال الصغيرة */
         .mini-contact {
             display: flex;
             gap: 15px;
@@ -398,18 +435,24 @@
         
         <header class="header">
             <div class="network-name">
-                <i class="fas fa-wifi" style="font-size: 0.8em; margin-left: 5px;"></i> شبكة طواف نت           </div>
+                <i class="fas fa-wifi" style="font-size: 0.8em; margin-left: 5px;"></i> شبكة طواف نت
+            </div>
             <div class="sub-title">شبكة لاسلكية فائقة سرعة</div>
         </header>
 
-        <div class="notification">
-            <i class="fas fa-wallet" style="color: #ffd700; margin-left: 5px;"></i>
-            ادفع بسهولة عبر المحافظ الإلكترونية (جيب - ون كاش - جوالي - كاش - حاسب كربمي)
+        <div class="ad-ticker-container">
+            <div class="ticker-icon">
+                <i class="fas fa-bullhorn"></i> عاجل
+            </div>
+            <div class="ticker-wrapper">
+                <div class="ticker-content">
+                    خدماتنا تشمل توصيل <span class="highlight">شبكة الإنترنت للمنازل مجاناً</span> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; دعم فني وخدمة عملاء على مدار <span class="highlight">24 ساعة</span>
+                </div>
+            </div>
         </div>
-
         <form method="post" action="$(link-login-only)" style="width: 100%;">
             
-            <span class="label-main">اختر ونالمفضلة</span>
+            <span class="label-main">اختر سرعتك </span>
 
             <div class="form-group input-wrapper">
                 <select class="custom-select">

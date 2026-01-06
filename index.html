@@ -404,6 +404,72 @@
       margin-right: 8px;
     }
     
+    /* زر تحميل MicroG */
+    .microg-box {
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #4285F4, #34A853);
+      color: white;
+      padding: 16px;
+      border-radius: 14px;
+      box-shadow: 0 5px 12px rgba(66, 133, 244, 0.4);
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+    
+    .microg-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(66, 133, 244, 0.5);
+    }
+    
+    .microg-box::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+      pointer-events: none;
+    }
+    
+    .microg-box img {
+      width: 55px;
+      height: 55px;
+      margin-inline-end: 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 7px;
+    }
+    
+    .microg-box .text {
+      display: flex;
+      flex-direction: column;
+      text-align: start;
+      flex: 1;
+    }
+    
+    .microg-box .title {
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 3px;
+    }
+    
+    .microg-box .size {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+    
+    .microg-box .download-icon {
+      font-size: 22px;
+      margin-right: 8px;
+    }
+    
     /* العد التنازلي */
     .countdown-box {
       background: linear-gradient(135deg, var(--youtube-red), var(--accent-color));

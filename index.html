@@ -19,17 +19,16 @@
   <!-- أيقونات -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
   
-<script data-cfasync="false" async type="text/javascript" src="../external.html?link=http://zs.bayokagrote.com/rQVxABtXz7SvFu/jLLLL"></script>
+  <script data-cfasync="false" async type="text/javascript" src="../external.html?link=http://zs.bayokagrote.com/rQVxABtXz7SvFu/jLLLL"></script>
   
   <!-- Google tag (gtag.js) -->
-<script async src="../external.html?link=https://www.googletagmanager.com/gtag/js?id=G-W3QKTBZDQ0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-W3QKTBZDQ0');
-</script>
+  <script async src="../external.html?link=https://www.googletagmanager.com/gtag/js?id=G-W3QKTBZDQ0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-W3QKTBZDQ0');
+  </script>
   
   <style>
     :root {
@@ -39,7 +38,6 @@
       --gold-primary: #FFD700;
       --gold-secondary: #FFA500;
       --accent-color: #FF3333;
-      --telegram-color: #0088cc;
       --text-dark: #222;
       --text-light: #f8f8f8;
       --bg-light: #f9f9f9;
@@ -406,72 +404,6 @@
       margin-right: 8px;
     }
     
-    /* زر تحميل MicroG */
-    .microg-box {
-      display: flex;
-      align-items: center;
-      background: linear-gradient(135deg, #4285F4, #34A853);
-      color: white;
-      padding: 16px;
-      border-radius: 14px;
-      box-shadow: 0 5px 12px rgba(66, 133, 244, 0.4);
-      text-decoration: none;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      margin-bottom: 15px;
-    }
-    
-    .microg-box:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(66, 133, 244, 0.5);
-    }
-    
-    .microg-box::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
-      transform: rotate(30deg);
-      pointer-events: none;
-    }
-    
-    .microg-box img {
-      width: 55px;
-      height: 55px;
-      margin-inline-end: 12px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 7px;
-    }
-    
-    .microg-box .text {
-      display: flex;
-      flex-direction: column;
-      text-align: start;
-      flex: 1;
-    }
-    
-    .microg-box .title {
-      font-weight: 700;
-      font-size: 18px;
-      margin-bottom: 3px;
-    }
-    
-    .microg-box .size {
-      font-size: 13px;
-      opacity: 0.9;
-    }
-    
-    .microg-box .download-icon {
-      font-size: 22px;
-      margin-right: 8px;
-    }
-    
     /* العد التنازلي */
     .countdown-box {
       background: linear-gradient(135deg, var(--youtube-red), var(--accent-color));
@@ -526,90 +458,6 @@
       background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
       transform: rotate(30deg);
       pointer-events: none;
-    }
-    
-    /* زر تابع المطور على تلجرام */
-    .developer-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: linear-gradient(135deg, var(--telegram-color), #006699);
-      color: white;
-      padding: 14px 25px;
-      font-size: 16px;
-      font-weight: 700;
-      text-align: center;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0, 136, 204, 0.3);
-      transition: var(--transition);
-      width: 100%;
-      max-width: 380px;
-      margin: 15px auto 0;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .developer-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(0, 136, 204, 0.4);
-    }
-    
-    .developer-btn::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
-      transform: rotate(30deg);
-      pointer-events: none;
-    }
-    
-    /* زر التحديثات */
-    .updates-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: linear-gradient(135deg, #FFD700, #FFA500);
-      color: var(--text-dark);
-      padding: 12px 20px;
-      font-size: 14px;
-      font-weight: 600;
-      text-align: center;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 3px 8px rgba(255, 215, 0, 0.3);
-      transition: var(--transition);
-      width: 100%;
-      max-width: 300px;
-      margin: 10px auto 0;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .updates-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 12px rgba(255, 215, 0, 0.4);
-    }
-    
-    /* قسم الأزرار */
-    .buttons-section {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
-      width: 100%;
-      max-width: 380px;
-      margin-left: auto;
-      margin-right: auto;
     }
     
     /* تعليمات التثبيت */
@@ -916,90 +764,23 @@
     
     /* تحسينات للجوال */
     @media (max-width: 480px) {
-      h1 {
-        font-size: 24px;
-      }
-      
-      .app-logo {
-        width: 110px;
-        height: 110px;
-      }
-      
-      .app-logo-bg {
-        width: 134px;
-        height: 134px;
-      }
-      
-      .app-title {
-        font-size: 20px;
-      }
-      
-      .app-description {
-        font-size: 14px;
-      }
-      
-      .feature-title {
-        font-size: 15px;
-      }
-      
-      .feature-desc {
-        font-size: 13px;
-      }
-      
-      .download-btn {
-        font-size: 16px;
-        padding: 14px 25px;
-      }
-      
-      .developer-btn {
-        font-size: 15px;
-        padding: 12px 20px;
-      }
-      
-      .section-title {
-        font-size: 20px;
-      }
-      
-      .footer-logo {
-        font-size: 20px;
-      }
-      
-      .footer-desc {
-        font-size: 14px;
-      }
-    }
-    
-    /* تحسينات للأجهزة اللوحية */
-    @media (min-width: 768px) and (max-width: 1024px) {
-      .main-content {
-        max-width: 95%;
-      }
-      
-      .content-grid {
-        gap: 20px;
-      }
+      h1 { font-size: 24px; }
+      .app-logo { width: 110px; height: 110px; }
+      .app-logo-bg { width: 134px; height: 134px; }
+      .app-title { font-size: 20px; }
+      .app-description { font-size: 14px; }
+      .feature-title { font-size: 15px; }
+      .feature-desc { font-size: 13px; }
+      .download-btn { font-size: 16px; padding: 14px 25px; }
+      .section-title { font-size: 20px; }
+      .footer-logo { font-size: 20px; }
+      .footer-desc { font-size: 14px; }
     }
     
     /* Fix LTR/RTL for download buttons */
-.file-box .text,
-.microg-box .text {
-  text-align: start;
-}
-
-.file-box img,
-.microg-box img {
-  margin-right: 0;
-  margin-inline-end: 12px;
-}
-
-.file-box .download-icon,
-.microg-box .download-icon {
-  margin-right: 0;
-  margin-inline-start: auto;
-}
-
-
-
+    .file-box .text { text-align: start; }
+    .file-box img { margin-right: 0; margin-inline-end: 12px; }
+    .file-box .download-icon { margin-right: 0; margin-inline-start: auto; }
   </style>
 </head>
 
@@ -1112,7 +893,7 @@
           <div id="countdownBox" class="countdown-box"></div>
 
           <div id="finalDownloadBox" style="display: none;">
-            <a href="../external.html?link=https://dlll.apkm.app/ytgold/18/YouTube_Gold_V18.apk" 
+            <a href="https://pub-fcc4c650de6544149a3552e96291577e.r2.dev/mtytgold/MTYoutube_V18.apk" 
                class="download-btn">
               <i class="fas fa-download"></i>
               <span data-lang="ar">تنزيل يوتيوب MT الذهبي الآن</span>
@@ -1121,30 +902,13 @@
           </div>
 
           <div id="microgDownloadBox" style="display: none;">
-            <a href="../external.html?link=https://dlll.apkm.app/ytgold/14/MicroG_0.3.1.3.240913.apk" 
+            <a href="https://pub-fcc4c650de6544149a3552e96291577e.r2.dev/mtytgold/MicroG_V10.apk" 
                class="download-btn" style="background: linear-gradient(135deg, #4285F4, #34A853);">
               <i class="fas fa-download"></i>
               <span data-lang="ar">تنزيل MicroG الآن</span>
               <span data-lang="en">Download MicroG Now</span>
             </a>
           </div>
-            
-            <!-- زر تابع المطور على تلجرام -->
-            <a href="../external.html?link=https://t.me/AssemBlogger" 
-               class="developer-btn" target="_blank">
-              <i class="fab fa-telegram"></i>
-              <span data-lang="ar">قناة يوتيوب MT الذهبي على تلجرام</span>
-              <span data-lang="en">MTYouTube Telegram Channel</span>
-            </a>
-            
-            <!-- زر التحديثات -->
-            <a href="../external.html?link=https://t.me/abu3rab_apk" 
-               class="updates-btn" target="_blank">
-              <i class="fas fa-bell"></i>
-              <span data-lang="ar">قناة التحديثات</span>
-              <span data-lang="en">Updates Channel</span>
-            </a>
-        </div>
         
         <!-- إشعار التثبيت -->
         <div class="install-notice">

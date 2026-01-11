@@ -14,6 +14,7 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            position: relative;
         }
         .form-container {
             background: white;
@@ -22,6 +23,8 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             max-width: 500px;
             width: 100%;
+            position: relative;
+            z-index: 2;
         }
         h1 {
             text-align: center;
@@ -67,7 +70,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .submit-btn:hover {
+        .submit-btn:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
         }
@@ -76,26 +79,47 @@
             cursor: not-allowed;
             transform: none;
         }
-        .message {
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            text-align: center;
+
+        /* إشعار Toast الجديد */
+        .toast {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            min-width: 300px;
+            padding: 20px 25px;
+            border-radius: 12px;
+            color: white;
             font-weight: bold;
+            font-size: 16px;
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
         }
-        .success { 
-            background: #d4edda; 
-            color: #155724; 
-            border: 1px solid #c3e6cb; 
+        .toast.show {
+            transform: translateX(0);
         }
-        .error { 
-            background: #f8d7da; 
-            color: #721c24; 
-            border: 1px solid #f5c6cb; 
+        .toast.success {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
         }
+        .toast.error {
+            background: linear-gradient(135deg, #f44336, #da190b);
+        }
+        .toast-icon {
+            margin-left: 10px;
+            font-size: 20px;
+        }
+
         @media (max-width: 480px) {
             .form-container { padding: 30px 20px; }
             h1 { font-size: 24px; }
+            .toast {
+                right: 15px;
+                left: 15px;
+                min-width: auto;
+                max-width: calc(100vw - 30px);
+            }
         }
     </style>
 </head>
@@ -120,33 +144,50 @@
             
             <button type="submit" class="submit-btn" id="submitBtn">إرسال الرسالة 🚀</button>
         </form>
-        <div id="message"></div>
     </div>
+
+    <!-- إشعار Toast -->
+    <div id="toast" class="toast"></div>
 
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-        // مفاتيحك مدمجة بالفعل!
-        emailjs.init("xQotXC1RlBg75ntAJ"); // المفتاح العام
+        // مفاتيحك مدمجة بالفعل
+        emailjs.init("xQotXC1RlBg75ntAJ");
         
+        // دالة عرض الإشعار
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type}`;
+            
+            // إظهار الإشعار
+            setTimeout(() => toast.classList.add('show'), 100);
+            
+            // إخفاء الإشعار بعد 4 ثوان
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const submitBtn = document.getElementById('submitBtn');
-            const messageDiv = document.getElementById('message');
             
             // حالة التحميل
             submitBtn.disabled = true;
             submitBtn.innerHTML = '⏳ جاري الإرسال...';
-            messageDiv.innerHTML = '';
 
-            // إرسال بمفاتيحك الفعلية
+            // إرسال الرسالة
             emailjs.sendForm('service_90r3ot8', 'template_2tumo7c', this)
                 .then(function(response) {
-                    messageDiv.innerHTML = '<div class="message success">✅ تم إرسال رسالتك بنجاح! شكراً لك 🙏</div>';
+                    // إشعار نجاح في الشاشة
+                    showToast('✅ تم إرسال رسالتك بنجاح! شكراً لك 🙏', 'success');
                     document.getElementById('contactForm').reset();
                 }, function(error) {
-                    messageDiv.innerHTML = '<div class="message error">❌ خطأ في الإرسال. حاول مرة أخرى.</div>';
+                    // إشعار خطأ في الشاشة
+                    showToast('❌ خطأ في الإرسال. حاول مرة أخرى.', 'error');
                     console.error('EmailJS Error:', error);
                 })
                 .finally(() => {

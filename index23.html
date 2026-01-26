@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>MTWhatsApp_v48.50 - النسخة واتساب محمد</title>
+  
+ <link rel="icon" href="https://instagold.download/favicon.ico" type="image/x-icon">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="robots" content="index,follow"/>
+  <meta name="description" content="MTWhatsApp_v48 هو نسخة محسنة من تطبيق واتساب مع ميزات فريدة مثل إخفاء الظهور وتحميل الحالات والمزيد."/>
+  <meta name="keywords" content="MTWhatsApp, MTWhatsApp, نسخة واتساب محمد معدلة, تنزيل واتساب محمد"/>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="MTFire"/>
+  <meta property="og:locale" content="ar_AR"/>
+  <meta property="og:url" content="https://instagold.ogwhats.me"/>
+  <meta property="og:title" content="MTWhatsApp_v48 - النسخة واتساب محمد "/>
+  <meta property="og:description" content="قم بتنزيل MTWhatsApp_v48 - نسخة معدلة من واتساب مع ميزات فريدة."/>
+  <meta property="og:image" content="app_icon2.png"/>
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@MTFire"/>
+  <meta name="twitter:title" content="MTWhatsApp_v48 - النسخة واتساب محمد"/>
+  <meta name="twitter:description" content="قم بتنزيل MTWhatsApp_v48 - نسخة معدلة من واتساب مع ميزات فريدة."/>
+  <meta name="twitter:image" content="app_icon2.png"/>
+  <meta name="twitter:url" content="https://instagold.ogwhats.me"/>
+
+  <meta itemprop="name" content="MTWhatsApp_v48"/>
+  <meta itemprop="description" content="قم بتنزيل MTWhatsApp_v48 - نسخة معدلة من واتساب مع ميزات فريدة."/>
+  <meta itemprop="image" content="app_icon2.png"/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L9QVCM3KLR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L9QVCM3KLR');
+</script>
+  
+  <style>
+    :root {
+      /* تم تغيير الألوان إلى درجات واتساب الأخضر */
+      --gold-primary: #25D366;
+      --gold-secondary: #00a884;
+      --gold-dark: #075E54;
+      --text-dark: #222;
+      --text-light: #f8f8f8;
+      --bg-light: #f9f9f9;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 500;
+      line-height: 1.7;
+      color: var(--text-dark);
+      /* خلفية فاتحة مائلة للأخضر الفاتح جداً */
+      background: linear-gradient(135deg, #e8f5e9 0%, #fff 100%);
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    [data-lang] { display: none; }
+    
+    /* شاشة التحميل */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    
+    .loader-content {
+      text-align: center;
+      padding: 30px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow);
+    }
+    
+    .loader-logo {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 15px;
+      animation: pulse 1.5s infinite;
+    }
+    
+    .loader-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--gold-dark);
+      margin-bottom: 15px;
+    }
+    
+    .loader-progress {
+      width: 100%;
+      height: 6px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .loader-progress-bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold-secondary), var(--gold-primary));
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+    
+    /* الشريط العلوي */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-secondary) 100%);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      text-decoration: none;
+    }
+    
+    .logo-icon {
+      font-size: 20px;
+    }
+    
+    .lang-switcher {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* الهيدر */
+    .header {
+      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-secondary) 100%);
+      text-align: center;
+      padding: 30px 15px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .subtitle {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 600px;
+      margin: 0 auto 15px;
+    }
+    
+    .version-badge {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.2);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+    
+    /* المحتوى الرئيسي */
+    .main-content {
+      max-width: 1200px;
+      margin: -40px auto 30px;
+      padding: 0 15px;
+      position: relative;
+      z-index: 5;
+    }
+    
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+    
+    @media (min-width: 768px) {
+      .content-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    /* بطاقة التطبيق */
+    .app-card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      text-align: center;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .app-logo-container {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    .app-logo {
+      width: 130px;
+      height: 130px;
+      border-radius: 25px;
+      /* تعديل لون الظل للأخضر */
+      box-shadow: 0 8px 16px rgba(0, 168, 132, 0.3);
+      border: 4px solid white;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .app-logo-bg {
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      width: 154px;
+      height: 154px;
+      background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
+      border-radius: 35px;
+      z-index: 1;
+      opacity: 0.7;
+      filter: blur(12px);
+    }
+    
+    .app-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    
+    .app-description {
+      color: #555;
+      margin-bottom: 25px;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    
+    .app-meta {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 80px;
+    }
+    
+    .meta-icon {
+      font-size: 18px;
+      color: var(--gold-primary);
+      margin-bottom: 5px;
+    }
+    
+    .meta-value {
+      font-weight: 700;
+      font-size: 15px;
+    }
+    
+    .meta-label {
+      font-size: 13px;
+      color: #777;
+    }
+    
+    /* زر التحميل */
+    .download-box {
+      width: 100%;
+      max-width: 380px;
+      margin: 15px auto;
+    }
+    
+    .file-box {
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
+      color: white;
+      padding: 16px;
+      border-radius: 14px;
+      /* تعديل لون الظل */
+      box-shadow: 0 5px 12px rgba(0, 168, 132, 0.4);
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .file-box:hover {
+      transform: translateY(-4px);
+      /* تعديل لون الظل */
+      box-shadow: 0 8px 16px rgba(0, 168, 132, 0.5);
+    }
+    
+    .file-box::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+      pointer-events: none;
+    }
+    
+    .file-box img {
+      width: 55px;
+      height: 55px;
+      margin-right: 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 7px;
+    }
+    
+    .file-box .text {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      flex: 1;
+    }
+    
+    .file-box .title {
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 3px;
+    }
+    
+    .file-box .size {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+    
+    .file-box .download-icon {
+      font-size: 22px;
+      margin-right: 8px;
+    }
+    
+    /* العد التنازلي */
+    .countdown-box {
+      background: linear-gradient(135deg, #4ef089, var(--gold-secondary));
+      padding: 16px;
+      margin-top: 18px;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 700;
+      text-align: center;
+      color: #222;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      display: none;
+    }
+    
+    /* زر التنزيل النهائي */
+    .download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
+      color: white;
+      padding: 16px 30px;
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      /* تعديل لون الظل */
+      box-shadow: 0 5px 12px rgba(0, 168, 132, 0.4);
+      transition: var(--transition);
+      width: 100%;
+      max-width: 380px;
+      margin: 25px auto 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .download-btn:hover {
+      transform: translateY(-4px);
+      /* تعديل لون الظل */
+      box-shadow: 0 8px 16px rgba(0, 168, 132, 0.6);
+    }
+    
+    .download-btn::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+      pointer-events: none;
+    }
+    
+    /* ✅ زر تليجرام الجديد - نفس تصميم التحميل */
+    .telegram-box {
+      width: 100%;
+      max-width: 380px;
+      margin: 15px auto 0;
+    }
+    
+    .telegram-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #0088cc, #33a8ff);
+      color: white;
+      padding: 16px 30px;
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 5px 12px rgba(0, 136, 204, 0.4);
+      transition: var(--transition);
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .telegram-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 136, 204, 0.6);
+    }
+    
+    .telegram-btn::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+      pointer-events: none;
+    }
+    
+    .telegram-icon {
+      font-size: 22px;
+    }
+    
+    /* ميزات التطبيق */
+    .features-card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      padding: 25px;
+    }
+    
+    .section-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-dark);
+      text-align: center;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 12px;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-secondary), var(--gold-primary));
+      border-radius: 2px;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    
+    .feature-item {
+      display: flex;
+      gap: 12px;
+      padding: 18px;
+      border-radius: 14px;
+      background: #f0fcf9;
+      transition: var(--transition);
+    }
+    
+    .feature-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      background: #e6f7f4;
+    }
+    
+    .feature-icon {
+      width: 45px;
+      height: 45px;
+      min-width: 45px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+    }
+    
+    .feature-content {
+      text-align: right;
+    }
+    
+    .feature-title {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 6px;
+      color: var(--text-dark);
+    }
+    
+    .feature-desc {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    /* الفوتر */
+    .footer {
+      background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+      color: #aaa;
+      padding: 40px 15px 25px;
+      margin-top: 40px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 35px;
+    }
+    
+    @media (min-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    
+    .footer-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    
+    .footer-links a {
+      text-decoration: none;
+      color: #aaa;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: var(--transition);
+      font-size: 14px;
+    }
+    
+    .footer-links a:hover {
+      color: var(--gold-primary);
+    }
+    
+    .footer-section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 8px;
+    }
+    
+    .footer-section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 45px;
+      height: 3px;
+      background: var(--gold-primary);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 25px;
+      margin-top: 25px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 13px;
+      color: #777;
+    }
+    
+    .disclaimer {
+      font-size: 12px;
+      color: #777;
+      margin-top: 12px;
+      line-height: 1.7;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* الرسوم المتحركة */
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* 🔥 أنيميشن الهزاز الجديد 🔥 */
+    @keyframes shake-effect {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+      20%, 40%, 60%, 80% { transform: translateX(4px); }
+    }
+
+    /* الكلاس الذي سنضيفه بالجافاسكريبت */
+    .click-shake {
+      animation: shake-effect 0.4s cubic-bezier(.36,.07,.19,.97) both;
+    }
+    
+    /* تحسينات للجوال */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 24px;
+      }
+      
+      .app-logo {
+        width: 110px;
+        height: 110px;
+      }
+      
+      .app-logo-bg {
+        width: 134px;
+        height: 134px;
+      }
+      
+      .app-title {
+        font-size: 20px;
+      }
+      
+      .app-description {
+        font-size: 14px;
+      }
+      
+      .feature-title {
+        font-size: 15px;
+      }
+      
+      .feature-desc {
+        font-size: 13px;
+      }
+      
+      .download-btn {
+        font-size: 16px;
+        padding: 14px 25px;
+      }
+      
+      .telegram-btn {
+        font-size: 16px;
+        padding: 14px 25px;
+      }
+      
+      .section-title {
+        font-size: 20px;
+      }
+      
+      .footer-logo {
+        font-size: 20px;
+      }
+      
+      .footer-desc {
+        font-size: 14px;
+      }
+    }
+    
+    
+    /* === إعلانات أدسنس - نسخة مبسطة === */
+
+/* إعلان الرأس */
+.ads-header {
+  margin: 20px auto 30px;
+  max-width: 728px;
+  padding: 0 15px;
+  text-align: center;
+}
+
+.ads-label {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 8px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* إعلان داخل المحتوى */
+.ads-inline {
+  margin: 30px auto;
+  max-width: 600px;
+  text-align: center;
+  padding: 15px;
+  background: rgba(30, 30, 30, 0.5);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 168, 132, 0.2);
+}
+
+/* إعلان الفوتر */
+.ads-footer {
+  margin: 30px auto 0;
+  max-width: 728px;
+  text-align: center;
+  padding: 0 15px;
+}
+
+/* إعلان موبايل */
+.ads-mobile {
+  display: none;
+  margin: 20px auto;
+  text-align: center;
+}
+
+/* حاوية الإعلان */
+.ad-container {
+  display: block;
+  text-align: center;
+  min-height: 90px;
+  background: rgba(40, 40, 40, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* تحسينات للجوال */
+@media (max-width: 768px) {
+  .ads-header {
+    max-width: 320px;
+  }
+  
+  .ads-footer {
+    max-width: 320px;
+  }
+  
+  .ads-mobile {
+    display: block;
+    max-width: 320px;
+  }
+  
+  .ads-inline {
+    max-width: 320px;
+  }
+  
+  /* طريقة بسيطة لمركزة الإعلانات */
+  .ad-container {
+    text-align: center;
+  }
+  
+  .ad-container ins {
+    display: inline-block !important;
+    margin: 0 auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ads-header,
+  .ads-footer,
+  .ads-inline {
+    max-width: 300px;
+  }
+  
+  .ads-mobile {
+    max-width: 300px;
+  }
+}
+
+/* الحل الأكيد لمركزة إعلانات أدسنس */
+.ad-container {
+  text-align: center;
+}
+
+.ad-container ins {
+  display: inline-block !important;
+  margin: 0 auto !important;
+  text-align: center;
+}
+  </style>
+</head>
+
+<body>
+
+  <div id="loader">
+    <div class="loader-content">
+      <img src="https://instagold.download/favicon.ico" alt="MTWhatsApp" class="loader-logo">
+      <div class="loader-text" data-lang="ar">جاري تحميل الصفحة...</div>
+      <div class="loader-text" data-lang="en">Loading page...</div>
+      <div class="loader-progress">
+        <div class="loader-progress-bar" id="loaderBar"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="top-bar">
+    <a href="#" class="logo">
+      <i class="fab fa-whatsapp logo-icon"></i>
+      <span>MTWhatsApp</span>
+    </a>
+    
+    <div class="lang-switcher">
+      <button class="lang-btn" onclick="setLanguage('ar')">🇸🇦 عربي</button>
+      <button class="lang-btn" onclick="setLanguage('en')">🇺🇸 English</button>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="header-content">
+      <h1 data-lang="ar">تحميل واتساب محمد</h1>
+      <h1 data-lang="en">Download MTWhatsApp</h1>
+      
+      <p class="subtitle" data-lang="ar">نسخة محسنة من تطبيق واتساب مع ميزات فريدة</p>
+      <p class="subtitle" data-lang="en">Enhanced MTWhatsApp app with unique features</p>
+      
+      <div class="version-badge">v48.50</div>
+    </div>
+  </header>
+  
+  <div class="main-content">
+    <div class="content-grid">
+      <div class="app-card">
+        <div class="app-logo-container">
+          <div class="app-logo-bg"></div>
+          <img src="instagold.png" alt="MTWhatsApp" class="app-logo">
+        </div>
+        
+        <h2 class="app-title" data-lang="ar">واتساب محمد</h2>
+        <h2 class="app-title" data-lang="en">MTWhatsApp</h2>
+        
+        <p class="app-description" data-lang="ar">
+          استمتع بتجربة واتساب أفضل من أي وقت مضى! نسخة محسنة تمنحك سيطرة كاملة، مع الكثير من الميزات الفريدة، وتحسينات لتجعل استخدامك للتطبيق أسهل وأسرع.
+        </p>
+        <p class="app-description" data-lang="en">
+          Enjoy a better WhatsApp experience than ever before! An enhanced version that gives you full control, packed with unique features and improvements to make the app easier and faster to use.
+        </p>
+        
+        <div class="app-meta">
+          <div class="meta-item">
+            <div class="meta-icon"><i class="fas fa-download"></i></div>
+            <div class="meta-value">116MB</div>
+            <div class="meta-label" data-lang="ar">حجم الملف</div>
+            <div class="meta-label" data-lang="en">File Size</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-icon"><i class="fas fa-sync-alt"></i></div>
+            <div class="meta-value">v48.50</div>
+            <div class="meta-label" data-lang="ar">الإصدار</div>
+            <div class="meta-label" data-lang="en">Version</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="meta-value" data-lang="ar">آمن</div>
+            <div class="meta-value" data-lang="en">Safe</div>
+            <div class="meta-label" data-lang="ar">بدون فيروسات</div>
+            <div class="meta-label" data-lang="en">Virus Free</div>
+          </div>
+        </div>
+
+        <div class="download-box">
+          <a href="javascript:void(0);" onclick="startCountdown()" id="fileInfoBox" class="file-box">
+            <img src="app_icon.png" alt="icon">
+            <div class="text">
+              <div class="title">MTWhatsApp_V48.50</div>
+              <div class="size" data-lang="ar">اضغط للتحميل</div>
+              <div class="size" data-lang="en">Click to download</div>
+            </div>
+            <i class="fas fa-arrow-down download-icon"></i>
+          </a>
+
+          <div id="countdownBox" class="countdown-box"></div>
+
+          <a href="https://pub-fcc4c650de6544149a3552e96291577e.r2.dev/MTWhatsApp/MTWhatsApp_V48.50.apk" 
+             id="finalDownloadBox" class="download-btn" style="display: none;">
+            <i class="fas fa-download"></i>
+            <span data-lang="ar">تنزيل الآن</span>
+            <span data-lang="en">Download Now</span>
+          </a>
+        </div>
+
+        <div class="telegram-box">
+          <a href="https://t.me/mtwhatsapp" class="telegram-btn" target="_blank">
+            <i class="fab fa-telegram-plane telegram-icon"></i>
+            <span data-lang="ar">انضم لقناة التليجرام</span>
+            <span data-lang="en">Join Telegram Channel</span>
+          </a>
+        </div>
+      </div>
+ 
+      <div class="features-card">
+        <h2 class="section-title" data-lang="ar">بعض الميزات</h2>
+        <h2 class="section-title" data-lang="en">Some features</h2>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-download"></i></div>
+            <div class="feature-content">
+              <h3 class="feature-title" data-lang="ar">تنزيل الحالات</h3>
+              <h3 class="feature-title" data-lang="en">Status Download</h3>
+              <p class="feature-desc" data-lang="ar">حفظ حالات الأصدقاء بجودة عالية بضغطة زر</p>
+              <p class="feature-desc" data-lang="en">Save friends' statuses in high quality with one click</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-user-secret"></i></div>
+            <div class="feature-content">
+              <h3 class="feature-title" data-lang="ar">إخفاء آخر ظهور</h3>
+              <h3 class="feature-title" data-lang="en">Hide Last Seen</h3>
+              <p class="feature-desc" data-lang="ar">تصفح واتساب دون أن يعرف أحد أنك متصل</p>
+              <p class="feature-desc" data-lang="en">Browse WhatsApp without anyone knowing you're online</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-ban"></i></div>
+            <div class="feature-content">
+              <h3 class="feature-title" data-lang="ar">منع الحظر</h3>
+              <h3 class="feature-title" data-lang="en">Anti-Ban Protection</h3>
+              <p class="feature-desc" data-lang="ar">حماية متقدمة ضد حظر الحساب من واتساب</p>
+              <p class="feature-desc" data-lang="en">Advanced protection against WhatsApp account ban</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-lock-open"></i></div>
+            <div class="feature-content">
+              <h3 class="feature-title" data-lang="ar">رسائل محذوفة</h3>
+              <h3 class="feature-title" data-lang="en">View Deleted Messages</h3>
+              <p class="feature-desc" data-lang="ar">استعادة الرسائل المحذوفة من المرسلين</p>
+              <p class="feature-desc" data-lang="en">Recover deleted messages from senders</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-palette"></i></div>
+            <div class="feature-content">
+              <h3 class="feature-title" data-lang="ar">تخصيص الواجهة</h3>
+              <h3 class="feature-title" data-lang="en">UI Customization</h3>
+              <p class="feature-desc" data-lang="ar">تغيير مظهر التطبيق بألوان وثيمات متعددة</p>
+              <p class="feature-desc" data-lang="en">Change app appearance with multiple colors and themes</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-ghost"></i></div>
+            <div class="feature-content">
+              <h3 class="feature-title" data-lang="ar">التخفي المتقدم</h3>
+              <h3 class="feature-title" data-lang="en">Advanced Stealth</h3>
+              <p class="feature-desc" data-lang="ar">إخفاء النقطة الزرقاء وتأكيدات القراءة</p>
+              <p class="feature-desc" data-lang="en">Hide blue ticks and read receipts</p>
+            </div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 30px; text-align: center;">
+          <h3 style="color: var(--gold-primary); margin-bottom: 15px; font-size: 18px;" data-lang="ar">+15 ميزة أخرى</h3>
+          <h3 style="color: var(--gold-primary); margin-bottom: 15px; font-size: 18px;" data-lang="en">+15 More Features</h3>
+          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 15px;">
+            <span style="background: #e6ffed; padding: 6px 12px; border-radius: 20px; font-size: 13px;" data-lang="ar">جدولة الرسائل</span>
+            <span style="background: #e6ffed; padding: 6px 12px; border-radius: 20px; font-size: 13px;" data-lang="ar">إخفاء الكتابة</span>
+            <span style="background: #e6ffed; padding: 6px 12px; border-radius: 20px; font-size: 13px;" data-lang="ar">الرد التلقائي</span>
+            <span style="background: #e6ffed; padding: 6px 12px; border-radius: 20px; font-size: 13px;" data-lang="ar">إرسال صور كبيرة</span>
+            <span style="background: #e6ffed; padding: 6px 12px; border-radius: 20px; font-size: 13px;" data-lang="en">Schedule Messages</span>
+            <span style="background: #e6ffed; padding: 6px 12px; border-radius: 20px; font-size: 13px;" data-lang="en">Hide Typing</span>
+            <span style="background: #e6ffed; padding: 6px 12px; border-radius: 20px; font-size: 13px;" data-lang="en">Auto Reply</span>
+            <span style="background: #e6ffed; padding: 6px 12px; border-radius: 20px; font-size: 13px;" data-lang="en">Send Large Images</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <div class="footer-logo">
+          <i class="fab fa-whatsapp"></i>
+          <span>MTWhatsApp</span>
+        </div>
+        
+        <p class="footer-desc" data-lang="ar">
+          يُعد الخيار الأفضل لمستخدمي واتساب الرسمي، لما يقدّمه من ميزات إضافية متقدمة. ونسعى دائمًا لتقديم أفضل الخدمات المميزة التي تلبي احتياجات جميع المستخدمين.
+        </p>
+        <p class="footer-desc" data-lang="en">
+          It is the best choice for official WhatsApp users, thanks to the advanced additional features it offers. We always strive to provide the best services that meet the needs of all users.
+        </p>
+        
+        <div class="footer-links">
+          <a href="/privacy-policy.html"><i class="fas fa-shield-alt"></i> <span data-lang="ar">الأمان والخصوصية</span><span data-lang="en">Security & Privacy</span></a>
+          <a href="/faq.html"><i class="fas fa-question-circle"></i> <span data-lang="ar">الأسئلة الشائعة</span><span data-lang="en">FAQ</span></a>
+          <a href="/terms.html"><i class="fas fa-book"></i> <span data-lang="ar">الشروط والأحكام</span><span data-lang="en">Terms & Conditions</span></a>
+          <a href="/contact.html"><i class="fas fa-envelope"></i> <span data-lang="ar">اتصل بنا</span><span data-lang="en">Contact Us</span></a>
+        </div>
+      </div>
+      
+      <div>
+        <h3 class="footer-section-title" data-lang="ar">روابط مفيدة</h3>
+        <h3 class="footer-section-title" data-lang="en">Useful Links</h3>
+        
+        <div class="footer-links">
+          <a href="https://t.me/mtwhatsapp"><i class="fab fa-telegram"></i> <span data-lang="ar">قناة التليجرام</span><span data-lang="en">Telegram Channel</span></a>
+          <a href="/user-guide.html"><i class="fab fa-youtube"></i> <span data-lang="ar">دليل الاستخدام</span><span data-lang="en">User Guide</span></a>
+          <a href="https://www.mtaltawaf.com"><i class="fas fa-mobile-alt"></i> <span data-lang="ar">تطبيقات أخرى</span><span data-lang="en">Other Apps</span></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2026 MTMODS. <span data-lang="ar">جميع الحقوق محفوظة</span><span data-lang="en">All Rights Reserved</span></p>
+    </div>
+  </footer>
+    
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // محاكاة تقدم التحميل
+      let progress = 0;
+      const progressBar = document.getElementById('loaderBar');
+      const progressInterval = setInterval(() => {
+        progress += Math.random() * 10;
+        progressBar.style.width = `${progress}%`;
+        
+        if (progress >= 100) {
+          clearInterval(progressInterval);
+          document.getElementById('loader').style.opacity = '0';
+          setTimeout(() => {
+            document.getElementById('loader').style.display = 'none';
+          }, 500);
+        }
+      }, 100);
+
+      // تحديد اللغة الافتراضية
+      setLanguage('ar');
+    });
+
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        if (el.getAttribute('data-lang') === lang) {
+          el.style.display = 'block';
+        } else {
+          el.style.display = 'none';
+        }
+        
+        // تعديل اتجاه العناصر المرنة إذا لزم الأمر
+        if(el.classList.contains('download-btn') || el.classList.contains('telegram-btn')) {
+           el.style.display = 'flex';
+        }
+      });
+      
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = lang;
+    }
+
+    // وظيفة العد التنازلي
+    function startCountdown() {
+      const fileBox = document.getElementById('fileInfoBox');
+      const countdownBox = document.getElementById('countdownBox');
+      const finalBtn = document.getElementById('finalDownloadBox');
+      
+      fileBox.style.display = 'none';
+      countdownBox.style.display = 'block';
+      
+      let seconds = 10;
+      countdownBox.textContent = `انتظر قليلاً... ${seconds}`;
+      
+      const interval = setInterval(() => {
+        seconds--;
+        countdownBox.textContent = `انتظر قليلاً... ${seconds}`;
+        
+        if (seconds <= 0) {
+          clearInterval(interval);
+          countdownBox.style.display = 'none';
+          finalBtn.style.display = 'flex';
+        }
+      }, 1000);
+    }
+
+    // ✅ إضافة تأثير الهزاز (Shake Effect) لكل الأزرار والروابط عند النقر
+    document.addEventListener('click', function(e) {
+      // نستهدف الروابط (a)، الأزرار (button)، وصندوق الملف (.file-box)
+      const target = e.target.closest('a, button, .file-box');
+      
+      if (target) {
+        // إضافة كلاس الحركة
+        target.classList.add('click-shake');
+        
+        // إزالة الكلاس بعد انتهاء الحركة (0.4 ثانية) ليمكن تكرارها
+        setTimeout(() => {
+          target.classList.remove('click-shake');
+        }, 400);
+      }
+    });
+  </script>
+</body>
+  </html>

@@ -2,11 +2,11 @@
   "latestVersionCode": 15,
   "latestVersionName": "26",
   "whatsNew": {
-  "ar": "- تحديث إجباري\n- إصلاح مشاكل الانهيار\n- إضافة جميع الميزات",
+    "ar": "✅ التحديث إلى القاعدة الرسمية: 408.0.0.51.78\n🎨 تفعيل ميزة الرسم بشكل كامل\n📌 تفعيل الموقع / الخريطة\n⏱ إضافة خيار تغيير وقت تحميل القصة\n✍️ إضافة خطوط جديدة\n🖼 إصلاح مشكلة حجم الصورة المصغرة للقصص\n🌛 إصلاح مشكلة تبديل الوضع الداكن أحيانًا\n🔵 إصلاح مشكلة ظهور شاشة التحديث عند الاتصال\n😀 إصلاح مشاكل تحميل الوسائط (صور – فيديوهات)\n💥 إصلاح مشاكل الانهيار وتحسين الاستقرار\n✅ إصلاحات وتحسينات كثيرة في الأداء العام\n🛡 التحديث يركز على الاستقرار، السلاسة، وتجربة استخدام أفضل من أي وقت مضى",
 
-"en": "- Mandatory update\n- Fixed crash issues\n- Added all features"
-},
+    "en": "✅ Updated to official base: 408.0.0.51.78\n🎨 Fully enabled drawing feature\n📌 Enabled location/map feature\n⏱ Added option to change story upload time\n✍️ Added new fonts\n🖼 Fixed story thumbnail size issue\n🌛 Fixed dark mode switching issue\n🔵 Fixed update screen appearing on connection\n😀 Fixed media loading issues (images & videos)\n💥 Fixed crashes and improved stability\n✅ Many performance improvements\n🛡 Focus on stability, smoothness, and better user experience"
+  },
   "downloadUrl": "https://watsbplus.com/instagold/update",
-   "forceUpdate": true,
+  "forceUpdate": true,
   "showIntervalHours": 0
 }

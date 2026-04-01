@@ -1,0 +1,12 @@
+{
+  "latestVersionCode": 14,
+  "latestVersionName": "25",
+  "whatsNew": {
+  "ar": "- تحديث إجباري\n- إصلاح مشاكل الانهيار\n- إضافة جميع الميزات",
+
+"en": "- Mandatory update\n- Fixed crash issues\n- Added all features"
+},
+  "downloadUrl": "https://watsbplus.com/instagold/update",
+   "forceUpdate": true,
+  "showIntervalHours": 3
+}

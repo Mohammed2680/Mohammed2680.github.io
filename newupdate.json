@@ -1,1 +1,12 @@
+{
+  "latestVersionCode": 15,
+  "latestVersionName": "26",
+  "whatsNew": {
+  "ar": "- تحديث إجباري\n- إصلاح مشاكل الانهيار\n- إضافة جميع الميزات",
 
+"en": "- Mandatory update\n- Fixed crash issues\n- Added all features"
+},
+  "downloadUrl": "https://www.mtaltawaf.com/2020/11/mtinstagram.html",
+   "forceUpdate": true,
+  "showIntervalHours": 0
+}

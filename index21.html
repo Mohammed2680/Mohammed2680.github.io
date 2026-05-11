@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InstaGold – تحميل التطبيق</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #F4C542;
+    --gold2: #E8A020;
+    --gold3: #FFE082;
+    --glass-bg: rgba(255,255,255,0.07);
+    --glass-border: rgba(255,255,255,0.15);
+    --glass-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    --blur: blur(20px);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    min-height: 100vh;
+    background: #080818;
+    color: #fff;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  .bg-scene { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
+  .bg-gradient {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(180, 120, 20, 0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(80, 40, 160, 0.4) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 70% at 50% 50%, rgba(10, 10, 40, 0.9) 0%, transparent 100%),
+      linear-gradient(135deg, #06040f 0%, #0d0a1f 40%, #0a0516 100%);
+  }
+  .orb { position: absolute; border-radius: 50%; filter: blur(60px); animation: floatOrb linear infinite; opacity: 0.6; }
+  .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(244,197,66,0.5), transparent 70%); top: -100px; left: -100px; animation-duration: 25s; }
+  .orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(130,60,200,0.5), transparent 70%); bottom: 100px; right: -80px; animation-duration: 30s; animation-delay: -10s; }
+  .orb-3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(244,197,66,0.3), transparent 70%); top: 50%; right: 20%; animation-duration: 20s; animation-delay: -5s; }
+  @keyframes floatOrb { 0%{transform:translate(0,0) scale(1)} 33%{transform:translate(40px,-50px) scale(1.1)} 66%{transform:translate(-30px,30px) scale(.9)} 100%{transform:translate(0,0) scale(1)} }
+
+  .stars {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.8), transparent),
+      radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1.5px 1.5px at 55% 15%, rgba(255,255,255,0.9), transparent),
+      radial-gradient(1px 1px at 75% 40%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 90% 75%, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1.5px 1.5px at 45% 90%, rgba(255,255,255,0.8), transparent),
+      radial-gradient(1px 1px at 65% 70%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 20% 45%, rgba(244,197,66,0.8), transparent),
+      radial-gradient(1px 1px at 80% 20%, rgba(244,197,66,0.6), transparent);
+  }
+
+  .page { position: relative; z-index: 1; }
+
+  nav { position: sticky; top: 0; z-index: 100; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; background: rgba(8,8,24,0.5); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(244,197,66,0.15); }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo-icon { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, var(--gold), var(--gold2)); display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 0 20px rgba(244,197,66,0.4); overflow: hidden; }
+  .nav-logo-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .nav-logo-text { font-size: 22px; font-weight: 700; background: linear-gradient(90deg, var(--gold3), var(--gold), var(--gold2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+
+  .hero { min-height: 90vh; display: flex; align-items: center; justify-content: center; padding: 80px 40px 60px; text-align: center; flex-direction: column; }
+  .app-icon-wrapper { position: relative; margin-bottom: 32px; display: inline-block; }
+  .app-icon-glow { position: absolute; inset: -20px; border-radius: 50%; background: radial-gradient(circle, rgba(244,197,66,0.4), transparent 70%); animation: pulseGlow 3s ease-in-out infinite; }
+  @keyframes pulseGlow { 0%,100%{transform:scale(1);opacity:.7} 50%{transform:scale(1.15);opacity:1} }
+  .app-icon { width: 120px; height: 120px; border-radius: 28px; overflow: hidden; border: 2px solid rgba(244,197,66,0.5); display: flex; align-items: center; justify-content: center; position: relative; box-shadow: 0 0 0 1px rgba(244,197,66,0.1), 0 20px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
+  .app-icon-img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 26px; filter: drop-shadow(0 0 12px rgba(244,197,66,0.6)); }
+
+  .hero-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px; border-radius: 100px; background: rgba(244,197,66,0.1); border: 1px solid rgba(244,197,66,0.3); color: var(--gold); font-size: 13px; font-weight: 600; margin-bottom: 20px; backdrop-filter: blur(10px); }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: blink 1.5s ease-in-out infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .hero-title { font-size: clamp(42px, 6vw, 72px); font-weight: 900; line-height: 1.1; margin-bottom: 12px; letter-spacing: -1px; }
+  .hero-title .gold-text { background: linear-gradient(90deg, var(--gold3), var(--gold), var(--gold2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-subtitle { font-size: 18px; color: rgba(255,255,255,0.55); max-width: 520px; margin: 0 auto 40px; line-height: 1.7; font-weight: 400; }
+  .hero-actions { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; }
+
+  .btn-download { position: relative; display: inline-flex; align-items: center; gap: 12px; padding: 18px 44px; font-size: 18px; font-weight: 700; font-family: 'Cairo', sans-serif; color: #1a0a00; text-decoration: none; border: none; cursor: pointer; border-radius: 100px; background: linear-gradient(135deg, var(--gold3) 0%, var(--gold) 50%, var(--gold2) 100%); box-shadow: 0 0 30px rgba(244,197,66,0.5), 0 0 60px rgba(244,197,66,0.2), 0 10px 30px rgba(0,0,0,0.5); transition: transform 0.2s, box-shadow 0.2s; overflow: hidden; }
+  .btn-download::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.35) 0%, transparent 60%); border-radius: inherit; }
+  .btn-download:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 0 50px rgba(244,197,66,0.7), 0 15px 40px rgba(0,0,0,0.5); }
+  .btn-download:active { transform: scale(0.98); }
+  .btn-download-icon { width: 28px; height: 28px; background: rgba(0,0,0,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 10px; padding: 16px 36px; font-size: 16px; font-weight: 600; font-family: 'Cairo', sans-serif; color: rgba(255,255,255,0.8); text-decoration: none; border-radius: 100px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(10px); cursor: pointer; transition: all 0.2s; margin-right: 12px; }
+  .btn-secondary:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.25); color: #fff; }
+
+  .stats-row { display: flex; justify-content: center; gap: 48px; margin-top: 60px; padding: 28px 40px; background: rgba(255,255,255,0.04); backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur); border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; }
+  .stat-item { text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 800; background: linear-gradient(90deg, var(--gold3), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; }
+  .stat-label { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 4px; font-weight: 400; }
+  .stat-sep { width: 1px; background: rgba(255,255,255,0.1); align-self: stretch; }
+
+  section { padding: 80px 40px; }
+  .section-label { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; margin-bottom: 16px; line-height: 1.2; }
+  .section-desc { font-size: 16px; color: rgba(255,255,255,0.5); max-width: 520px; line-height: 1.8; }
+  .section-head { max-width: 1100px; margin: 0 auto 56px; }
+  .glass-card { background: rgba(255,255,255,0.06); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; padding: 32px; box-shadow: var(--glass-shadow); position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+  .glass-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); }
+  .glass-card:hover { border-color: rgba(244,197,66,0.3); transform: translateY(-4px); }
+  .glass-card.gold-accent { border-color: rgba(244,197,66,0.25); background: rgba(244,197,66,0.06); }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+  .feature-icon { width: 52px; height: 52px; border-radius: 16px; background: linear-gradient(135deg, rgba(244,197,66,0.15), rgba(244,197,66,0.05)); border: 1px solid rgba(244,197,66,0.25); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; }
+  .feature-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .feature-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+  .screenshots-track { display: flex; gap: 20px; max-width: 1100px; margin: 0 auto; overflow-x: auto; padding-bottom: 16px; scrollbar-width: none; }
+  .screenshots-track::-webkit-scrollbar { display: none; }
+  .screenshot-card { min-width: 200px; height: 360px; border-radius: 24px; flex-shrink: 0; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+  .screenshot-inner { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 13px; color: rgba(255,255,255,0.4); gap: 12px; padding: 20px; text-align: center; }
+  .ss-1 { background: linear-gradient(160deg, #1a0e35, #0e1a2f); }
+  .ss-2 { background: linear-gradient(160deg, #1a1a0a, #2a1800); }
+  .ss-3 { background: linear-gradient(160deg, #0d1a1a, #0a2018); }
+  .ss-4 { background: linear-gradient(160deg, #1a0a1a, #200a30); }
+
+  .steps-grid { display: flex; gap: 0; max-width: 900px; margin: 0 auto; position: relative; flex-wrap: wrap; justify-content: center; }
+  .step-connector { position: absolute; top: 36px; right: 16%; left: 16%; height: 1px; background: linear-gradient(90deg, transparent, rgba(244,197,66,0.4), transparent); }
+  .step-item { flex: 1; min-width: 160px; max-width: 220px; text-align: center; padding: 0 20px; position: relative; z-index: 1; }
+  .step-num { width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,0.05); backdrop-filter: blur(16px); border: 1px solid rgba(244,197,66,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 24px; font-weight: 800; color: var(--gold); position: relative; box-shadow: 0 0 20px rgba(244,197,66,0.15); }
+  .step-num.active { background: linear-gradient(135deg, rgba(244,197,66,0.2), rgba(244,197,66,0.05)); border-color: rgba(244,197,66,0.6); box-shadow: 0 0 30px rgba(244,197,66,0.3); }
+  .step-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .step-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .info-pills { display: flex; justify-content: center; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px; border-radius: 100px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); font-size: 13px; color: rgba(255,255,255,0.6); }
+  .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  footer { padding: 32px 40px; border-top: 1px solid rgba(255,255,255,0.07); text-align: center; color: rgba(255,255,255,0.25); font-size: 13px; background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); }
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 60px 20px 40px; min-height: auto; }
+    section { padding: 60px 20px; }
+    .stats-row { gap: 28px; padding: 24px 20px; }
+    .step-connector { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="bg-scene"><div class="bg-gradient"></div><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div><div class="stars"></div></div>
+<div class="page">
+  <nav>
+    <a href="#" class="nav-logo"><div class="nav-logo-icon"><img src="./mtinstagram.png" alt="MTInstagram"></div><span class="nav-logo-text">InstaGold</span></a>
+    <div class="nav-links"><a href="#features">المميزات</a><a href="#how">طريقة التثبيت</a><a href="#download">تحميل</a></div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="app-icon-wrapper fade-up">
+      <div class="app-icon-glow"></div>
+      <div class="app-icon"><img src="./mtinstagram.png" alt="MTInstagram" class="app-icon-img"></div>
+    </div>
+    <div class="hero-badge fade-up" style="transition-delay:0.1s"><span class="badge-dot"></span> النسخة الذهبية الحصرية</div>
+    <h1 class="hero-title fade-up" style="transition-delay:0.2s">انستاجرام <span class="gold-text">الذهبي</span><br>بدون قيود</h1>
+    <p class="hero-subtitle fade-up" style="transition-delay:0.3s">تجربة انستاجرام محسّنة بمميزات إضافية حصرية،<br>تحميل الميديا، إخفاء النشاط، وأكثر من ذلك بكثير.</p>
+    <div class="hero-actions fade-up" style="transition-delay:0.4s">
+      <a href="https://t.me/mtwhatsapp" class="btn-download" onclick="scrollTo({top:document.querySelector('#download').offsetTop, behavior:'smooth'}); return false;"><div class="btn-download-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></div>تحميل APK الآن</a>
+      <a href="#features" class="btn-secondary">اكتشف المميزات<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></a>
+    </div>
+    <div class="info-pills fade-up" style="transition-delay:0.5s"><span class="pill"><span class="pill-dot"></span>مجاني 100%</span><span class="pill"><span class="pill-dot"></span>بدون إعلانات</span><span class="pill"><span class="pill-dot"></span>آمن ومحدّث</span><span class="pill"><span class="pill-dot"></span>Android 5.0+</span></div>
+  </section>
+
+  <div class="stats-row fade-up"><div class="stat-item"><span class="stat-num">+5M</span><span class="stat-label">تحميل</span></div><div class="stat-sep"></div><div class="stat-item"><span class="stat-num">4.9★</span><span class="stat-label">تقييم المستخدمين</span></div><div class="stat-sep"></div><div class="stat-item"><span class="stat-num">85 MB</span><span class="stat-label">حجم الملف</span></div><div class="stat-sep"></div><div class="stat-item"><span class="stat-num">v330.0</span><span class="stat-label">أحدث إصدار</span></div></div>
+
+  <section id="features"><div class="section-head fade-up"><p class="section-label">المميزات</p><h2 class="section-title">كل ما تحتاجه في تطبيق واحد</h2><p class="section-desc">ميزات حصرية لم تجدها في النسخة الرسمية، مصممة لتجربة أفضل وأكثر حرية.</p></div><div class="features-grid"><div class="glass-card gold-accent fade-up"><div class="feature-icon">📥</div><h3 class="feature-title">تحميل الصور والفيديوهات</h3><p class="feature-desc">حمّل أي صورة أو فيديو أو ريلز بجودة عالية مباشرة إلى هاتفك بنقرة واحدة.</p></div><div class="glass-card fade-up" style="transition-delay:0.1s"><div class="feature-icon">👁️</div><h3 class="feature-title">إخفاء حالة المشاهدة</h3><p class="feature-desc">شاهد الستوريات والرسائل دون أن يعلم أحد بذلك. خاصيتك أولاً.</p></div><div class="glass-card fade-up" style="transition-delay:0.2s"><div class="feature-icon">🔕</div><h3 class="feature-title">حظر الإعلانات الكامل</h3><p class="feature-desc">استمتع بتجربة خالية تماماً من الإعلانات المزعجة أثناء التصفح.</p></div><div class="glass-card fade-up" style="transition-delay:0.3s"><div class="feature-icon">🌙</div><h3 class="feature-title">الوضع الليلي المحسّن</h3><p class="feature-desc">وضع داكن أنيق يريح عينيك في جميع الأوقات مع ألوان محسّنة.</p></div><div class="glass-card fade-up" style="transition-delay:0.4s"><div class="feature-icon">🔒</div><h3 class="feature-title">قفل بصمة الإصبع</h3><p class="feature-desc">أضف طبقة حماية إضافية لحسابك ببصمتك أو بصمة الوجه.</p></div><div class="glass-card fade-up" style="transition-delay:0.5s"><div class="feature-icon">🔄</div><h3 class="feature-title">تحديثات دورية تلقائية</h3><p class="feature-desc">دائماً في متناول أحدث المميزات والتحسينات الأمنية تلقائياً.</p></div></div></section>
+
+  <section id="how" style="background: rgba(0,0,0,0.15);"><div class="section-head fade-up" style="text-align:center; max-width:900px;"><p class="section-label">طريقة التثبيت</p><h2 class="section-title">ثلاث خطوات بسيطة</h2><p class="section-desc" style="margin:0 auto;">ثبّت التطبيق في دقيقتين واستمتع بكافة المميزات.</p></div><div class="steps-grid fade-up"><div class="step-connector"></div><div class="step-item"><div class="step-num active">1</div><h4 class="step-title">تحميل الملف</h4><p class="step-desc">اضغط على زر التحميل واحفظ ملف APK على هاتفك</p></div><div class="step-item"><div class="step-num">2</div><h4 class="step-title">السماح بالتثبيت</h4><p class="step-desc">فعّل خيار السماح بمصادر غير معروفة من إعدادات الأمان</p></div><div class="step-item"><div class="step-num">3</div><h4 class="step-title">تثبيت وتشغيل</h4><p class="step-desc">افتح الملف المحمّل، ثبّت التطبيق وسجّل دخولك</p></div></div></section>
+
+  <section style="padding: 80px 0 80px 40px;"><div class="section-head fade-up" style="padding-right:0; margin-bottom:40px;"><p class="section-label">لقطات الشاشة</p><h2 class="section-title">تصميم أنيق وسلس</h2></div><div class="screenshots-track fade-up"><div class="screenshot-card ss-1"><div class="screenshot-inner"><span>الصفحة الرئيسية</span></div></div><div class="screenshot-card ss-2"><div class="screenshot-inner"><span>الاستوريات والريلز</span></div></div><div class="screenshot-card ss-3"><div class="screenshot-inner"><span>البروفايل المحسّن</span></div></div><div class="screenshot-card ss-4"><div class="screenshot-inner"><span>الإعدادات والأمان</span></div></div><div class="screenshot-card ss-1"><div class="screenshot-inner"><span>الرسائل المباشرة</span></div></div></div></section>
+
+  <section id="download" style="text-align:center; background:rgba(0,0,0,0.12);"><div class="section-head fade-up" style="text-align:center; margin-bottom:30px;"><p class="section-label">تحميل</p><h2 class="section-title">حمّل التطبيق الآن</h2><p class="section-desc" style="margin:0 auto;">اضغط الزر للانتقال إلى قناة التحميل.</p></div><a href="https://t.me/mtwhatsapp" class="btn-download">تحميل من تيليجرام</a></section>
+
+  <footer><p>© 2025 InstaGold · جميع الحقوق محفوظة</p><p style="margin-top:8px; font-size:11px; opacity:0.6;">هذا التطبيق غير رسمي وغير تابع لـ Meta أو Instagram</p></footer>
+</div>
+<script>
+  const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

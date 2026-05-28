@@ -2,9 +2,9 @@
   "latestVersionCode": 16,
   "latestVersionName": "27",
   "whatsNew": {
-  "ar": "📦 تحديث قاعدة انستقرام إلى الإصدار 421.0.0.51.66\n🚀 إضافة جميع ميزات انستقرام الجديدة\n🎙 إضافة ميزة تغيير الصوت\n📥 إضافة سجل التنزيلات\n🔤 إضافة المزيد من الخطوط الجديدة\n📞 إصلاح مشكلة الاتصال وظهور رسالة:\n"لم يعد هذا الإصدار من Instagram يدعم ميزة الاتصال"\n🎬 إصلاح مشكلة تقطع فيديوهات الريلز\n🚀 إصلاح مشاكل التعتيم في بعض الفيديوهات\n🛠 إصلاحات وتحسينات كثيرة في الأداء والاستقرار\n\n⚠️ ملاحظة مهمة:\nعند تحميل التحديث الجديد، يرجى حذف النسخة السابقة المثبتة على هاتفك أولاً، ثم قم بتثبيت التحديث الجديد.",
+  "ar": "- تحديث إجباري\n- إصلاح مشاكل الانهيار\n- إضافة جميع الميزات",
 
-"en": "📦 Updated Instagram base to version 421.0.0.51.66\n🚀 Added all new Instagram features\n🎙 Added voice changer feature\n📥 Added download history\n🔤 Added more new fonts\n📞 Fixed calling issue and the message:\n\"Update your app to keep calling\"\n🎬 Fixed Reels video lag and stuttering issues\n🚀 Fixed dark overlay issues on some videos\n🛠 Many fixes and stability improvements\n\n⚠️ IMPORTANT NOTE:\nWhen downloading the new update, please delete the previous version installed on your phone first, then install the new update."
+"en": "- Mandatory update\n- Fixed crash issues\n- Added all features"
 },
   "downloadUrl": "https://www.mtaltawaf.com/2020/11/mtinstagram.html",
    "forceUpdate": true,

@@ -1,14 +1,12 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
-<head>
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <title>MTYouTube_V18 - يوتيوب MT الذهبي</title>
+  <title>MTYouTube_v18</title>
   <link rel="icon" href="https://instagold.download/favicon.ico" type="image/x-icon" />
   <meta name="robots" content="index,follow" />
-  <meta name="description" content="يوتيوب MT الذهبي هو نسخة محسنة من تطبيق يوتيوب مع ميزات فريدة مثل تشغيل الفيديوهات في الخلفية، تحميل الفيديوهات، إزالة الإعلانات، والمزيد." />
+  <meta name="description" content="يوتيوب MT الذهبي هو نسخة محسنة من تطبيق يوتيوب مع واجهة ذهبية وميزات فريدة مثل تشغيل الفيديوهات في الخلفية وتحميل الفيديوهات والمزيد." />
   <meta name="keywords" content="يوتيوب MT الذهبي, MTYouTube, نسخة يوتيوب معدلة, يوتيوب بريميوم" />
   <meta name="theme-color" content="#FF0000" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -17,17 +15,20 @@
   <style>
     :root {
       --gold: #FFD700;
-      --gold-2: #FFA500;
+      --gold-2: #FFB300;
       --red: #FF0000;
-      --red-2: #FF3333;
-      --dark: #241010;
-      --text: #231b1b;
-      --muted: #6b5f5f;
-      --telegram: #0088cc;
-      --glass: rgba(255,255,255,.60);
-      --border: rgba(255,255,255,.58);
-      --shadow: 0 20px 55px rgba(90, 12, 12, .14);
-      --shadow-hover: 0 28px 70px rgba(90, 12, 12, .22);
+      --red-2: #FF3B3B;
+      --dark: #1f1f1f;
+      --text: #241b1b;
+      --muted: #6f5d5d;
+      --soft-red-bg: #fff1f1;
+      --soft-red-bg-2: #ffe2e2;
+      --soft-red-border: rgba(255,0,0,.18);
+      --official-red-grad: linear-gradient(135deg, #ff0000 0%, #ff2f3f 55%, #ff0000 100%);
+      --glass: rgba(255,255,255,.58);
+      --border: rgba(255,255,255,.55);
+      --shadow: 0 20px 55px rgba(74,24,24,.14);
+      --shadow-hover: 0 28px 70px rgba(74,24,24,.22);
       --radius: 28px;
       --fast: 220ms ease;
     }
@@ -43,10 +44,10 @@
       min-height: 100vh;
       overflow-x: hidden;
       background:
-        radial-gradient(circle at 12% 8%, rgba(255,215,0,.32), transparent 30%),
-        radial-gradient(circle at 88% 12%, rgba(255,0,0,.20), transparent 32%),
-        radial-gradient(circle at 50% 100%, rgba(40,40,40,.16), transparent 38%),
-        linear-gradient(135deg, #fff9e7 0%, #fff 48%, #fff0f0 100%);
+        radial-gradient(circle at 12% 8%, rgba(255,215,0,.34), transparent 30%),
+        radial-gradient(circle at 88% 12%, rgba(255,0,0,.22), transparent 32%),
+        radial-gradient(circle at 50% 100%, rgba(255,165,0,.20), transparent 38%),
+        linear-gradient(135deg, #f7f7f7 0%, #ffffff 48%, #fff3f3 100%);
     }
 
     body::before {
@@ -91,9 +92,9 @@
       text-align: center;
       padding: 28px;
       border-radius: 26px;
-      background: rgba(255,255,255,.74);
-      border: 1px solid rgba(255,255,255,.80);
-      box-shadow: 0 24px 65px rgba(255,0,0,.15);
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.78);
+      box-shadow: 0 24px 65px rgba(255,0,0,.14);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
     }
@@ -108,7 +109,7 @@
       border-radius: 24px;
       background: #fff;
       border: 2px solid rgba(255,215,0,.45);
-      box-shadow: 0 14px 34px rgba(255,0,0,.22);
+      box-shadow: 0 14px 34px rgba(255,215,0,.35);
       animation: floatLogo 1.5s ease-in-out infinite;
     }
 
@@ -137,7 +138,7 @@
       height: 100%;
       width: 0%;
       border-radius: inherit;
-      background: linear-gradient(90deg, var(--red), var(--gold-2), var(--gold));
+      background: linear-gradient(90deg, var(--gold-2), var(--gold), var(--red));
       transition: width .2s ease;
     }
 
@@ -150,7 +151,7 @@
       align-items: center;
       gap: 12px;
       padding: 12px clamp(14px, 3vw, 34px);
-      background: rgba(38, 16, 16, .56);
+      background: linear-gradient(135deg, rgba(40,40,40,.72), rgba(255,0,0,.92));
       border-bottom: 1px solid rgba(255,255,255,.18);
       backdrop-filter: blur(18px) saturate(150%);
       -webkit-backdrop-filter: blur(18px) saturate(150%);
@@ -171,9 +172,9 @@
       display: grid;
       place-items: center;
       border-radius: 12px;
-      color: #fff;
-      background: linear-gradient(135deg, var(--red), var(--red-2), var(--gold-2));
-      box-shadow: 0 10px 24px rgba(255,0,0,.26);
+      color: var(--red);
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(255,0,0,.22);
     }
 
     .btn-control {
@@ -202,7 +203,7 @@
       color: #fff;
       background:
         radial-gradient(circle at 30% 10%, rgba(255,255,255,.25), transparent 24%),
-        linear-gradient(135deg, #282828, var(--red) 58%, var(--gold-2));
+        linear-gradient(135deg, #282828 0%, #8b0000 42%, var(--red) 100%);
     }
 
     .hero::before,
@@ -283,6 +284,7 @@
     }
 
     .app-card,
+    .app-card,
     .features-card,
     .instructions-card {
       border-radius: var(--radius);
@@ -322,7 +324,7 @@
       position: absolute;
       inset: 0;
       border-radius: 38px;
-      background: conic-gradient(from 120deg, var(--gold), var(--red), #282828, var(--gold));
+      background: conic-gradient(from 120deg, var(--red), var(--red-2), var(--gold), var(--red));
       filter: blur(16px);
       opacity: .72;
       animation: glow 5s linear infinite;
@@ -352,28 +354,40 @@
     }
 
     .app-meta {
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 20px;
-    }
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
 
-    .meta-item {
-      min-height: 94px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 8px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.52);
-      border: 1px solid rgba(255,255,255,.62);
-    }
+.meta-item {
+  min-height: 94px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border-radius: 18px;
+  background: rgba(255, 0, 0, .06);
+  border: 1px solid rgba(255, 0, 0, .18);
+}
 
-    .meta-icon { color: var(--red); font-size: 18px; margin-bottom: 5px; }
-    .meta-value { font-size: 20px; font-weight: 900; }
-    .meta-label { font-size: 14px; color: var(--muted); }
+.meta-icon {
+  color: var(--red);
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.meta-value {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.meta-label {
+  font-size: 14px;
+  color: var(--muted);
+}
 
     .download-box {
       width: 100%;
@@ -395,15 +409,17 @@
       border: 0;
       cursor: pointer;
       border-radius: 22px;
-      background: linear-gradient(135deg, var(--red), var(--red-2) 44%, var(--gold-2));
-      box-shadow: 0 18px 36px rgba(255,0,0,.25);
+      background: linear-gradient(135deg, #ff0000 0%, #ff3b3b 50%, #ff0000 100%);
+      box-shadow: 0 18px 36px rgba(255,0,0,.24);
       transition: transform var(--fast), box-shadow var(--fast), filter var(--fast);
     }
 
-    .file-box { justify-content: flex-start; padding: 14px; text-align: start; margin-bottom: 12px; }
-    .microg-box { background: linear-gradient(135deg, #4285F4, #34A853); box-shadow: 0 18px 36px rgba(66,133,244,.25); }
-    .developer-btn { min-height: 58px; margin-top: 12px; background: linear-gradient(135deg, var(--telegram), #006699); font-weight: 900; gap: 8px; }
+    #microgInfoBox {
+      background: linear-gradient(135deg, #5ca9ff 0%, #4cbf6b 100%);
+      box-shadow: 0 18px 36px rgba(70,150,220,.22);
+    }
 
+    .file-box { justify-content: flex-start; padding: 14px; text-align: start; margin-bottom: 12px; }
     .file-box:hover,
     .download-btn:hover,
     .developer-btn:hover { transform: translateY(-4px) scale(1.01); box-shadow: var(--shadow-hover); filter: saturate(1.08); }
@@ -431,7 +447,6 @@
       margin-inline-end: 12px;
       background: rgba(255,255,255,.22);
       border: 1px solid rgba(255,255,255,.28);
-      object-fit: contain;
     }
 
     .file-box .text { flex: 1; position: relative; z-index: 2; }
@@ -449,16 +464,27 @@
       font-size: 16px;
       font-weight: 900;
       background: linear-gradient(135deg, #282828, var(--red));
-      box-shadow: 0 16px 32px rgba(255,0,0,.18);
+      box-shadow: 0 16px 32px rgba(255,0,0,.19);
     }
 
     .download-btn {
       min-height: 62px;
-      margin-top: 16px;
+      margin-top: 12px;
+      background: linear-gradient(135deg, #ff0000 0%, #ff4b5a 55%, #ff0000 100%);
       gap: 9px;
       font-family: inherit;
       font-size: 18px;
       font-weight: 900;
+    }
+
+    .developer-btn {
+      min-height: 56px;
+      margin-top: 14px;
+      gap: 8px;
+      background: linear-gradient(135deg, #0099d8, #0077a8);
+      font-weight: 900;
+      box-shadow: 0 16px 32px rgba(0,136,204,.20);
+      border-radius: 999px;
     }
 
     .install-notice {
@@ -487,8 +513,7 @@
 
     .install-notice p { color: #67502c; font-size: 13px; margin-top: 3px; }
 
-    .section-title,
-    .instructions-title {
+    .section-title {
       text-align: center;
       font-size: 25px;
       font-weight: 900;
@@ -497,8 +522,7 @@
       padding-bottom: 12px;
     }
 
-    .section-title::after,
-    .instructions-title::after {
+    .section-title::after {
       content: "";
       position: absolute;
       width: 76px;
@@ -507,10 +531,11 @@
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      background: linear-gradient(90deg, var(--red), var(--gold-2), var(--gold));
+      background: linear-gradient(90deg, #ff0000, #ff2f3f, #ff0000);
     }
 
-    .features-grid {
+    .features-grid,
+    .instructions-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 14px;
@@ -521,19 +546,21 @@
       display: flex;
       gap: 12px;
       padding: 18px;
-      border-radius: 14px;
-      background: rgba(255,248,230,.88);
+      border-radius: 18px;
+      background: var(--soft-red-bg);
       transition: var(--fast);
-      border: 1px solid rgba(255,0,0,.15);
+      border: 1px solid var(--soft-red-border);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 10px 26px rgba(255,0,0,.035);
     }
 
     .feature-item:hover,
     .instruction-step:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
-      background: rgba(255,242,214,.96);
+      box-shadow: 0 14px 30px rgba(255,0,0,.10);
+      background: var(--soft-red-bg-2);
+      border-color: rgba(255,0,0,.26);
     }
 
     .feature-icon,
@@ -541,16 +568,18 @@
       width: 45px;
       height: 45px;
       min-width: 45px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--red), var(--gold-2));
+      border-radius: 14px;
+      background: var(--official-red-grad);
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       font-size: 20px;
       font-weight: 900;
-      box-shadow: 0 6px 16px rgba(255,0,0,.20);
+      box-shadow: 0 10px 22px rgba(255,0,0,.24);
     }
+
+    .step-number { border-radius: 999px; }
 
     .feature-content,
     .step-content { text-align: right; }
@@ -559,7 +588,7 @@
 
     .feature-title,
     .step-title {
-      font-weight: 800;
+      font-weight: 700;
       font-size: 16px;
       margin-bottom: 6px;
       color: var(--text);
@@ -581,30 +610,39 @@
     .chip {
       padding: 7px 13px;
       border-radius: 999px;
-      color: #6c3010;
+      color: #2b1b1b;
       font-size: 13px;
       font-weight: 800;
-      background: rgba(255,249,230,.74);
-      border: 1px solid rgba(255,0,0,.15);
+      background: rgba(255,241,241,.86);
+      border: 1px solid rgba(255,0,0,.18);
+      box-shadow: 0 8px 18px rgba(255,0,0,.04);
     }
 
+    .instructions-card { margin-top: 22px; }
+
+    .app-card,
+    .features-card,
     .instructions-card {
-      margin-top: 24px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(255,255,255,.82);
+      box-shadow: 0 18px 45px rgba(255,0,0,.08);
     }
 
-    .instructions-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
+    .app-card .section-title,
+    .features-card .section-title,
+    .instructions-card .section-title {
+      color: #231f20;
     }
+
 
     .footer {
       margin-top: 46px;
       padding: 44px 16px 24px;
-      color: rgba(255,255,255,.90);
+      color: rgba(255,255,255,.92);
       background:
-        radial-gradient(circle at 80% 0%, rgba(255,215,0,.18), transparent 30%),
-        linear-gradient(135deg, var(--dark), #282828, var(--red));
+        radial-gradient(circle at 16% 18%, rgba(255,255,255,.10), transparent 28%),
+        radial-gradient(circle at 78% 0%, rgba(255,0,0,.32), transparent 34%),
+        linear-gradient(135deg, #2a1717 0%, #811515 42%, #e60000 100%);
     }
 
     .footer-content {
@@ -644,8 +682,8 @@
       padding: 9px 10px;
       border-radius: 14px;
       color: rgba(255,255,255,.92);
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.07);
       transition: background var(--fast), transform var(--fast);
     }
 
@@ -668,7 +706,7 @@
       width: 48px;
       height: 3px;
       border-radius: 99px;
-      background: var(--gold);
+      background: #fff;
     }
 
     html[dir="ltr"] .footer-section-title::after { right: auto; left: 0; }
@@ -683,7 +721,6 @@
       font-size: 13px;
     }
 
-
     /* OCCASION_NOTICE_START */
     .occasion-notice {
       position: fixed;
@@ -695,9 +732,9 @@
       padding: 20px;
       text-align: center;
       border-radius: 25px;
-      background: linear-gradient(135deg, rgba(36,16,16,.94), rgba(255,0,0,.90), rgba(255,165,0,.88));
+      background: linear-gradient(135deg, rgba(40,40,40,.94), rgba(255,0,0,.90), rgba(255,165,0,.88));
       border: 1px solid rgba(255,255,255,.30);
-      box-shadow: 0 18px 52px rgba(90,12,12,.28);
+      box-shadow: 0 18px 52px rgba(74,24,24,.28);
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -770,7 +807,7 @@
       .meta-item { min-height: 88px; padding: 10px 5px; }
       .meta-value { font-size: 16px; }
       .meta-label { font-size: 11px; }
-      .features-grid, .instructions-list { grid-template-columns: 1fr; }
+      .features-grid, .instructions-grid { grid-template-columns: 1fr; }
       .file-box .title { font-size: 16px; }
     }
 
@@ -781,10 +818,7 @@
         scroll-behavior: auto !important;
       }
     }
-  </style>
-</head>
-
-<body>
+  </style></head><body>
   <!-- OCCASION_NOTICE_START -->
   <div id="occasionNotice" class="occasion-notice" aria-live="polite" aria-hidden="true">
     <div id="occasionIcon" class="occasion-icon">🐑</div>
@@ -831,10 +865,10 @@
       <h1 data-lang="ar">يوتيوب MT الذهبي</h1>
       <h1 data-lang="en">MTYouTube</h1>
 
-      <p class="subtitle" data-lang="ar">نسخة يوتيوب معدلة مع ميزات حصرية مثل التشغيل في الخلفية، إزالة الإعلانات، تحميل الفيديوهات، والمزيد.</p>
-      <p class="subtitle" data-lang="en">Modified YouTube with exclusive features like background play, ad removal, video downloads, and more.</p>
+      <p class="subtitle" data-lang="ar">يوتيوب MT الذهبي هو نسخة محسنة من تطبيق يوتيوب مع واجهة ذهبية وميزات فريدة مثل تشغيل الفيديوهات في الخلفية وتحميل الفيديوهات والمزيد.</p>
+      <p class="subtitle" data-lang="en">MTYouTube Gold is an enhanced version of YouTube with a golden interface and unique features such as background play, video downloads and more.</p>
 
-      <div class="version-badge"><i class="fas fa-bolt"></i> v18</div>
+      <div class="version-badge"><i class="fas fa-bolt"></i> v20.5</div>
     </div>
   </header>
 
@@ -849,45 +883,45 @@
         <h2 class="app-title" data-lang="ar">يوتيوب MT الذهبي</h2>
         <h2 class="app-title" data-lang="en">MTYouTube</h2>
 
-        <p class="app-description" data-lang="ar">النسخة الذهبية المحسنة من يوتيوب مع واجهة فاخرة وميزات متقدمة وتجربة استخدام سلسة.</p>
-        <p class="app-description" data-lang="en">The enhanced golden version of YouTube with a premium interface, advanced features, and a smooth experience.</p>
+        <p class="app-description" data-lang="ar">نسخة يوتيوب معدلة مع واجهة ذهبية وميزات حصرية</p>
+        <p class="app-description" data-lang="en">Modified YouTube with golden interface and exclusive features</p>
 
-        <div class="app-meta">
-          <div class="meta-item">
-            <div class="meta-icon"><i class="fas fa-download"></i></div>
-            <div class="meta-value">187.5MB</div>
-            <div class="meta-label" data-lang="ar">حجم الملف</div>
-            <div class="meta-label" data-lang="en">File Size</div>
-          </div>
+       <div class="app-meta">
+  <div class="meta-item">
+    <div class="meta-icon"><i class="fas fa-download"></i></div>
+    <div class="meta-value">175MB</div>
+    <div class="meta-label" data-lang="ar">حجم الملف</div>
+    <div class="meta-label" data-lang="en">File Size</div>
+  </div>
 
-          <div class="meta-item">
-            <div class="meta-icon"><i class="fas fa-sync-alt"></i></div>
-            <div class="meta-value">v18</div>
-            <div class="meta-label" data-lang="ar">الإصدار</div>
-            <div class="meta-label" data-lang="en">Version</div>
-          </div>
+  <div class="meta-item">
+    <div class="meta-icon"><i class="fas fa-sync-alt"></i></div>
+    <div class="meta-value">v18</div>
+    <div class="meta-label" data-lang="ar">الإصدار</div>
+    <div class="meta-label" data-lang="en">Version</div>
+  </div>
 
-          <div class="meta-item">
-            <div class="meta-icon"><i class="fas fa-check-circle"></i></div>
-            <div class="meta-value" data-lang="ar">آمن</div>
-            <div class="meta-value" data-lang="en">Safe</div>
-            <div class="meta-label" data-lang="ar">بدون فيروسات</div>
-            <div class="meta-label" data-lang="en">Virus Free</div>
-          </div>
-        </div>
+  <div class="meta-item">
+    <div class="meta-icon"><i class="fas fa-check-circle"></i></div>
+    <div class="meta-value" data-lang="ar">آمن</div>
+    <div class="meta-value" data-lang="en">Safe</div>
+    <div class="meta-label" data-lang="ar">بدون فيروسات</div>
+    <div class="meta-label" data-lang="en">Virus Free</div>
+  </div>
+</div>
 
         <div class="download-box">
-          <a href="javascript:void(0);" onclick="startCountdown('youtube')" id="fileInfoBox" class="file-box">
+          <a href="javascript:void(0);" onclick="startDownload('youtube')" id="fileInfoBox" class="file-box">
             <img src="app_icon.png" alt="MTYouTube icon" loading="lazy" />
             <div class="text">
               <div class="title">MTYouTube_V18</div>
-              <div class="size" data-lang="ar">اضغط لتحميل يوتيوب MT الذهبي</div>
-              <div class="size" data-lang="en">Tap to download MTYouTube</div>
+              <div class="size" data-lang="ar">اضغط للتحميل الآن</div>
+              <div class="size" data-lang="en">Tap to download now</div>
             </div>
             <i class="fas fa-arrow-down download-icon"></i>
           </a>
 
-          <a href="javascript:void(0);" onclick="startCountdown('microg')" id="microgInfoBox" class="file-box microg-box">
+          <a href="javascript:void(0);" onclick="startDownload('microg')" id="microgInfoBox" class="file-box">
             <img src="app_icon.png" alt="MicroG icon" loading="lazy" />
             <div class="text">
               <div class="title">MicroG Services</div>
@@ -900,26 +934,19 @@
           <div id="countdownBox" class="countdown-box"></div>
 
           <div id="finalDownloadBox" style="display:none;">
-            <a href="https://pub-fcc4c650de6544149a3552e96291577e.r2.dev/mtytgold/MTYoutube_V18.apk" class="download-btn">
+            <a id="finalDownloadLink" href="#" class="download-btn">
               <i class="fas fa-download"></i>
-              <span data-lang="ar">تنزيل يوتيوب MT الذهبي الآن</span>
-              <span data-lang="en">Download MTYouTube Now</span>
-            </a>
-          </div>
-
-          <div id="microgDownloadBox" style="display:none;">
-            <a href="https://pub-fcc4c650de6544149a3552e96291577e.r2.dev/mtytgold/MicroG_V10.apk" class="download-btn microg-box">
-              <i class="fas fa-download"></i>
-              <span data-lang="ar">تنزيل MicroG الآن</span>
-              <span data-lang="en">Download MicroG Now</span>
+              <span id="finalDownloadTextAr" data-lang="ar">تنزيل الآن</span>
+              <span id="finalDownloadTextEn" data-lang="en">Download Now</span>
             </a>
           </div>
 
           <a href="https://t.me/mtwhatsapp" class="developer-btn" target="_blank" rel="noopener">
             <i class="fab fa-telegram"></i>
-            <span data-lang="ar">قناة يوتيوب MT الذهبي على تلجرام</span>
-            <span data-lang="en">MTYouTube Telegram Channel</span>
+            <span data-lang="ar">انصم لقناة التليجرام</span>
+            <span data-lang="en">Join Telegram Channel</span>
           </a>
+
         </div>
 
         <div class="install-notice">
@@ -942,7 +969,7 @@
               <h3 class="feature-title" data-lang="ar">تشغيل في الخلفية</h3>
               <h3 class="feature-title" data-lang="en">Background Play</h3>
               <p class="feature-desc" data-lang="ar">استمع إلى الفيديوهات أثناء استخدام تطبيقات أخرى أو عند إغلاق الشاشة</p>
-              <p class="feature-desc" data-lang="en">Listen to videos while using other apps or when the screen is off</p>
+              <p class="feature-desc" data-lang="en">Listen to videos while using other apps or when screen is off</p>
             </div>
           </div>
 
@@ -951,8 +978,8 @@
             <div class="feature-content">
               <h3 class="feature-title" data-lang="ar">إزالة الإعلانات</h3>
               <h3 class="feature-title" data-lang="en">Remove Ads</h3>
-              <p class="feature-desc" data-lang="ar">استمتع بتجربة مشاهدة خالية من الإعلانات المزعجة</p>
-              <p class="feature-desc" data-lang="en">Enjoy a watching experience without annoying ads</p>
+              <p class="feature-desc" data-lang="ar">استمتع بتجربة يوتيوب خالية من الإعلانات المزعجة</p>
+              <p class="feature-desc" data-lang="en">Enjoy YouTube without annoying ads</p>
             </div>
           </div>
 
@@ -961,8 +988,8 @@
             <div class="feature-content">
               <h3 class="feature-title" data-lang="ar">تحميل الفيديوهات</h3>
               <h3 class="feature-title" data-lang="en">Download Videos</h3>
-              <p class="feature-desc" data-lang="ar">حفظ الفيديوهات لمشاهدتها لاحقًا بدون اتصال بالإنترنت</p>
-              <p class="feature-desc" data-lang="en">Save videos to watch later without internet connection</p>
+              <p class="feature-desc" data-lang="ar">حفظ الفيديوهات لمشاهدتها لاحقاً بدون اتصال بالإنترنت</p>
+              <p class="feature-desc" data-lang="en">Save videos to watch later without internet</p>
             </div>
           </div>
 
@@ -971,8 +998,8 @@
             <div class="feature-content">
               <h3 class="feature-title" data-lang="ar">مشاهدة بدون توقف</h3>
               <h3 class="feature-title" data-lang="en">Non-Stop Playback</h3>
-              <p class="feature-desc" data-lang="ar">تشغيل مستمر للفيديو عند الانتقال بين التطبيقات</p>
-              <p class="feature-desc" data-lang="en">Keep videos playing when switching between apps</p>
+              <p class="feature-desc" data-lang="ar">إلغاء توقف الفيديو عند الانتقال لتطبيق آخر</p>
+              <p class="feature-desc" data-lang="en">Disable video pause when switching apps</p>
             </div>
           </div>
 
@@ -981,7 +1008,7 @@
             <div class="feature-content">
               <h3 class="feature-title" data-lang="ar">واجهة ذهبية</h3>
               <h3 class="feature-title" data-lang="en">Golden Interface</h3>
-              <p class="feature-desc" data-lang="ar">واجهة ذهبية فاخرة مع تدرجات أنيقة ولمسة احترافية</p>
+              <p class="feature-desc" data-lang="ar">واجهة ذهبية فاخرة مع تدرجات أنيقة</p>
               <p class="feature-desc" data-lang="en">Luxurious golden interface with elegant gradients</p>
             </div>
           </div>
@@ -989,10 +1016,10 @@
           <div class="feature-item">
             <div class="feature-icon"><i class="fas fa-gem"></i></div>
             <div class="feature-content">
-              <h3 class="feature-title" data-lang="ar">ميزات بريميوم</h3>
-              <h3 class="feature-title" data-lang="en">Premium Features</h3>
-              <p class="feature-desc" data-lang="ar">ميزات متقدمة تمنحك تجربة استخدام أفضل وأكثر سلاسة</p>
-              <p class="feature-desc" data-lang="en">Advanced features for a smoother and better experience</p>
+              <h3 class="feature-title" data-lang="ar">ميزات متقدمة</h3>
+              <h3 class="feature-title" data-lang="en">Advanced Features</h3>
+              <p class="feature-desc" data-lang="ar">خيارات إضافية تمنحك تجربة استخدام أكثر مرونة وسلاسة</p>
+              <p class="feature-desc" data-lang="en">Extra options for a smoother and more flexible experience</p>
             </div>
           </div>
         </div>
@@ -1015,10 +1042,10 @@
     </div>
 
     <section class="instructions-card glass">
-      <h2 class="instructions-title" data-lang="ar">تعليمات التثبيت خطوة بخطوة</h2>
-      <h2 class="instructions-title" data-lang="en">Step-by-Step Installation Guide</h2>
+      <h2 class="section-title" data-lang="ar">تعليمات التثبيت خطوة بخطوة</h2>
+      <h2 class="section-title" data-lang="en">Step-by-Step Installation Guide</h2>
 
-      <div class="instructions-list">
+      <div class="instructions-grid">
         <div class="instruction-step">
           <div class="step-number">1</div>
           <div class="step-content">
@@ -1034,8 +1061,8 @@
           <div class="step-content">
             <h3 class="step-title" data-lang="ar">تفعيل مصادر غير معروفة</h3>
             <h3 class="step-title" data-lang="en">Enable Unknown Sources</h3>
-            <p class="step-desc" data-lang="ar">اذهب إلى الإعدادات ثم الأمان وقم بتفعيل السماح بالتثبيت</p>
-            <p class="step-desc" data-lang="en">Go to Settings then Security and enable installation permission</p>
+            <p class="step-desc" data-lang="ar">اذهب إلى الإعدادات ثم الأمان وفعّل السماح بتثبيت التطبيقات</p>
+            <p class="step-desc" data-lang="en">Go to settings and allow installation from unknown sources</p>
           </div>
         </div>
 
@@ -1044,38 +1071,18 @@
           <div class="step-content">
             <h3 class="step-title" data-lang="ar">تثبيت MicroG أولاً</h3>
             <h3 class="step-title" data-lang="en">Install MicroG First</h3>
-            <p class="step-desc" data-lang="ar">ثبت التطبيق المساعد MicroG قبل فتح يوتيوب MT الذهبي</p>
-            <p class="step-desc" data-lang="en">Install the MicroG helper app before opening MTYouTube</p>
+            <p class="step-desc" data-lang="ar">ثبّت التطبيق المساعد MicroG قبل فتح يوتيوب MT</p>
+            <p class="step-desc" data-lang="en">Install MicroG before opening MTYouTube</p>
           </div>
         </div>
 
         <div class="instruction-step">
           <div class="step-number">4</div>
           <div class="step-content">
-            <h3 class="step-title" data-lang="ar">تثبيت يوتيوب MT الذهبي</h3>
+            <h3 class="step-title" data-lang="ar">تثبيت يوتيوب MT</h3>
             <h3 class="step-title" data-lang="en">Install MTYouTube</h3>
-            <p class="step-desc" data-lang="ar">افتح ملف يوتيوب MT الذهبي واتبع خطوات التثبيت المعتادة</p>
-            <p class="step-desc" data-lang="en">Open MTYouTube file and follow the normal installation steps</p>
-          </div>
-        </div>
-
-        <div class="instruction-step">
-          <div class="step-number">5</div>
-          <div class="step-content">
-            <h3 class="step-title" data-lang="ar">تسجيل الدخول</h3>
-            <h3 class="step-title" data-lang="en">Login</h3>
-            <p class="step-desc" data-lang="ar">افتح MicroG وأضف حساب Google ثم افتح يوتيوب MT الذهبي</p>
-            <p class="step-desc" data-lang="en">Open MicroG, add your Google account, then open MTYouTube</p>
-          </div>
-        </div>
-
-        <div class="instruction-step">
-          <div class="step-number">6</div>
-          <div class="step-content">
-            <h3 class="step-title" data-lang="ar">استمتع بالميزات</h3>
-            <h3 class="step-title" data-lang="en">Enjoy Features</h3>
-            <p class="step-desc" data-lang="ar">الآن يمكنك استخدام الميزات بسلاسة من داخل التطبيق</p>
-            <p class="step-desc" data-lang="en">Now you can enjoy all features smoothly inside the app</p>
+            <p class="step-desc" data-lang="ar">افتح ملف التطبيق واتبع خطوات التثبيت المعتادة</p>
+            <p class="step-desc" data-lang="en">Open the APK file and follow the installation steps</p>
           </div>
         </div>
       </div>
@@ -1107,7 +1114,7 @@
         <h3 class="footer-section-title" data-lang="en">Useful Links</h3>
 
         <div class="footer-links">
-          <a href="https://t.me/mtwhatsapp" target="_blank" rel="noopener"><i class="fab fa-telegram"></i> <span data-lang="ar">قناة التليجرام</span><span data-lang="en">Telegram Channel</span></a>
+          <a href="https://t.me/mtwhatsapp"><i class="fab fa-telegram"></i> <span data-lang="ar">قناة التليجرام</span><span data-lang="en">Telegram Channel</span></a>
           <a href="/user-guide.html"><i class="fab fa-youtube"></i> <span data-lang="ar">دليل الاستخدام</span><span data-lang="en">User Guide</span></a>
           <a href="https://www.mtaltawaf.com"><i class="fas fa-mobile-alt"></i> <span data-lang="ar">تطبيقات أخرى</span><span data-lang="en">Other Apps</span></a>
         </div>
@@ -1121,10 +1128,23 @@
 
   <script>
     let lang = 'ar';
-    let activeCountdown = false;
+    let countdownActive = false;
     let occasionAutoHideTimer = null;
     let occasionCache = null;
     let occasionPromise = null;
+
+    const downloads = {
+      youtube: {
+        url: 'https://pub-fcc4c650de6544149a3552e96291577e.r2.dev/mtytgold/MTYoutube_V18.apk',
+        ar: 'تنزيل الآن',
+        en: 'Download Now'
+      },
+      microg: {
+        url: 'https://pub-fcc4c650de6544149a3552e96291577e.r2.dev/mtytgold/MicroG_V10.apk',
+        ar: 'تنزيل MicroG الآن',
+        en: 'Download MicroG Now'
+      }
+    };
 
     document.addEventListener('DOMContentLoaded', () => {
       const userLang = navigator.language && navigator.language.startsWith('ar') ? 'ar' : 'en';
@@ -1145,7 +1165,7 @@
       let progress = 0;
 
       const timer = setInterval(() => {
-        progress = Math.min(progress + 10, 100);
+        progress = Math.min(progress + 8, 100);
         progressBar.style.width = progress + '%';
 
         if (progress >= 100) {
@@ -1157,9 +1177,9 @@
             setTimeout(() => {
               showOccasionAfterLoader();
             }, 1000);
-          }, 220);
+          }, 260);
         }
-      }, 90);
+      }, 130);
     }
 
     function setLanguage(selectedLang) {
@@ -1207,63 +1227,27 @@
       minute = Number(minute || 0);
 
       if (hMonth === 10 && hDay >= 1 && hDay <= 5) {
-        return {
-          icon: '🎉',
-          textAr: 'عيد فطر مبارك',
-          textEn: 'Eid Al-Fitr Mubarak',
-          subAr: 'وكل عام وأنتم بخير',
-          subEn: 'Wishing you joy and happiness'
-        };
+        return { icon: '🎉', textAr: 'عيد فطر مبارك', textEn: 'Eid Al-Fitr Mubarak', subAr: 'وكل عام وأنتم بخير', subEn: 'Wishing you joy and happiness' };
       }
 
       if (hMonth === 12 && hDay >= 10 && hDay <= 14) {
-        return {
-          icon: '🐑',
-          textAr: 'عيد أضحى مبارك',
-          textEn: 'Eid Al-Adha Mubarak',
-          subAr: 'وكل عام وأنتم بخير',
-          subEn: 'Wishing you joy and happiness'
-        };
+        return { icon: '🐑', textAr: 'عيد أضحى مبارك', textEn: 'Eid Al-Adha Mubarak', subAr: 'وكل عام وأنتم بخير', subEn: 'Wishing you joy and happiness' };
       }
 
       if (hMonth === 1 && hDay === 1) {
-        return {
-          icon: '🕋',
-          textAr: 'عام هجري مبارك',
-          textEn: 'Happy Hijri New Year',
-          subAr: 'وكل عام وأنتم بخير',
-          subEn: 'Wishing you a blessed year'
-        };
+        return { icon: '🕋', textAr: 'عام هجري مبارك', textEn: 'Happy Hijri New Year', subAr: 'وكل عام وأنتم بخير', subEn: 'Wishing you a blessed year' };
       }
 
       if (hMonth === 9 && hDay >= 1 && hDay <= 19) {
-        return {
-          icon: '🌙',
-          textAr: 'رمضان مبارك',
-          textEn: 'Ramadan Mubarak',
-          subAr: 'وكل عام وأنتم بخير',
-          subEn: 'Wishing you a blessed Ramadan'
-        };
+        return { icon: '🌙', textAr: 'رمضان مبارك', textEn: 'Ramadan Mubarak', subAr: 'وكل عام وأنتم بخير', subEn: 'Wishing you a blessed Ramadan' };
       }
 
       if (hMonth === 9 && hDay >= 20) {
-        return {
-          icon: '🤲',
-          textAr: 'خواتم مباركة',
-          textEn: 'Blessed Last Days of Ramadan',
-          subAr: 'اللهم تقبل منا ومنكم صالح الأعمال',
-          subEn: 'May Allah accept our good deeds'
-        };
+        return { icon: '🤲', textAr: 'خواتم مباركة', textEn: 'Blessed Last Days of Ramadan', subAr: 'اللهم تقبل منا ومنكم صالح الأعمال', subEn: 'May Allah accept our good deeds' };
       }
 
       if ((weekdayEn === 'thursday' && hour24 >= 18) || (weekdayEn === 'friday' && hour24 < 18)) {
-        return {
-          icon: '🌸',
-          textAr: 'جمعة مباركة',
-          textEn: 'Blessed Friday',
-          subAr: 'اللهم صل وسلم على نبينا محمد',
-          subEn: 'May peace and blessings be upon Prophet Mohammed'
-        };
+        return { icon: '🌸', textAr: 'جمعة مباركة', textEn: 'Blessed Friday', subAr: 'اللهم صل وسلم على نبينا محمد', subEn: 'May peace and blessings be upon Prophet Mohammed' };
       }
 
       return null;
@@ -1275,21 +1259,12 @@
 
     function getLocalOccasionMessage() {
       const today = getMakkahNow();
-      const weekdayEn = today.toLocaleDateString('en-US', {
-        weekday: 'long',
-        timeZone: 'Asia/Riyadh'
-      }).toLowerCase();
-
+      const weekdayEn = today.toLocaleDateString('en-US', { weekday: 'long', timeZone: 'Asia/Riyadh' }).toLowerCase();
       let hDay = 0;
       let hMonth = 0;
 
       try {
-        const parts = new Intl.DateTimeFormat('en-u-ca-islamic', {
-          day: 'numeric',
-          month: 'numeric',
-          timeZone: 'Asia/Riyadh'
-        }).formatToParts(today);
-
+        const parts = new Intl.DateTimeFormat('en-u-ca-islamic', { day: 'numeric', month: 'numeric', timeZone: 'Asia/Riyadh' }).formatToParts(today);
         hDay = Number((parts.find(p => p.type === 'day') || {}).value || 0);
         hMonth = Number((parts.find(p => p.type === 'month') || {}).value || 0);
       } catch (e) {}
@@ -1376,37 +1351,39 @@
       clearTimeout(occasionAutoHideTimer);
     }
 
-    function startCountdown(type) {
-      if (activeCountdown) return;
-      activeCountdown = true;
+    function startDownload(type) {
+      if (countdownActive) return;
+      countdownActive = true;
 
-      const youtubeBox = document.getElementById('fileInfoBox');
-      const microgBox = document.getElementById('microgInfoBox');
+      const data = downloads[type] || downloads.youtube;
+      const fileInfoBox = document.getElementById('fileInfoBox');
+      const microgInfoBox = document.getElementById('microgInfoBox');
       const countdownBox = document.getElementById('countdownBox');
-      const youtubeDownload = document.getElementById('finalDownloadBox');
-      const microgDownload = document.getElementById('microgDownloadBox');
+      const finalBtn = document.getElementById('finalDownloadBox');
+      const finalLink = document.getElementById('finalDownloadLink');
+      const finalAr = document.getElementById('finalDownloadTextAr');
+      const finalEn = document.getElementById('finalDownloadTextEn');
+      let counter = type === 'microg' ? 4 : 6;
 
-      if (!countdownBox || !youtubeDownload || !microgDownload) return;
+      if (!fileInfoBox || !microgInfoBox || !countdownBox || !finalBtn || !finalLink) return;
 
-      if (youtubeBox) youtubeBox.style.display = 'none';
-      if (microgBox) microgBox.style.display = 'none';
-
-      youtubeDownload.style.display = 'none';
-      microgDownload.style.display = 'none';
-
-      let counter = type === 'microg' ? 3 : 5;
+      if (type === 'youtube') {
+        fileInfoBox.style.display = 'none';
+        microgInfoBox.style.display = 'flex';
+      } else {
+        microgInfoBox.style.display = 'none';
+        fileInfoBox.style.display = 'flex';
+      }
+      finalBtn.style.display = 'none';
       countdownBox.style.display = 'block';
+      finalLink.href = data.url;
+      if (finalAr) finalAr.textContent = data.ar;
+      if (finalEn) finalEn.textContent = data.en;
 
       const render = () => {
-        const arText = type === 'microg'
-          ? `جاري التحضير لتنزيل MicroG... ${counter}`
-          : `جاري التحضير لتنزيل يوتيوب MT الذهبي... ${counter}`;
-
-        const enText = type === 'microg'
-          ? `Preparing MicroG download... ${counter}`
-          : `Preparing MTYouTube download... ${counter}`;
-
-        countdownBox.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${lang === 'ar' ? arText : enText}`;
+        countdownBox.innerHTML = lang === 'ar'
+          ? `<i class="fas fa-spinner fa-spin"></i> جاري التحضير للتنزيل... ${counter}`
+          : `<i class="fas fa-spinner fa-spin"></i> Preparing download... ${counter}`;
       };
 
       render();
@@ -1418,18 +1395,11 @@
         if (counter <= 0) {
           clearInterval(interval);
           countdownBox.style.display = 'none';
-
-          const target = type === 'microg' ? microgDownload : youtubeDownload;
-          target.style.display = 'block';
-
-          if (youtubeBox) youtubeBox.style.display = 'flex';
-          if (microgBox) microgBox.style.display = 'flex';
-
-          activeCountdown = false;
-          setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 220);
+          finalBtn.style.display = 'block';
+          countdownActive = false;
+          setLanguage(lang);
+          setTimeout(() => finalBtn.scrollIntoView({ behavior: 'smooth', block: 'center' }), 220);
         }
       }, 1000);
     }
-  </script>
-</body>
-</html>
+  </script></body></html>

@@ -683,6 +683,70 @@
       font-size: 13px;
     }
 
+
+    /* OCCASION_NOTICE_START */
+    .occasion-notice {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      z-index: 99999;
+      width: 320px;
+      max-width: 90%;
+      padding: 20px;
+      text-align: center;
+      border-radius: 25px;
+      background: linear-gradient(135deg, rgba(36,16,16,.94), rgba(255,0,0,.90), rgba(255,165,0,.88));
+      border: 1px solid rgba(255,255,255,.30);
+      box-shadow: 0 18px 52px rgba(90,12,12,.28);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translate(-50%,-50%) scale(.96);
+      transition: opacity .22s ease, visibility .22s ease, transform .22s ease;
+      will-change: opacity, transform;
+    }
+
+    .occasion-notice.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translate(-50%,-50%) scale(1);
+    }
+
+    .occasion-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    #occasionText {
+      display: block;
+      font-size: 24px;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+
+    .occasion-sub {
+      color: #fff7e7;
+      margin-bottom: 15px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .occasion-notice button {
+      background: #fff;
+      color: var(--red);
+      border: none;
+      padding: 10px 28px;
+      border-radius: 30px;
+      font-weight: 900;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    /* OCCASION_NOTICE_END */
+
     @keyframes floatLogo {
       0%, 100% { transform: translateY(0) scale(.98); }
       50% { transform: translateY(-6px) scale(1); }
@@ -721,6 +785,15 @@
 </head>
 
 <body>
+  <!-- OCCASION_NOTICE_START -->
+  <div id="occasionNotice" class="occasion-notice" aria-live="polite" aria-hidden="true">
+    <div id="occasionIcon" class="occasion-icon">🐑</div>
+    <span id="occasionText">عيد أضحى مبارك</span>
+    <div id="occasionSub" class="occasion-sub">وكل عام وأنتم بخير</div>
+    <button id="occasionBtn" type="button" onclick="hideOccasion()">حسناً</button>
+  </div>
+  <!-- OCCASION_NOTICE_END -->
+
   <div id="loader" aria-label="Loading">
     <div class="loader-content">
       <div class="loader-logo-wrap">
@@ -805,7 +878,7 @@
 
         <div class="download-box">
           <a href="javascript:void(0);" onclick="startCountdown('youtube')" id="fileInfoBox" class="file-box">
-            <img src="ytgold.png" alt="MTYouTube icon" loading="lazy" />
+            <img src="app_icon.png" alt="MTYouTube icon" loading="lazy" />
             <div class="text">
               <div class="title">MTYouTube_V18</div>
               <div class="size" data-lang="ar">اضغط لتحميل يوتيوب MT الذهبي</div>
@@ -815,7 +888,7 @@
           </a>
 
           <a href="javascript:void(0);" onclick="startCountdown('microg')" id="microgInfoBox" class="file-box microg-box">
-            <img src="microg.png" alt="MicroG icon" loading="lazy" />
+            <img src="app_icon.png" alt="MicroG icon" loading="lazy" />
             <div class="text">
               <div class="title">MicroG Services</div>
               <div class="size" data-lang="ar">اضغط لتحميل التطبيق المساعد</div>
@@ -1049,10 +1122,14 @@
   <script>
     let lang = 'ar';
     let activeCountdown = false;
+    let occasionAutoHideTimer = null;
+    let occasionCache = null;
+    let occasionPromise = null;
 
     document.addEventListener('DOMContentLoaded', () => {
       const userLang = navigator.language && navigator.language.startsWith('ar') ? 'ar' : 'en';
       setLanguage(userLang);
+      prepareOccasionMessage();
       runLoader();
     });
 
@@ -1060,16 +1137,27 @@
       const loader = document.getElementById('loader');
       const progressBar = document.getElementById('loaderBar');
 
-      if (!loader || !progressBar) return;
+      if (!loader || !progressBar) {
+        setTimeout(showOccasionAfterLoader, 1000);
+        return;
+      }
 
       let progress = 0;
+
       const timer = setInterval(() => {
         progress = Math.min(progress + 10, 100);
         progressBar.style.width = progress + '%';
 
         if (progress >= 100) {
           clearInterval(timer);
-          setTimeout(() => loader.classList.add('hide'), 220);
+
+          setTimeout(() => {
+            loader.classList.add('hide');
+
+            setTimeout(() => {
+              showOccasionAfterLoader();
+            }, 1000);
+          }, 220);
         }
       }, 90);
     }
@@ -1093,6 +1181,199 @@
     function updateLangLabel() {
       const langLabel = document.getElementById('langLabel');
       if (langLabel) langLabel.textContent = lang === 'ar' ? 'EN' : 'ع';
+    }
+
+    function prepareOccasionMessage() {
+      if (occasionPromise) return occasionPromise;
+
+      occasionPromise = getOccasionMessage()
+        .then((occasion) => {
+          occasionCache = occasion;
+          return occasion;
+        })
+        .catch(() => {
+          occasionCache = getLocalOccasionMessage();
+          return occasionCache;
+        });
+
+      return occasionPromise;
+    }
+
+    function pickOccasion(hDay, hMonth, weekdayEn, hour24, minute) {
+      hDay = Number(hDay);
+      hMonth = Number(hMonth);
+      weekdayEn = String(weekdayEn || '').toLowerCase();
+      hour24 = Number(hour24);
+      minute = Number(minute || 0);
+
+      if (hMonth === 10 && hDay >= 1 && hDay <= 5) {
+        return {
+          icon: '🎉',
+          textAr: 'عيد فطر مبارك',
+          textEn: 'Eid Al-Fitr Mubarak',
+          subAr: 'وكل عام وأنتم بخير',
+          subEn: 'Wishing you joy and happiness'
+        };
+      }
+
+      if (hMonth === 12 && hDay >= 10 && hDay <= 14) {
+        return {
+          icon: '🐑',
+          textAr: 'عيد أضحى مبارك',
+          textEn: 'Eid Al-Adha Mubarak',
+          subAr: 'وكل عام وأنتم بخير',
+          subEn: 'Wishing you joy and happiness'
+        };
+      }
+
+      if (hMonth === 1 && hDay === 1) {
+        return {
+          icon: '🕋',
+          textAr: 'عام هجري مبارك',
+          textEn: 'Happy Hijri New Year',
+          subAr: 'وكل عام وأنتم بخير',
+          subEn: 'Wishing you a blessed year'
+        };
+      }
+
+      if (hMonth === 9 && hDay >= 1 && hDay <= 19) {
+        return {
+          icon: '🌙',
+          textAr: 'رمضان مبارك',
+          textEn: 'Ramadan Mubarak',
+          subAr: 'وكل عام وأنتم بخير',
+          subEn: 'Wishing you a blessed Ramadan'
+        };
+      }
+
+      if (hMonth === 9 && hDay >= 20) {
+        return {
+          icon: '🤲',
+          textAr: 'خواتم مباركة',
+          textEn: 'Blessed Last Days of Ramadan',
+          subAr: 'اللهم تقبل منا ومنكم صالح الأعمال',
+          subEn: 'May Allah accept our good deeds'
+        };
+      }
+
+      if ((weekdayEn === 'thursday' && hour24 >= 18) || (weekdayEn === 'friday' && hour24 < 18)) {
+        return {
+          icon: '🌸',
+          textAr: 'جمعة مباركة',
+          textEn: 'Blessed Friday',
+          subAr: 'اللهم صل وسلم على نبينا محمد',
+          subEn: 'May peace and blessings be upon Prophet Mohammed'
+        };
+      }
+
+      return null;
+    }
+
+    function getMakkahNow() {
+      return new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Riyadh' }));
+    }
+
+    function getLocalOccasionMessage() {
+      const today = getMakkahNow();
+      const weekdayEn = today.toLocaleDateString('en-US', {
+        weekday: 'long',
+        timeZone: 'Asia/Riyadh'
+      }).toLowerCase();
+
+      let hDay = 0;
+      let hMonth = 0;
+
+      try {
+        const parts = new Intl.DateTimeFormat('en-u-ca-islamic', {
+          day: 'numeric',
+          month: 'numeric',
+          timeZone: 'Asia/Riyadh'
+        }).formatToParts(today);
+
+        hDay = Number((parts.find(p => p.type === 'day') || {}).value || 0);
+        hMonth = Number((parts.find(p => p.type === 'month') || {}).value || 0);
+      } catch (e) {}
+
+      return pickOccasion(hDay, hMonth, weekdayEn, today.getHours(), today.getMinutes());
+    }
+
+    async function getOccasionMessage() {
+      const makkahNow = getMakkahNow();
+      const makkahDate = makkahNow.toLocaleDateString('en-CA');
+      const currentHour = makkahNow.getHours();
+      const currentMinute = makkahNow.getMinutes();
+      const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+      const timeout = controller ? setTimeout(() => controller.abort(), 1500) : null;
+
+      try {
+        const response = await fetch(`https://api.aladhan.com/v1/gToH/${makkahDate}`, {
+          cache: 'no-store',
+          signal: controller ? controller.signal : undefined
+        });
+
+        if (!response.ok) throw new Error('Hijri API error');
+
+        const result = await response.json();
+        const hijri = result && result.data && result.data.hijri;
+        const gregorian = result && result.data && result.data.gregorian;
+        const hDay = parseInt(hijri && hijri.day, 10);
+        const hMonth = parseInt(hijri && hijri.month && hijri.month.number, 10);
+        const weekdayEn = String(gregorian && gregorian.weekday && gregorian.weekday.en || '').toLowerCase();
+
+        return pickOccasion(hDay, hMonth, weekdayEn, currentHour, currentMinute) || getLocalOccasionMessage();
+      } catch (error) {
+        return getLocalOccasionMessage();
+      } finally {
+        if (timeout) clearTimeout(timeout);
+      }
+    }
+
+    async function showOccasionAfterLoader() {
+      const notice = document.getElementById('occasionNotice');
+      const text = document.getElementById('occasionText');
+      const icon = document.getElementById('occasionIcon');
+      const sub = document.getElementById('occasionSub');
+      const btn = document.getElementById('occasionBtn');
+
+      if (!notice || !text) return;
+
+      let occasion = occasionCache || getLocalOccasionMessage();
+
+      if (!occasion && occasionPromise) {
+        occasion = await Promise.race([
+          occasionPromise,
+          new Promise(resolve => setTimeout(() => resolve(null), 150))
+        ]);
+      }
+
+      if (!occasion) return;
+
+      if (icon) icon.textContent = occasion.icon;
+
+      if (lang === 'ar') {
+        text.textContent = occasion.textAr || occasion.text || '';
+        if (sub) sub.textContent = occasion.subAr || '';
+        if (btn) btn.textContent = 'حسناً';
+      } else {
+        text.textContent = occasion.textEn || occasion.text || '';
+        if (sub) sub.textContent = occasion.subEn || '';
+        if (btn) btn.textContent = 'OK';
+      }
+
+      notice.classList.add('show');
+      notice.setAttribute('aria-hidden', 'false');
+
+      clearTimeout(occasionAutoHideTimer);
+      occasionAutoHideTimer = setTimeout(hideOccasion, 7000);
+    }
+
+    function hideOccasion() {
+      const notice = document.getElementById('occasionNotice');
+      if (!notice) return;
+
+      notice.classList.remove('show');
+      notice.setAttribute('aria-hidden', 'true');
+      clearTimeout(occasionAutoHideTimer);
     }
 
     function startCountdown(type) {

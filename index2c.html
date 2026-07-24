@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APK DEX2C PRO | Advanced Protection</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Inter) to mimic modern system fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables for Dark Theme & Blue Accents */
+        :root {
+            --bg-color: #0b0f19;
+            --glass-bg: rgba(20, 25, 40, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-hover: rgba(255, 255, 255, 0.12);
+            --accent-blue: #00e5ff;
+            --accent-blue-dim: rgba(0, 229, 255, 0.2);
+            --text-main: #f0f2f5;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --win-radius-lg: 14px;
+            --win-radius-sm: 8px;
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'Consolas', 'Courier New', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+        }
+
+        /* Animated Gradient Background */
+        .animated-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 15% 50%, rgba(0, 229, 255, 0.08), transparent 25%),
+                        radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.08), transparent 25%);
+        }
+        .animated-bg::before, .animated-bg::after {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        .animated-bg::before {
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 0%, transparent 70%);
+            top: -10%; left: -10%;
+        }
+        .animated-bg::after {
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            bottom: -20%; right: -10%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.2); }
+        }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--win-radius-lg);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            height: calc(100vh - 32px);
+            margin: 16px;
+            display: flex;
+            flex-direction: column;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .sidebar.collapsed {
+            width: 80px;
+        }
+        .sidebar-header {
+            padding: 24px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .logo-icon {
+            font-size: 24px;
+            color: var(--accent-blue);
+            text-shadow: 0 0 10px var(--accent-blue-dim);
+            min-width: 24px;
+        }
+        .logo-text {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            transition: opacity 0.3s;
+        }
+        .sidebar.collapsed .logo-text { opacity: 0; pointer-events: none; }
+        
+        .nav-links {
+            padding: 16px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 16px;
+            border-radius: var(--win-radius-sm);
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .nav-item:hover, .nav-item.active {
+            background: var(--glass-hover);
+            color: var(--text-main);
+        }
+        .nav-item.active {
+            border-left: 3px solid var(--accent-blue);
+            background: linear-gradient(90deg, var(--accent-blue-dim), transparent);
+        }
+        .nav-item i { font-size: 18px; min-width: 20px; text-align: center; }
+        .sidebar.collapsed .nav-text { display: none; }
+        
+        .toggle-btn {
+            position: absolute;
+            bottom: 24px; right: -16px;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            z-index: 10;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex-grow: 1;
+            padding: 16px 24px 16px 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            overflow-y: auto;
+        }
+
+        /* Top Header */
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+        .header-title h1 { font-size: 24px; font-weight: 600; }
+        .header-title p { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
+        
+        .system-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+        .status-dot {
+            width: 8px; height: 8px;
+            background-color: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--success);
+        }
+
+        /* Dashboard Cards */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .stat-card {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: transform 0.2s;
+        }
+        .stat-card:hover { transform: translateY(-3px); }
+        .stat-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 20px;
+            background: rgba(255,255,255,0.05);
+        }
+        .stat-info h3 { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+        .stat-info p { font-size: 24px; font-weight: 700; margin-top: 4px; }
+
+        /* Workspace Layout */
+        .workspace-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 24px;
+            flex-grow: 1;
+        }
+
+        /* Upload Area */
+        .panel { padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+        .panel-title { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--glass-border); padding-bottom: 12px; }
+        
+        .drop-zone {
+            flex-grow: 1;
+            border: 2px dashed var(--glass-border);
+            border-radius: var(--win-radius-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-muted);
+            transition: all 0.3s;
+            background: rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .drop-zone.active {
+            border-color: var(--accent-blue);
+            background: var(--accent-blue-dim);
+        }
+        .drop-zone i { font-size: 40px; color: var(--text-muted); transition: color 0.3s; }
+        .drop-zone.active i { color: var(--accent-blue); }
+        .file-input { display: none; }
+        
+        /* Buttons */
+        .btn-group { display: flex; gap: 12px; }
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: var(--win-radius-sm);
+            border: none;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex; justify-content: center; align-items: center; gap: 8px;
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border: 1px solid var(--glass-border);
+        }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); }
+        .btn-primary {
+            background: var(--accent-blue);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-blue-dim);
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 25px var(--accent-blue);
+            transform: scale(1.02);
+        }
+        .btn-primary:disabled {
+            background: #334155; color: #94a3b8; box-shadow: none; cursor: not-allowed; transform: none;
+        }
+
+        /* File Info Panel */
+        .file-info {
+            background: rgba(0,0,0,0.2);
+            border-radius: var(--win-radius-sm);
+            padding: 16px;
+            display: none;
+        }
+        .file-info.active { display: block; animation: fadeIn 0.3s; }
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+        .info-label { color: var(--text-muted); }
+        .info-val { font-weight: 600; font-family: var(--font-mono); }
+
+        /* Console Log & Progress */
+        .console-container {
+            display: flex; flex-direction: column; gap: 16px; flex-grow: 1;
+        }
+        .console {
+            background: rgba(5, 5, 10, 0.6);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--win-radius-sm);
+            flex-grow: 1;
+            padding: 16px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #a3be8c;
+            overflow-y: auto;
+            line-height: 1.6;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column;
+        }
+        .log-line { margin-bottom: 4px; }
+        .log-time { color: #81a1c1; margin-right: 8px; }
+        .log-info { color: #d8dee9; }
+        .log-success { color: #a3be8c; }
+        .log-warn { color: #ebcb8b; }
+        .log-error { color: #bf616a; }
+        
+        .progress-wrapper {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 4px;
+            border: 1px solid var(--glass-border);
+        }
+        .progress-bar {
+            height: 12px;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #3b82f6, var(--accent-blue));
+            width: 0%;
+            transition: width 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .progress-bar::after {
+            content: '';
+            position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 75%, transparent 75%, transparent);
+            background-size: 20px 20px;
+            animation: moveStripes 1s linear infinite;
+        }
+        .progress-stats {
+            display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); margin-top: 8px; padding: 0 8px;
+        }
+
+        @keyframes moveStripes { 0% { background-position: 0 0; } 100% { background-position: 20px 0; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .workspace-grid { grid-template-columns: 1fr; }
+            .console-container { height: 350px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar glass" id="sidebar">
+        <div class="sidebar-header">
+            <i class="fa-solid fa-shield-halved logo-icon"></i>
+            <span class="logo-text">DEX2C PRO</span>
+        </div>
+        <div class="nav-links">
+            <a class="nav-item active"><i class="fa-solid fa-border-all"></i><span class="nav-text">Dashboard</span></a>
+            <a class="nav-item"><i class="fa-solid fa-file-shield"></i><span class="nav-text">Protection</span></a>
+            <a class="nav-item"><i class="fa-solid fa-microchip"></i><span class="nav-text">DEX2C Engine</span></a>
+            <a class="nav-item"><i class="fa-solid fa-hammer"></i><span class="nav-text">Build</span></a>
+            <a class="nav-item"><i class="fa-solid fa-terminal"></i><span class="nav-text">Logs</span></a>
+            <div style="flex-grow: 1;"></div>
+            <a class="nav-item"><i class="fa-solid fa-gear"></i><span class="nav-text">Settings</span></a>
+            <a class="nav-item"><i class="fa-solid fa-circle-info"></i><span class="nav-text">About</span></a>
+        </div>
+        <button class="toggle-btn" onclick="toggleSidebar()">
+            <i class="fa-solid fa-chevron-left" id="toggle-icon"></i>
+        </button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="top-header glass">
+            <div class="header-title">
+                <h1>Workspace Environment</h1>
+                <p>Native C/C++ Compilation Engine</p>
+            </div>
+            <div class="system-status glass">
+                <div class="status-dot"></div>
+                Engine Online
+            </div>
+        </header>
+
+        <!-- Dashboard Stat Cards -->
+        <div class="dashboard-grid">
+            <div class="stat-card glass">
+                <div class="stat-icon" style="color: #3b82f6;"><i class="fa-solid fa-cube"></i></div>
+                <div class="stat-info">
+                    <h3>Active Project</h3>
+                    <p id="stat-project">None</p>
+                </div>
+            </div>
+            <div class="stat-card glass">
+                <div class="stat-icon" style="color: #10b981;"><i class="fa-solid fa-shield-check"></i></div>
+                <div class="stat-info">
+                    <h3>Protection Level</h3>
+                    <p>Maximum</p>
+                </div>
+            </div>
+            <div class="stat-card glass">
+                <div class="stat-icon" style="color: #8b5cf6;"><i class="fa-solid fa-code"></i></div>
+                <div class="stat-info">
+                    <h3>Classes Protected</h3>
+                    <p id="stat-classes">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workspace Layout -->
+        <div class="workspace-grid">
+            
+            <!-- Left Panel: Upload & Info -->
+            <div class="panel glass">
+                <div class="panel-title">
+                    <i class="fa-solid fa-file-import" style="color: var(--accent-blue);"></i> Input Target
+                </div>
+                
+                <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-upload').click()">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <p style="font-weight: 500;">Drag & Drop APK here</p>
+                    <p style="font-size: 12px;">or click to browse files</p>
+                    <input type="file" id="file-upload" class="file-input" accept=".apk">
+                </div>
+
+                <!-- Hidden initially, shown when file selected -->
+                <div class="file-info" id="file-info">
+                    <div class="info-row"><span class="info-label">File Name</span><span class="info-val" id="info-name">-</span></div>
+                    <div class="info-row"><span class="info-label">File Size</span><span class="info-val" id="info-size">-</span></div>
+                    <div class="info-row"><span class="info-label">Package</span><span class="info-val" id="info-pkg">com.target.app</span></div>
+                    <div class="info-row"><span class="info-label">DEX Count</span><span class="info-val" id="info-dex">2 (classes.dex, classes2.dex)</span></div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="document.getElementById('file-upload').click()">
+                        <i class="fa-solid fa-folder-open"></i> Select APK
+                    </button>
+                    <button class="btn btn-primary" id="convert-btn" disabled onclick="startConversion()">
+                        <i class="fa-solid fa-bolt"></i> Convert to DEX2C
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Panel: Console & Progress -->
+            <div class="panel glass console-container">
+                <div class="panel-title">
+                    <i class="fa-solid fa-terminal" style="color: var(--accent-blue);"></i> Live Build Console
+                </div>
+                
+                <div class="console" id="console-output">
+                    <div class="log-line"><span class="log-time">[System]</span><span class="log-info"> DEX2C Engine v4.2.1 initialized.</span></div>
+                    <div class="log-line"><span class="log-time">[System]</span><span class="log-info"> Waiting for target APK...</span></div>
+                </div>
+
+                <div>
+                    <div class="progress-wrapper">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span id="progress-status">Idle</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // UI Logic Variables
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-upload');
+        const fileInfo = document.getElementById('file-info');
+        const convertBtn = document.getElementById('convert-btn');
+        const consoleOutput = document.getElementById('console-output');
+        const progressBar = document.getElementById('progress-bar');
+        const progressPercent = document.getElementById('progress-percent');
+        const progressStatus = document.getElementById('progress-status');
+        
+        // Sidebar Toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const icon = document.getElementById('toggle-icon');
+            sidebar.classList.toggle('collapsed');
+            if(sidebar.classList.contains('collapsed')) {
+                icon.classList.replace('fa-chevron-left', 'fa-chevron-right');
+            } else {
+                icon.classList.replace('fa-chevron-right', 'fa-chevron-left');
+            }
+        }
+
+        // Drag and Drop Logic
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+        });
+        function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => dropZone.classList.add('active'), false);
+        });
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => dropZone.classList.remove('active'), false);
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            let dt = e.dataTransfer;
+            let files = dt.files;
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', function() {
+            handleFiles(this.files);
+        });
+
+        function handleFiles(files) {
+            if(files.length > 0) {
+                const file = files[0];
+                if(file.name.endsWith('.apk')) {
+                    // Update UI Info
+                    document.getElementById('info-name').innerText = file.name;
+                    document.getElementById('info-size').innerText = (file.size / (1024*1024)).toFixed(2) + ' MB';
+                    document.getElementById('stat-project').innerText = file.name.substring(0, 15) + '...';
+                    
+                    fileInfo.classList.add('active');
+                    convertBtn.disabled = false;
+                    
+                    logToConsole(`Target selected: ${file.name} (${(file.size / (1024*1024)).toFixed(2)} MB)`, 'info');
+                    logToConsole(`Analyzing DEX structures...`, 'info');
+                    setTimeout(() => logToConsole(`Found 2 DEX files. 3,421 classes available for native conversion.`, 'success'), 800);
+                } else {
+                    logToConsole(`Error: Invalid file format. Please upload an .apk file.`, 'error');
+                }
+            }
+        }
+
+        // Console Logging Utility
+        function logToConsole(message, type = 'info') {
+            const now = new Date();
+            const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+            
+            let colorClass = 'log-info';
+            if(type === 'success') colorClass = 'log-success';
+            if(type === 'warn') colorClass = 'log-warn';
+            if(type === 'error') colorClass = 'log-error';
+
+            const line = document.createElement('div');
+            line.className = 'log-line';
+            line.innerHTML = `<span class="log-time">[${timeStr}]</span><span class="${colorClass}"> ${message}</span>`;
+            
+            consoleOutput.appendChild(line);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+
+        // Mock Conversion Process
+        function startConversion() {
+            convertBtn.disabled = true;
+            fileInput.disabled = true;
+            dropZone.style.pointerEvents = 'none';
+            document.getElementById('stat-classes').innerText = '0';
+            
+            logToConsole('--- INITIALIZING DEX2C PIPELINE ---', 'warn');
+            
+            const steps = [
+                { p: 5, msg: 'Decompiling APK using Apktool...' },
+                { p: 15, msg: 'Extracting classes.dex and classes2.dex...' },
+                { p: 25, msg: 'Parsing Dalvik bytecode (smali)...' },
+                { p: 40, msg: 'Identifying targeted methods for JNI transition...' },
+                { p: 55, msg: 'Translating Dalvik instructions to C/C++ AST...', classCount: 854 },
+                { p: 70, msg: 'Generating JNI bridging code (native-lib.cpp)...', classCount: 2104 },
+                { p: 85, msg: 'Compiling C/C++ to Android Shared Libraries (.so) via NDK...' },
+                { p: 95, msg: 'Rebuilding APK and signing with v2/v3 signatures...', classCount: 3421 },
+                { p: 100, msg: 'Process Complete! Protected APK generated successfully.' }
+            ];
+
+            let currentStep = 0;
+            
+            const processInterval = setInterval(() => {
+                const step = steps[currentStep];
+                
+                progressBar.style.width = `${step.p}%`;
+                progressPercent.innerText = `${step.p}%`;
+                progressStatus.innerText = `Processing...`;
+                
+                let logType = currentStep === steps.length - 1 ? 'success' : 'info';
+                logToConsole(step.msg, logType);
+
+                if(step.classCount) {
+                    document.getElementById('stat-classes').innerText = step.classCount.toLocaleString();
+                }
+
+                currentStep++;
+                
+                if(currentStep >= steps.length) {
+                    clearInterval(processInterval);
+                    progressStatus.innerText = 'Completed';
+                    progressStatus.style.color = 'var(--success)';
+                    convertBtn.innerHTML = '<i class="fa-solid fa-download"></i> Download Protected APK';
+                    convertBtn.classList.replace('btn-primary', 'btn-success');
+                    convertBtn.style.background = 'var(--success)';
+                    convertBtn.disabled = false;
+                    convertBtn.onclick = () => {
+                        logToConsole('Downloading protected APK...', 'success');
+                        setTimeout(() => alert('Download simulation complete!'), 500);
+                    };
+                }
+            }, 1200); // 1.2s per step simulation
+        }
+    </script>
+</body>
+</html>

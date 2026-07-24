@@ -1,12 +1,11 @@
 {
-  "latestVersionCode": 17,
-  "latestVersionName": "27",
+  "latestVersionCode": 0,
+  "latestVersionName": "28",
   "whatsNew": {
-  "ar": "📦 تحديث قاعدة انستقرام إلى الإصدار 421.0.0.51.66\n🚀 إضافة جميع ميزات انستقرام الجديدة\n🎙 إضافة ميزة تغيير الصوت\n📥 إضافة سجل التنزيلات\n🔤 إضافة المزيد من الخطوط الجديدة\n🎬 إصلاح مشكلة تقطع فيديوهات الريلز\n🚀 إصلاح مشاكل التعتيم في بعض الفيديوهات\n🛠 إصلاحات وتحسينات كثيرة في الأداء والاستقرار\n\n⚠️ ملاحظة مهمة:\nعند تحميل التحديث الجديد، يرجى حذف النسخة السابقة المثبتة على هاتفك أولاً، ثم قم بتثبيت التحديث الجديد.",
-
-"en": "📦 Updated Instagram base to version 421.0.0.51.66\n🚀 Added all new Instagram features\n🎙 Added voice changer feature\n📥 Added download history\n🔤 Added more new fonts\n🎬 Fixed Reels video lag and stuttering issues\n🚀 Fixed dark overlay issues on some videos\n🛠 Many fixes and stability improvements\n\n⚠️ IMPORTANT NOTE:\nWhen downloading the new update, please delete the previous version installed on your phone first, then install the new update."
-},
+    "ar": "📦 تحديث قاعدة انستقرام إلى الإصدار 435.0.0.37.76\n🎬 تحويل الفيديو إلى رسالة صوتية\n👩‍🎨 إضافة خطوط مخصصة للقصص\n👑 تفعيل ميزات انستقرام بريميوم\n👻 إضافة جميع أوضاع الشبح\n⚙️ تحسين تصميم إضافات MTInsta\n✨ والكثير من المميزات الجديدة... اكتشفها بنفسك!",
+    "en": "📦 Updated Instagram base to version 435.0.0.37.76\n🎬 Added Video to Voice Message\n👩‍🎨 Added Custom Story Fonts\n👑 Enabled Instagram Premium Features\n👻 Added All Ghost Mode Features\n⚙️ Redesigned MTInsta Settings\n✨ And many more new features... Discover them yourself!"
+  },
   "downloadUrl": "https://www.mtaltawaf.com/2020/11/mtinstagram.html",
-   "forceUpdate": true,
+  "forceUpdate": true,
   "showIntervalHours": 0
 }

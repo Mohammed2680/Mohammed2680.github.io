@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أداة تشفير وفك تشفير - YouTube Gold</title>
+    <!-- مكتبة CryptoJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --accent-hover: #0284c7;
+            --success-color: #22c55e;
+            --danger-color: #f43f5e;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+        h1 {
+            text-align: center;
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: var(--danger-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+        .card h2.enc {
+            color: var(--success-color);
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        textarea, input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: #0f172a;
+            color: #fff;
+            box-sizing: border-box;
+            font-family: monospace;
+            margin-bottom: 12px;
+            resize: vertical;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: var(--accent-color);
+            color: #000;
+            font-weight: bold;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s;
+        }
+        button:hover {
+            background-color: var(--accent-hover);
+            color: #fff;
+        }
+        .btn-copy {
+            background-color: #334155;
+            color: #fff;
+            width: auto;
+            white-space: nowrap;
+            padding: 8px 15px;
+            margin-top: 8px;
+        }
+        .output-box {
+            background-color: #090d16;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px;
+            min-height: 35px;
+            word-break: break-all;
+            font-family: monospace;
+            color: #4ade80;
+            user-select: all;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>أداة تشفير وفك تشفير Smali & AES</h1>
+
+    <!-- قسم 1: Zsw (تشفير وفك تشفير) -->
+    <div class="card">
+        <h2>1. خوارزمية Zsw المخصصة</h2>
+        <label for="zswInput">أدخل النص المراد تشفيره أو فك تشفيره:</label>
+        <textarea id="zswInput" rows="3" placeholder="أدخل نص عالي أو نص Base64..."></textarea>
+        
+        <div class="btn-group">
+            <button onclick="processZsw(false)">🔓 فك تعمية Zsw</button>
+            <button onclick="processZsw(true)" style="background-color: #a855f7; color: white;">🔒 تشفير Zsw</button>
+        </div>
+        
+        <label>النتيجة:</label>
+        <div id="zswOutput" class="output-box">في انتظار الإدخال...</div>
+        <button class="btn-copy" onclick="copyText('zswOutput', this)">📋 نسخ النتيجة</button>
+    </div>
+
+    <!-- قسم 2: AES (تشفير وفك تشفير) -->
+    <div class="card">
+        <h2 class="enc">2. تشفير وفك تشفير AES (ECB Mode)</h2>
+        <label for="aesInput">أدخل النص:</label>
+        <textarea id="aesInput" rows="3" placeholder="أدخل رابط أو نص عالي لتشفيره، أو نص Base64 لفك تشفيره..."></textarea>
+        
+        <label for="aesKey">مفتاح التشفير (AES Key):</label>
+        <input type="text" id="aesKey" value="YouTubeGoldKey26">
+        
+        <div class="btn-group">
+            <button onclick="processAES(false)">🔓 فك تشفير AES</button>
+            <button onclick="processAES(true)" style="background-color: var(--success-color); color: black;">🔒 تشفير AES</button>
+        </div>
+        
+        <label>النتيجة:</label>
+        <div id="aesOutput" class="output-box">في انتظار الإدخال...</div>
+        <button class="btn-copy" onclick="copyText('aesOutput', this)">📋 نسخ النتيجة</button>
+    </div>
+</div>
+
+<script>
+    // خوارزمية Zsw للاتجاهين (التشفير وفك التشفير يستخدمان نفس آلية XOR)
+    function transformZsw(inputStr, isEncrypt) {
+        try {
+            const seed = 0x71EE1EF4;
+            
+            if (isEncrypt) {
+                // تشفير: نص عادي -> XOR -> Base64
+                const encoder = new TextEncoder();
+                const data = encoder.encode(inputStr);
+                
+                for (let i = 0; i < data.length; i++) {
+                    const shift = (i & 3) << 3;
+                    const mask = ((seed >>> shift) & 0xFF) ^ ((i * 0x1F) & 0xFF);
+                    data[i] ^= mask;
+                }
+                
+                let binary = '';
+                for (let i = 0; i < data.length; i++) {
+                    binary += String.fromCharCode(data[i]);
+                }
+                return btoa(binary);
+            } else {
+                // فك تشفير: Base64 -> XOR -> نص عادي
+                const cleanB64 = inputStr.trim().replace(/\s+/g, '');
+                if (!cleanB64) return "يرجى إدخال النص أولاً.";
+                
+                const raw = atob(cleanB64);
+                const data = new Uint8Array(raw.length);
+                for (let i = 0; i < raw.length; i++) {
+                    data[i] = raw.charCodeAt(i);
+                }
+
+                for (let i = 0; i < data.length; i++) {
+                    const shift = (i & 3) << 3;
+                    const mask = ((seed >>> shift) & 0xFF) ^ ((i * 0x1F) & 0xFF);
+                    data[i] ^= mask;
+                }
+
+                const decoder = new TextDecoder('utf-8');
+                return decoder.decode(data);
+            }
+        } catch (e) {
+            return "خطأ: تأكد من صحة البيانات المدخلة.";
+        }
+    }
+
+    function processZsw(isEncrypt) {
+        const input = document.getElementById('zswInput').value;
+        if (!input.trim()) return;
+        const result = transformZsw(input, isEncrypt);
+        document.getElementById('zswOutput').innerText = result;
+    }
+
+    // معالجة AES (تشفير وفك تشفير)
+    function processAES(isEncrypt) {
+        try {
+            const inputStr = document.getElementById('aesInput').value.trim();
+            const keyStr = document.getElementById('aesKey').value.trim();
+
+            if (!inputStr) {
+                document.getElementById('aesOutput').innerText = "يرجى إدخال النص أولاً.";
+                return;
+            }
+
+            const key = CryptoJS.enc.Utf8.parse(keyStr);
+
+            if (isEncrypt) {
+                // تشفير
+                const encrypted = CryptoJS.AES.encrypt(inputStr, key, {
+                    mode: CryptoJS.mode.ECB,
+                    padding: CryptoJS.pad.Pkcs7
+                });
+                document.getElementById('aesOutput').innerText = encrypted.toString();
+            } else {
+                // فك تشفير
+                const cleanInput = inputStr.replace(/\s+/g, '');
+                const decrypted = CryptoJS.AES.decrypt(cleanInput, key, {
+                    mode: CryptoJS.mode.ECB,
+                    padding: CryptoJS.pad.Pkcs7
+                });
+                const resultText = decrypted.toString(CryptoJS.enc.Utf8);
+                document.getElementById('aesOutput').innerText = resultText || "خطأ: تعذر فك التشفير. تأكد من البيانات.";
+            }
+        } catch (e) {
+            document.getElementById('aesOutput').innerText = "حدث خطأ أثناء العملية.";
+        }
+    }
+
+    // دالة النسخ المضمونة لجميع المتصفحات (حتى على المسارات المحلية content://)
+    function copyText(elementId, btnElement) {
+        const text = document.getElementById(elementId).innerText;
+        if (text === "في انتظار الإدخال..." || text.startsWith("خطأ") || text.startsWith("يرجى")) {
+            return;
+        }
+
+        // إنشاء عنصر وهمي للنسخ التقليدي
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        
+        try {
+            document.execCommand('copy');
+            const originalText = btnElement.innerText;
+            btnElement.innerText = "✓ تم النسخ!";
+            btnElement.style.backgroundColor = "var(--success-color)";
+            setTimeout(() => {
+                btnElement.innerText = originalText;
+                btnElement.style.backgroundColor = "";
+            }, 2000);
+        } catch (err) {
+            alert("تعذر النسخ التلقائي، يمكنك تحديد النص ونسخه يدوياً.");
+        } finally {
+            document.body.removeChild(textarea);
+        }
+    }
+</script>
+
+</body>
+  </html>

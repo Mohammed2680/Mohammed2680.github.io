@@ -1,5 +1,5 @@
 {
-  "latestVersionCode": 8,
+  "latestVersionCode": 10,
   "latestVersionName": "23",
   "whatsNew": {
 	"ar": "- إصلاح مشكلة تسجيل الدخول إلى التطبيق المساعد (microG).\n\n- إصلاحات وتحسينات عامة أخرى.",
@@ -8,5 +8,5 @@
 },
   "downloadUrl": "https://www.mtaltawaf.com/2022/05/mtyoutube-gold.html",
   "forceUpdate": false,
-  "showIntervalHours": 3
+  "showIntervalHours": 0
 }

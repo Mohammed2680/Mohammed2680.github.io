@@ -1,5 +1,5 @@
 {
-  "latestVersionCode": 11,
+  "latestVersionCode": 18,
   "latestVersionName": "28",
   "whatsNew": {
     "ar": "📦 تحديث قاعدة انستقرام إلى الإصدار 435.0.0.37.76\n🎬 تحويل الفيديو إلى رسالة صوتية\n👩‍🎨 إضافة خطوط مخصصة للقصص\n👑 تفعيل ميزات انستقرام بريميوم\n👻 إضافة جميع أوضاع الشبح\n⚙️ تحسين تصميم إضافات MTInsta\n✨ والكثير من المميزات الجديدة... اكتشفها بنفسك!",
@@ -7,5 +7,5 @@
   },
   "downloadUrl": "https://www.mtaltawaf.com/2020/11/mtinstagram.html",
   "forceUpdate": true,
-  "showIntervalHours": 0
+  "showIntervalHours": 3
 }

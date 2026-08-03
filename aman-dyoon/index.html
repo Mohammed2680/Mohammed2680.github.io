@@ -1,1 +1,424 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>أمان للديون</title>
+<meta name="theme-color" content="#0B2A5B">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon.svg">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400..700,0..1,-50..200" />
+
+<link rel="stylesheet" href="css/style.css">
+
+<!-- مكتبات خارجية -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+</head>
+<body>
+
+<!-- ==================== شاشة تسجيل الدخول ==================== -->
+<div id="authScreen" class="auth-screen">
+  <div class="auth-logo"><span class="material-symbols-rounded">encrypted</span></div>
+  <div class="auth-title">أمان للديون</div>
+  <div class="auth-sub">بياناتك المالية معك أينما كنت. إدارة احترافية للديون والحسابات الجارية.</div>
+
+  <div class="auth-card">
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">تسجيل الدخول</button>
+      <button class="auth-tab" data-tab="signup">إنشاء حساب</button>
+    </div>
+
+    <form id="loginForm">
+      <div class="field"><label>البريد الإلكتروني</label><input type="email" id="loginEmail" placeholder="example@aman.com" required></div>
+      <div class="field"><label>كلمة المرور</label><input type="password" id="loginPass" placeholder="••••••••" required minlength="4"></div>
+      <div class="auth-remember">
+        <label><input type="checkbox" id="rememberMe" checked> تذكرني</label>
+        <a href="#" id="forgotPassBtn">نسيت كلمة المرور؟</a>
+      </div>
+      <button class="btn btn-primary" type="submit"><span class="material-symbols-rounded">login</span> تسجيل الدخول</button>
+    </form>
+
+    <form id="signupForm" class="app-hidden">
+      <div class="field"><label>اسم النشاط</label><input type="text" id="suBusiness" placeholder="مثال: أمان للديون" required></div>
+      <div class="field"><label>البريد الإلكتروني</label><input type="email" id="suEmail" required></div>
+      <div class="field"><label>كلمة المرور</label><input type="password" id="suPass" minlength="4" required></div>
+      <button class="btn btn-primary" type="submit"><span class="material-symbols-rounded">bolt</span> إنشاء حساب ومزامنة البيانات</button>
+    </form>
+
+    <div class="auth-divider">أو عبر</div>
+    <div class="auth-secondary-row">
+      <button class="btn btn-outline btn-sm" id="googleBtn" style="flex:1"><span class="material-symbols-rounded">mail</span> جوجل</button>
+      <button class="btn btn-outline btn-sm" id="guestBtn" style="flex:1"><span class="material-symbols-rounded">person</span> دخول كزائر</button>
+    </div>
+  </div>
+  <p class="text-muted mt-16" style="text-align:center">تشفير بيانات 256-bit • النسخة التجريبية تحفظ البيانات محليًا على جهازك</p>
+</div>
+
+<!-- ==================== التطبيق ==================== -->
+<div id="appShell" class="app-shell app-hidden">
+
+  <!-- ---------- الرئيسية ---------- -->
+  <section id="page-home" class="page-section">
+    <div class="topbar">
+      <button class="icon-btn" id="profileBtn"><span class="material-symbols-rounded">account_circle</span></button>
+      <div class="brand" id="brandName">أمان للديون</div>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="searchBtn"><span class="material-symbols-rounded">search</span></button>
+        <button class="icon-btn" id="menuBtn"><span class="material-symbols-rounded">menu</span></button>
+      </div>
+    </div>
+    <div class="page">
+      <div class="balance-hero">
+        <div class="label">إجمالي الديون المستحقة</div>
+        <div class="amount" id="homeTotalDebit">0 <small id="homeCurrency">ريال</small></div>
+        <div class="chip" id="creditChip"><span class="material-symbols-rounded" style="font-size:15px">savings</span> رصيد دائن: 0</div>
+      </div>
+
+      <div class="quick-actions">
+        <button class="quick-action" id="qaNewDebt"><div class="qa-icon debt"><span class="material-symbols-rounded">post_add</span></div>دين جديد</button>
+        <button class="quick-action" id="qaNewClient"><div class="qa-icon client"><span class="material-symbols-rounded">person_add</span></div>عميل جديد</button>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-label">مبيعات اليوم</div><div class="stat-value" id="statTodaySales">0</div></div>
+        <div class="stat-card"><div class="stat-label">تحصيل اليوم</div><div class="stat-value" id="statTodayCollected">0</div></div>
+      </div>
+
+      <div class="card chart-card">
+        <div class="section-head" style="margin-bottom:10px"><h3>نظرة على آخر 7 أيام</h3></div>
+        <canvas id="homeChart" height="150"></canvas>
+      </div>
+
+      <div class="section-head">
+        <h3>أحدث المعاملات</h3>
+        <button class="link-btn" data-nav="clients">عرض الكل</button>
+      </div>
+      <div id="homeRecentList"></div>
+    </div>
+  </section>
+
+  <!-- ---------- العملاء ---------- -->
+  <section id="page-clients" class="page-section app-hidden">
+    <div class="topbar">
+      <button class="icon-btn" data-nav="home"><span class="material-symbols-rounded">arrow_forward</span></button>
+      <div class="brand">العملاء</div>
+      <div class="topbar-actions"><button class="icon-btn" id="addClientTopBtn"><span class="material-symbols-rounded">person_add</span></button></div>
+    </div>
+    <div class="page">
+      <div class="search-box"><span class="material-symbols-rounded" style="color:var(--text-muted)">search</span><input type="text" id="clientSearch" placeholder="بحث عن اسم العميل..."></div>
+      <div class="balance-hero" style="padding:16px 22px">
+        <div class="label">إجمالي المبالغ المستحقة</div>
+        <div class="amount" id="clientsTotal" style="font-size:24px">0 <small>ريال</small></div>
+      </div>
+      <div class="filter-row">
+        <button class="filter-chip active" data-filter="all">الكل</button>
+        <button class="filter-chip" data-filter="debtors">مدينون</button>
+        <button class="filter-chip" data-filter="late">متأخرون</button>
+        <button class="filter-chip" data-filter="paid">المسددين</button>
+      </div>
+      <div id="clientsList"></div>
+    </div>
+  </section>
+
+  <!-- ---------- تفاصيل العميل ---------- -->
+  <section id="page-client-detail" class="page-section app-hidden">
+    <div class="topbar">
+      <button class="icon-btn" data-nav="clients"><span class="material-symbols-rounded">arrow_forward</span></button>
+      <div class="brand" id="cdName">—</div>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="cdCallBtn"><span class="material-symbols-rounded">call</span></button>
+        <button class="icon-btn" id="cdMoreBtn"><span class="material-symbols-rounded">more_vert</span></button>
+      </div>
+    </div>
+    <div class="page">
+      <div class="card" style="margin-bottom:14px">
+        <div class="row-between">
+          <span class="badge" id="cdStatusBadge"></span>
+          <div style="text-align:left">
+            <div class="text-muted" style="font-size:12px">إجمالي المديونية</div>
+            <div style="font-weight:800;font-size:24px" id="cdBalance">0 <span style="font-size:13px">ريال</span></div>
+          </div>
+        </div>
+        <div style="border-top:1px dashed var(--border);margin-top:12px;padding-top:10px" class="text-muted" id="cdLastOp">لا توجد عمليات بعد</div>
+      </div>
+
+      <div class="quick-actions">
+        <button class="quick-action" id="cdPayBtn"><div class="qa-icon" style="background:var(--success-bg);color:var(--success)"><span class="material-symbols-rounded">payments</span></div>تسجيل دفعة</button>
+        <button class="quick-action" id="cdDebtBtn"><div class="qa-icon debt"><span class="material-symbols-rounded">add_shopping_cart</span></div>إضافة دين</button>
+      </div>
+
+      <div class="section-head"><h3>سجل العمليات</h3></div>
+      <div class="timeline" id="cdTimeline"></div>
+
+      <div class="stat-grid mt-16">
+        <div class="stat-card"><div class="stat-label">عدد العمليات</div><div class="stat-value" id="cdOpsCount">0</div></div>
+        <div class="stat-card"><div class="stat-label">الحد الائتماني</div><div class="stat-value" id="cdCreditLimit">0</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- إضافة دين / فاتورة ---------- -->
+  <section id="page-add-debt" class="page-section app-hidden">
+    <div class="topbar">
+      <button class="icon-btn" id="closeAddDebt"><span class="material-symbols-rounded">close</span></button>
+      <div class="brand">إضافة دين جديد</div>
+      <div style="width:40px"></div>
+    </div>
+    <div class="page">
+      <div class="info-box">
+        <div class="lbl">الحالة المالية الحالية</div>
+        <div class="val" id="addDebtCurrentTotal">0 ريال</div>
+      </div>
+
+      <div class="field">
+        <label>اختر العميل</label>
+        <select id="debtClientSelect"><option value="">-- ابحث عن اسم العميل --</option></select>
+      </div>
+
+      <div class="section-head"><h3>الأصناف</h3></div>
+      <div id="itemsContainer"></div>
+      <button class="add-item-btn" id="addItemBtn" type="button">+ إضافة صنف</button>
+
+      <div class="field mt-16">
+        <label>أو أدخل مبلغًا إجماليًا مباشرة (بدون أصناف)</label>
+        <input type="number" id="manualAmount" placeholder="0.00" min="0" step="0.01">
+      </div>
+
+      <div class="field">
+        <label>خصم الفاتورة</label>
+        <div style="display:flex;gap:8px">
+          <input type="number" id="invoiceDiscount" placeholder="0" min="0" step="0.01" style="flex:2">
+          <select id="discountType" style="flex:1">
+            <option value="amount">مبلغ</option>
+            <option value="percent">%</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>المبلغ المدفوع الآن (اختياري)</label>
+        <input type="number" id="paidNow" placeholder="0.00" min="0" step="0.01">
+      </div>
+
+      <div class="field">
+        <label>تاريخ العملية</label>
+        <input type="date" id="debtDate">
+      </div>
+
+      <div class="field">
+        <label>إرفاق صورة السند</label>
+        <div class="upload-box" id="attachBox">
+          <span class="material-symbols-rounded" style="font-size:26px">upload_file</span>
+          <div>ارفع ملف أو صورة</div>
+          <input type="file" id="attachInput" accept="image/*">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>تفاصيل إضافية (اختياري)</label>
+        <textarea id="debtNotes" rows="3" placeholder="اكتب هنا عن نوع البضاعة أو سبب الدين..."></textarea>
+      </div>
+
+      <div class="totals-box" id="debtTotalsPreview"></div>
+
+      <button class="btn btn-primary" id="saveDebtBtn"><span class="material-symbols-rounded">save</span> حفظ العملية</button>
+    </div>
+  </section>
+
+  <!-- ---------- التقارير ---------- -->
+  <section id="page-reports" class="page-section app-hidden">
+    <div class="topbar">
+      <button class="icon-btn" data-nav="home"><span class="material-symbols-rounded">arrow_forward</span></button>
+      <div class="brand">التقارير</div>
+      <button class="icon-btn" id="printReportBtn"><span class="material-symbols-rounded">print</span></button>
+    </div>
+    <div class="page">
+      <div class="filter-row">
+        <button class="filter-chip active" data-period="day">اليوم</button>
+        <button class="filter-chip" data-period="week">أسبوعي</button>
+        <button class="filter-chip" data-period="month">شهري</button>
+        <button class="filter-chip" data-period="year">سنوي</button>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-label">إجمالي المبيعات</div><div class="stat-value" id="repSales">0</div></div>
+        <div class="stat-card"><div class="stat-label">إجمالي التحصيل</div><div class="stat-value" id="repCollected">0</div></div>
+        <div class="stat-card"><div class="stat-label">صافي الديون الجديدة</div><div class="stat-value" id="repNetDebt">0</div></div>
+        <div class="stat-card"><div class="stat-label">رصيد الصندوق</div><div class="stat-value" id="repCash">0</div></div>
+      </div>
+
+      <div class="card chart-card">
+        <div class="card-title">المبيعات مقابل التحصيلات</div>
+        <canvas id="reportChart" height="180"></canvas>
+      </div>
+
+      <div class="section-head"><h3>أفضل العملاء</h3></div>
+      <div id="topClientsList"></div>
+
+      <div class="section-head"><h3>الأكثر تأخرًا</h3></div>
+      <div id="lateClientsList"></div>
+
+      <div class="card mt-16">
+        <div class="card-title">تصدير التقرير</div>
+        <div class="auth-secondary-row">
+          <button class="btn btn-outline btn-sm" id="exportPdfBtn" style="flex:1">PDF</button>
+          <button class="btn btn-outline btn-sm" id="exportExcelBtn" style="flex:1">Excel</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- الإعدادات ---------- -->
+  <section id="page-settings" class="page-section app-hidden">
+    <div class="topbar">
+      <button class="icon-btn" data-nav="home"><span class="material-symbols-rounded">arrow_forward</span></button>
+      <div class="brand">الإعدادات</div>
+      <div style="width:40px"></div>
+    </div>
+    <div class="page">
+
+      <div class="card">
+        <div class="row-between">
+          <div class="card-title" style="margin:0">الوضع الليلي</div>
+          <label class="switch"><input type="checkbox" id="darkModeToggle"><span class="slider"></span></label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">بيانات النشاط</div>
+        <div class="field"><label>اسم النشاط</label><input type="text" id="setBusinessName"></div>
+        <div class="field"><label>اسم المالك</label><input type="text" id="setOwnerName"></div>
+        <div class="field"><label>الهاتف</label><input type="text" id="setPhone"></div>
+        <div class="field"><label>البريد الإلكتروني</label><input type="email" id="setEmail"></div>
+        <div class="field"><label>العنوان</label><input type="text" id="setAddress"></div>
+        <div class="field"><label>الرقم الضريبي</label><input type="text" id="setTaxNumber"></div>
+        <div class="field"><label>السجل التجاري</label><input type="text" id="setCrNumber"></div>
+        <div class="field"><label>العملة</label><input type="text" id="setCurrency"></div>
+        <div class="field"><label>رسالة أسفل الفاتورة</label><textarea id="setFooterMsg" rows="2"></textarea></div>
+        <button class="btn btn-primary" id="saveSettingsBtn"><span class="material-symbols-rounded">save</span> حفظ الإعدادات</button>
+      </div>
+
+      <div class="card">
+        <div class="row-between">
+          <div class="card-title" style="margin:0">طرق السداد</div>
+          <label class="switch"><input type="checkbox" id="pmEnabledToggle"><span class="slider"></span></label>
+        </div>
+        <div id="pmEditList" class="mt-12"></div>
+        <button class="add-item-btn" id="addPmBtn" type="button">+ إضافة طريقة سداد</button>
+        <div class="field mt-16"><label>رسالة أسفل طرق السداد</label><textarea id="pmNote" rows="2"></textarea></div>
+        <div class="row-between mt-12">
+          <span class="text-muted">إظهار في الفواتير الآجلة فقط</span>
+          <label class="switch"><input type="checkbox" id="pmAllInvoicesToggle"><span class="slider"></span></label>
+        </div>
+        <button class="btn btn-primary mt-16" id="savePmBtn"><span class="material-symbols-rounded">save</span> حفظ طرق السداد</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title">النسخ الاحتياطي</div>
+        <div class="auth-secondary-row">
+          <button class="btn btn-ghost btn-sm" id="exportDataBtn" style="flex:1"><span class="material-symbols-rounded">download</span> تصدير نسخة</button>
+          <button class="btn btn-ghost btn-sm" id="importDataBtn" style="flex:1"><span class="material-symbols-rounded">upload</span> استعادة نسخة</button>
+        </div>
+        <input type="file" id="importFileInput" class="app-hidden" accept="application/json">
+      </div>
+
+      <div class="card">
+        <div class="card-title" style="color:var(--danger)">منطقة الخطر</div>
+        <button class="btn btn-danger" id="wipeDataBtn"><span class="material-symbols-rounded">delete_forever</span> حذف جميع البيانات</button>
+      </div>
+
+      <button class="btn btn-outline" id="logoutBtn"><span class="material-symbols-rounded">logout</span> تسجيل الخروج</button>
+    </div>
+  </section>
+
+  <!-- ---------- الفاتورة ---------- -->
+  <section id="page-invoice" class="page-section app-hidden">
+    <div class="topbar">
+      <button class="icon-btn" id="printInvoiceBtn"><span class="material-symbols-rounded">print</span></button>
+      <div class="brand">فاتورة الدين</div>
+      <button class="icon-btn" id="closeInvoiceBtn"><span class="material-symbols-rounded">arrow_forward</span></button>
+    </div>
+    <div class="page">
+      <div class="invoice-wrap" id="invoicePrintArea"></div>
+      <div class="invoice-actions">
+        <button class="btn btn-primary" id="invoicePdfBtn"><span class="material-symbols-rounded">picture_as_pdf</span> مشاركة كملف PDF</button>
+        <button class="btn btn-outline" id="invoiceWaBtn"><span class="material-symbols-rounded">chat</span> إرسال عبر واتساب</button>
+        <button class="btn btn-outline" id="invoiceSmsBtn"><span class="material-symbols-rounded">sms</span> إرسال كرسالة نصية</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- شريط التنقل السفلي ---------- -->
+  <nav class="bottom-nav">
+    <button class="nav-btn" data-nav="settings"><span class="material-symbols-rounded">settings</span>الإعدادات</button>
+    <button class="nav-btn" data-nav="reports"><span class="material-symbols-rounded">bar_chart</span>التقارير</button>
+    <button class="nav-btn fab" data-nav="add-debt"><span class="material-symbols-rounded">add</span></button>
+    <button class="nav-btn" data-nav="clients"><span class="material-symbols-rounded">group</span>العملاء</button>
+    <button class="nav-btn active" data-nav="home"><span class="material-symbols-rounded">home</span>الرئيسية</button>
+  </nav>
+</div>
+
+<!-- ---------- Sheet: عميل جديد ---------- -->
+<div id="clientSheet" class="sheet-overlay app-hidden">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title"><span id="clientSheetTitle">إضافة عميل جديد</span><button class="icon-btn" data-close-sheet="clientSheet"><span class="material-symbols-rounded">close</span></button></div>
+    <input type="hidden" id="editClientId">
+    <div class="field"><label>اسم العميل</label><input type="text" id="ncName" required></div>
+    <div class="field"><label>رقم الهاتف</label><input type="text" id="ncPhone"></div>
+    <div class="field"><label>العنوان</label><input type="text" id="ncAddress"></div>
+    <div class="field"><label>الحد الائتماني</label><input type="number" id="ncCreditLimit" value="0"></div>
+    <div class="field"><label>ملاحظات</label><textarea id="ncNotes" rows="2"></textarea></div>
+    <button class="btn btn-primary" id="saveClientBtn"><span class="material-symbols-rounded">save</span> حفظ العميل</button>
+  </div>
+</div>
+
+<!-- ---------- Sheet: تسجيل دفعة ---------- -->
+<div id="paySheet" class="sheet-overlay app-hidden">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">تسجيل دفعة<button class="icon-btn" data-close-sheet="paySheet"><span class="material-symbols-rounded">close</span></button></div>
+    <div class="info-box"><div class="lbl">إجمالي المديونية الحالية</div><div class="val" id="payCurrentBalance">0</div></div>
+    <div class="field"><label>المبلغ المدفوع</label><input type="number" id="payAmount" min="0" step="0.01" placeholder="0.00"></div>
+    <div class="field"><label>طريقة الدفع</label>
+      <select id="payMethod"><option>نقدًا</option><option>تحويل بنكي</option><option>محفظة إلكترونية</option><option>أخرى</option></select>
+    </div>
+    <div class="field"><label>ملاحظات</label><textarea id="payNotes" rows="2"></textarea></div>
+    <button class="btn btn-primary" id="confirmPayBtn"><span class="material-symbols-rounded">check_circle</span> تأكيد السداد</button>
+  </div>
+</div>
+
+<!-- ---------- Sheet: بحث عام ---------- -->
+<div id="searchSheet" class="sheet-overlay app-hidden">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">بحث<button class="icon-btn" data-close-sheet="searchSheet"><span class="material-symbols-rounded">close</span></button></div>
+    <div class="search-box"><span class="material-symbols-rounded" style="color:var(--text-muted)">search</span><input type="text" id="globalSearchInput" placeholder="ابحث عن عميل، فاتورة، ملاحظة..." autofocus></div>
+    <div id="globalSearchResults"></div>
+  </div>
+</div>
+
+<!-- ---------- Sheet: خيارات إضافية للعميل ---------- -->
+<div id="clientMoreSheet" class="sheet-overlay app-hidden">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">خيارات العميل<button class="icon-btn" data-close-sheet="clientMoreSheet"><span class="material-symbols-rounded">close</span></button></div>
+    <button class="btn btn-ghost mt-8" id="cmEditBtn"><span class="material-symbols-rounded">edit</span> تعديل بيانات العميل</button>
+    <button class="btn btn-ghost mt-8" id="cmArchiveBtn"><span class="material-symbols-rounded">archive</span> أرشفة العميل</button>
+    <button class="btn btn-danger mt-8" id="cmDeleteBtn"><span class="material-symbols-rounded">delete</span> حذف العميل نهائيًا</button>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="js/db.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

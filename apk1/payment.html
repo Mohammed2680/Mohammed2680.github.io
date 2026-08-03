@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>تسجيل سداد</title>
+<meta name="theme-color" content="#0B2A5B">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dark.css">
+</head>
+<body>
+
+<nav id="desktopSidebar" class="desktop-sidebar"></nav>
+
+<div class="topbar">
+  <button class="icon-btn" onclick="history.back()"><i class="fa-solid fa-arrow-right"></i></button>
+  <div class="brand"><span>تسجيل سداد</span></div>
+  <div style="width:40px;"></div>
+</div>
+
+<div class="app-container">
+  <div class="page-content">
+    <form id="paymentForm" onsubmit="savePayment(event)">
+
+      <div class="form-group">
+        <label class="form-label">اختر العميل *</label>
+        <select id="payCustomer" class="form-select" required onchange="onCustomerChange()">
+          <option value="">اختر العميل...</option>
+        </select>
+      </div>
+
+      <div class="card mb-3" id="balanceInfo" style="display:none;">
+        <div class="d-flex justify-content-between mb-1"><span class="text-muted-sm">إجمالي الدين</span><b id="infoTotal">0</b></div>
+        <div class="d-flex justify-content-between mb-1"><span class="text-muted-sm">المدفوع سابقًا</span><b id="infoPaid">0</b></div>
+        <div class="d-flex justify-content-between"><span class="text-muted-sm">المتبقي</span><b id="infoRemaining" style="color:var(--danger)">0</b></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">نوع الدفع</label>
+        <div class="chip-scroll">
+          <button type="button" class="chip active" data-type="partial" onclick="setPayType('partial')">دفع جزئي</button>
+          <button type="button" class="chip" data-type="full" onclick="setPayType('full')">دفع كامل</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">المبلغ المدفوع *</label>
+        <div class="input-icon-wrap">
+          <i class="fa-solid fa-money-bill-wave"></i>
+          <input type="number" id="payAmount" class="form-control" placeholder="0" min="1" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">طريقة الدفع</label>
+        <select id="payMethod" class="form-select">
+          <option value="cash">نقدًا</option>
+          <option value="transfer">تحويل بنكي</option>
+          <option value="wallet">محفظة إلكترونية</option>
+          <option value="other">أخرى</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">ملاحظات</label>
+        <textarea id="payNotes" class="form-control" rows="2" placeholder="ملاحظات إضافية..."></textarea>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:20px;">
+        <button type="submit" class="btn btn-outline btn-block btn-lg">حفظ</button>
+        <button type="submit" class="btn btn-accent btn-block btn-lg" onclick="window.__printAfter=true;">حفظ وطباعة</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<nav class="bottom-nav" id="bottomNav"></nav>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+<script src="js/firebase.js"></script>
+<script src="js/app.js"></script>
+<script src="js/payments.js"></script>
+</body>
+</html>

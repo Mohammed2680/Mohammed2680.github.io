@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>إضافة دين</title>
+<meta name="theme-color" content="#0B2A5B">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dark.css">
+</head>
+<body>
+
+<nav id="desktopSidebar" class="desktop-sidebar"></nav>
+
+<div class="topbar">
+  <button class="icon-btn" onclick="history.back()"><i class="fa-solid fa-arrow-right"></i></button>
+  <div class="brand"><span>إضافة دين جديد</span></div>
+  <div style="width:40px;"></div>
+</div>
+
+<div class="app-container">
+  <div class="page-content">
+    <form id="debtForm" onsubmit="saveDebt(event)">
+
+      <div class="form-group">
+        <label class="form-label">اسم العميل *</label>
+        <select id="debtCustomer" class="form-select" required>
+          <option value="">اختر العميل...</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">المبلغ *</label>
+        <div class="input-icon-wrap">
+          <i class="fa-solid fa-money-bill-wave"></i>
+          <input type="number" id="debtAmount" class="form-control" placeholder="0" min="1" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">العملة</label>
+        <input type="text" id="debtCurrency" class="form-control" value="ريال يمني" readonly style="background:#F4F6FA;">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">سبب الدين</label>
+        <input type="text" id="debtReason" class="form-control" placeholder="مثال: بضاعة، أدوات منزلية...">
+      </div>
+
+      <div class="row g-2">
+        <div class="col-6 form-group">
+          <label class="form-label">التاريخ</label>
+          <input type="date" id="debtDate" class="form-control" required>
+        </div>
+        <div class="col-6 form-group">
+          <label class="form-label">وقت العملية</label>
+          <input type="time" id="debtTime" class="form-control" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">موعد السداد المتوقع (اختياري)</label>
+        <input type="date" id="debtDueDate" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">ملاحظات</label>
+        <textarea id="debtNotes" class="form-control" rows="2" placeholder="ملاحظات إضافية..."></textarea>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:20px;">
+        <button type="submit" class="btn btn-outline btn-block btn-lg">حفظ</button>
+        <button type="submit" class="btn btn-primary btn-block btn-lg" onclick="window.__printAfter=true;">حفظ وطباعة</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<nav class="bottom-nav" id="bottomNav"></nav>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+<script src="js/firebase.js"></script>
+<script src="js/app.js"></script>
+<script src="js/debts.js"></script>
+</body>
+</html>

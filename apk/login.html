@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تسجيل الدخول - أمان للديون</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0B2A5B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="auth-wrap">
+  <div class="auth-logo">
+    <i class="fa-solid fa-shield-halved"></i>
+    <div class="badge-device"><i class="fa-solid fa-mobile-screen-button" style="font-size:.7rem"></i></div>
+  </div>
+  <h1 class="auth-title">أمان للديون</h1>
+  <p class="auth-sub">بياناتك المالية معك أينما كنت. مزامنة سحابية فورية وربط غير محدود للأجهزة.</p>
+
+  <div class="auth-card">
+    <div class="auth-tabs">
+      <div class="tab active" id="tabLogin" onclick="switchTab('login')">تسجيل الدخول</div>
+      <div class="tab" id="tabSignup" onclick="switchTab('signup')">إنشاء حساب</div>
+    </div>
+
+    <!-- تسجيل الدخول -->
+    <form id="loginForm">
+      <div class="field">
+        <label>البريد الإلكتروني</label>
+        <input class="control" type="email" id="loginEmail" placeholder="example@aman.com" required>
+      </div>
+      <div class="field">
+        <label>كلمة المرور</label>
+        <div style="position:relative">
+          <input class="control" type="password" id="loginPass" placeholder="••••••••" required style="padding-left:44px">
+          <i class="fa-regular fa-eye" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);cursor:pointer;color:var(--text-muted)" onclick="togglePass('loginPass', this)"></i>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;font-size:.85rem;">
+        <label style="display:flex;align-items:center;gap:8px;color:var(--text-muted);cursor:pointer;">
+          <input type="checkbox" id="rememberMe" checked> تذكرني
+        </label>
+        <a href="#" onclick="forgotPassword();return false;" style="color:var(--navy);font-weight:700;">نسيت كلمة المرور؟</a>
+      </div>
+      <button type="submit" class="btn-app btn-navy"><i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول</button>
+    </form>
+
+    <!-- إنشاء حساب -->
+    <form id="signupForm" class="hidden">
+      <div class="field">
+        <label>اسم النشاط / المتجر</label>
+        <input class="control" type="text" id="suShop" placeholder="مثال: محل الأمانة للتجارة" required>
+      </div>
+      <div class="field">
+        <label>البريد الإلكتروني</label>
+        <input class="control" type="email" id="suEmail" placeholder="example@aman.com" required>
+      </div>
+      <div class="field">
+        <label>كلمة المرور</label>
+        <input class="control" type="password" id="suPass" placeholder="••••••••" required minlength="6">
+      </div>
+      <div class="remember-row">
+        <input type="checkbox" id="linkDevices" checked>
+        <div><b>ربط الأجهزة</b><br>عند إنشاء الحساب، سيتم تشفير ديونك ورفعها لسحابة "أمان" لتتمكن من الوصول إليها من هاتفك أو جهاز الكمبيوتر.</div>
+      </div>
+      <button type="submit" class="btn-app btn-navy"><i class="fa-solid fa-bolt"></i> إنشاء حساب ومزامنة البيانات</button>
+    </form>
+
+    <div class="divider-or">أو عبر</div>
+    <div class="social-row">
+      <button type="button" class="social-btn" onclick="Utils.toast('info','قريباً: تسجيل عبر سحابة أمان')"><i class="fa-solid fa-cloud"></i> سحابة أمان</button>
+      <button type="button" class="social-btn" onclick="Utils.toast('info','قريباً: تسجيل عبر جوجل')"><i class="fa-brands fa-google"></i> جوجل</button>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:center;gap:22px;margin-top:22px;font-size:.75rem;color:var(--text-muted);">
+    <span><i class="fa-solid fa-shield"></i> معتمد من أمان اليمن</span>
+    <span><i class="fa-solid fa-lock"></i> تشفير بيانات bit-256</span>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/app.js"></script>
+<script src="js/firebase.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

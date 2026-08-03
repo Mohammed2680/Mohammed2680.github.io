@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ملف العميل - أمان للديون</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0B2A5B">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="icon-btn" id="menuBtn"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+  <div style="flex:1;text-align:center;font-weight:800;" id="custName">—</div>
+  <a class="icon-btn" href="customers.html"><i class="fa-solid fa-arrow-right"></i></a>
+</div>
+
+<div class="container-app">
+
+  <div class="panel" style="margin-bottom:14px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <span class="badge-status badge-late hidden" id="lateBadge"><i class="fa-solid fa-circle-exclamation"></i> متأخر</span>
+      <span class="text-muted-app" style="font-size:.8rem;">إجمالي المديونية</span>
+    </div>
+    <div style="text-align:left;font-weight:800;font-size:1.7rem;color:var(--red);margin-top:4px;" id="totalDebt">0 ريال</div>
+    <hr class="inv-divider">
+    <div style="display:flex;align-items:center;justify-content:space-between;font-size:.85rem;color:var(--text-muted);">
+      <span id="lastOpText">لا توجد عمليات بعد</span>
+      <i class="fa-solid fa-clock-rotate-left"></i>
+    </div>
+  </div>
+
+  <div class="btn-row" style="margin-bottom:18px;">
+    <button class="btn-app btn-green" onclick="location.href='payment.html?id='+getParam('id')"><i class="fa-solid fa-money-bill-wave"></i> تسجيل دفعة</button>
+    <button class="btn-app btn-navy" onclick="location.href='new-debt.html?id='+getParam('id')"><i class="fa-solid fa-cart-shopping"></i> إضافة دين</button>
+  </div>
+
+  <div class="section-head">
+    <h2>سجل العمليات</h2>
+    <a href="#" onclick="toggleAll();return false;" id="toggleAllLink">▾ تصفية</a>
+  </div>
+  <div class="timeline" id="txnTimeline"></div>
+  <div style="text-align:center;margin:6px 0 20px;">
+    <a href="#" id="showMoreLink" style="color:var(--navy);font-weight:700;font-size:.85rem;">عرض المزيد من العمليات ▾</a>
+  </div>
+
+  <div class="stat-grid" style="grid-template-columns:1fr 1fr;">
+    <div class="info-tile">
+      <div><div class="it-label">عمر الدين</div><div class="it-value" id="debtAge">— يوم</div></div>
+      <div class="it-icon"><i class="fa-regular fa-calendar"></i></div>
+    </div>
+    <div class="info-tile">
+      <div><div class="it-label">تكرار السداد</div><div class="it-value" id="payFreq">—</div></div>
+      <div class="it-icon"><i class="fa-solid fa-chart-simple"></i></div>
+    </div>
+  </div>
+
+  <div class="section-head"><h2>بيانات العميل</h2></div>
+  <div class="panel">
+    <div class="inv-row"><span>الهاتف</span><b id="custPhone">—</b></div>
+    <div class="inv-row"><span>العنوان</span><b id="custAddress">—</b></div>
+    <div class="inv-row" style="margin-bottom:0;"><span>ملاحظات</span><b id="custNotes">—</b></div>
+  </div>
+
+  <div class="btn-row mt-app" style="margin-bottom:24px;">
+    <button class="btn-app btn-light" onclick="printStatement()"><i class="fa-solid fa-print"></i> طباعة كشف حساب</button>
+    <button class="btn-app btn-outline" onclick="location.href='invoices.html?type=debt&custId='+getParam('id')"><i class="fa-solid fa-receipt"></i> طباعة فاتورة</button>
+  </div>
+</div>
+
+<nav class="bottom-nav" id="bottomNav"></nav>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/app.js"></script>
+<script src="js/firebase.js"></script>
+<script src="js/debts.js"></script>
+</body>
+</html>

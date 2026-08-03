@@ -190,12 +190,11 @@ const DataLayer = (() => {
 })();
 
 /* ---------- حراسة الدخول ---------- */
-function requireAuth(){
-  const session = JSON.parse(localStorage.getItem("aman_session") || "null");
-  if (!session){
-    window.location.href = "login.html";
-  }
-  return session;
+function requireAuth() {
+    return {
+        uid: "guest",
+        name: "مستخدم"
+    };
 }
 
 function currentSession(){
@@ -245,7 +244,7 @@ function logout(){
     if (!ok) return;
     if (typeof fbAuth !== "undefined" && fbAuth && fbAuth.currentUser) fbAuth.signOut();
     localStorage.removeItem("aman_session");
-    window.location.href = "login.html";
+    window.location.href = "dashboard.html";
   });
 }
 

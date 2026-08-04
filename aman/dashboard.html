@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الرئيسية - أمان للديون</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0B2A5B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="icon-btn" onclick="location.href='settings.html'"><i class="fa-regular fa-user"></i></div>
+  <div class="search-pill" onclick="location.href='customers.html'" style="cursor:pointer;flex:0 0 auto;width:42px;justify-content:center;background:transparent;">
+    <i class="fa-solid fa-magnifying-glass" style="color:var(--navy)"></i>
+  </div>
+  <div class="brand" id="shopName" style="flex:1;text-align:center;">أمان للديون</div>
+  <div class="icon-btn" onclick="location.href='customers.html'"><i class="fa-solid fa-bars"></i></div>
+</div>
+
+<div class="container-app">
+
+  <div class="hero-card">
+    <div class="hc-label">إجمالي الديون المستحقة</div>
+    <div class="hc-amount" id="heroTotal">0 <small>ريال يمني</small></div>
+    <div class="hc-badges">
+      <span class="pill pill-ghost"><i class="fa-solid fa-cloud"></i> تمت المزامنة</span>
+      <span class="pill pill-green" id="growthPill"><i class="fa-solid fa-arrow-trend-up"></i> +0% هذا الشهر</span>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="st-icon" style="background:var(--blue-bg);color:var(--navy)"><i class="fa-solid fa-user-group"></i></div>
+      <div class="st-value" id="stCustomers">0</div>
+      <div class="st-label">عدد العملاء</div>
+    </div>
+    <div class="stat-card">
+      <div class="st-icon" style="background:#E4F9EC;color:var(--green-darker)"><i class="fa-solid fa-sack-dollar"></i></div>
+      <div class="st-value" id="stToday">0</div>
+      <div class="st-label">المدفوع اليوم</div>
+    </div>
+    <div class="stat-card">
+      <div class="st-icon" style="background:var(--red-bg);color:var(--red)"><i class="fa-solid fa-triangle-exclamation"></i></div>
+      <div class="st-value" id="stLate">0</div>
+      <div class="st-label">حسابات متأخرة</div>
+    </div>
+    <div class="stat-card">
+      <div class="st-icon" style="background:var(--amber-bg);color:var(--amber)"><i class="fa-solid fa-scale-balanced"></i></div>
+      <div class="st-value" id="stRemain">0</div>
+      <div class="st-label">المتبقي تحصيله</div>
+    </div>
+  </div>
+
+  <div class="quick-actions">
+    <div class="qa-card navy" onclick="location.href='new-debt.html'">
+      <div class="qa-icon"><i class="fa-solid fa-credit-card"></i></div>
+      <div class="qa-label">دين جديد</div>
+    </div>
+    <div class="qa-card green" onclick="location.href='customers.html?new=1'">
+      <div class="qa-icon"><i class="fa-solid fa-user-plus"></i></div>
+      <div class="qa-label">عميل جديد</div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <h2>أحدث المعاملات</h2>
+    <a href="customers.html">عرض الكل</a>
+  </div>
+  <div id="recentList"></div>
+
+</div>
+
+<button class="fab" onclick="location.href='new-debt.html'"><i class="fa-solid fa-plus"></i></button>
+<nav class="bottom-nav" id="bottomNav"></nav>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/app.js"></script>
+<script src="js/firebase.js"></script>
+<script>
+Auth.requireAuth();
+renderBottomNav("home");
+qs("#shopName").textContent = DB.getSettings().shopName || "أمان للديون";
+
+function statusBadge(customer) {
+  const bal = DB.balanceFor(customer.id);
+  const isLate = DB.lateCustomers().some(c => c.id === customer.id);
+  if (bal <= 0) return `<span class="badge-status badge-paid">مسدد</span>`;
+  if (isLate) return `<span class="badge-status badge-late">متأخر</span>`;
+  return `<span class="badge-status badge-wait">قيد الانتظار</span>`;
+}
+
+function renderDashboard() {
+  const customers = DB.getCustomers();
+  const total = DB.totalDebt();
+  qs("#heroTotal").innerHTML = `${fmtMoney(total)} <small>${DB.getSettings().currency || 'ريال يمني'}</small>`;
+  qs("#stCustomers").textContent = customers.length;
+  qs("#stToday").textContent = fmtMoney(DB.todayCollected());
+  qs("#stLate").textContent = DB.lateCustomers().length;
+  qs("#stRemain").textContent = fmtMoney(total);
+
+  // آخر المعاملات (5)
+  const txns = DB.getTxns().slice().sort((a,b)=> (a.createdAt < b.createdAt ? 1 : -1)).slice(0,5);
+  const list = qs("#recentList");
+  if (!txns.length) {
+    list.innerHTML = `<div class="empty-state"><i class="fa-regular fa-folder-open"></i>لا توجد معاملات بعد</div>`;
+    return;
+  }
+  list.innerHTML = txns.map(t => {
+    const c = DB.getCustomer(t.customerId);
+    if (!c) return "";
+    const color = avatarColorFor(c.id);
+    return `<div class="list-card" onclick="location.href='customer.html?id=${c.id}'">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="avatar" style="background:${color.bg};color:${color.fg}">${initialLetter(c.name)}</div>
+        <div>
+          <div class="lc-name">${c.name}</div>
+          <div class="lc-meta">${t.date === todayISO() ? timeAgo(t.createdAt) : t.date}</div>
+        </div>
+      </div>
+      <div class="lc-right">
+        <div class="lc-amount ${t.type === 'debt' ? 'debt' : ''}" style="${t.type==='payment' ? 'color:var(--green-darker)':''}">${t.type==='debt'?'+':'-'} ${fmtMoney(t.amount)} ${CURRENCY}</div>
+        <div class="lc-sub">${statusBadge(c)}</div>
+      </div>
+    </div>`;
+  }).join("");
+}
+renderDashboard();
+</script>
+</body>
+</html>

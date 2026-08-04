@@ -1,1 +1,31 @@
-
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أمان للديون</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0B2A5B">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .splash{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#0B2A5B,#071c40);color:#fff;}
+  .splash i{font-size:3rem;color:#8EF0B2;margin-bottom:14px;}
+  .splash h1{font-weight:800;font-size:1.4rem;}
+  .spinner{margin-top:22px;width:34px;height:34px;border-radius:50%;border:3px solid rgba(255,255,255,.25);border-top-color:#8EF0B2;animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+  <div class="splash">
+    <i class="fa-solid fa-shield-halved"></i>
+    <h1>أمان للديون</h1>
+    <div class="spinner"></div>
+  </div>
+  <script src="js/app.js"></script>
+  <script>
+    setTimeout(() => { location.href = Auth.isLoggedIn() ? "dashboard.html" : "login.html"; }, 600);
+  </script>
+</body>
+</html>

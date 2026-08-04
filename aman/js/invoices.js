@@ -1,201 +1,219 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>الفاتورة - أمان للديون</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0B2A5B">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<link rel="stylesheet" href="css/style.css">
+/* أمان للديون - invoices.js (فاتورة احترافية) */
+Auth.requireAuth();
 
-<style>
-/* إجبار جميع الأرقام على الظهور بالإنجليزية */
-body,
-body * {
-    font-variant-numeric: lining-nums;
-    font-feature-settings: "lnum";
+const type = getParam("type") || "debt"; // debt | payment
+const custId = getParam("custId");
+const txnId = getParam("txnId");
+
+const settings = DB.getSettings();
+const identity = settings.invoiceIdentity || {};
+const printSettings = settings.printSettings || {};
+
+/* ---------- هوية الفاتورة (شعار / ألوان) ---------- */
+if (identity.primaryColor) document.documentElement.style.setProperty("--navy", identity.primaryColor);
+if (identity.accentColor) document.documentElement.style.setProperty("--green", identity.accentColor);
+if (identity.logo && printSettings.showLogo !== false) {
+  qs("#invoiceLogoWrap").innerHTML = `<img src="${identity.logo}" alt="شعار" style="width:100%;height:100%;object-fit:contain;border-radius:16px;">`;
+} else if (printSettings.showLogo === false) {
+  qs("#invoiceLogoWrap").style.display = "none";
+}
+if (identity.icon && printSettings.showLogo !== false) {
+  const iconBadge = document.createElement("div");
+  iconBadge.className = "inv-icon-badge";
+  iconBadge.innerHTML = `<img src="${identity.icon}" alt="أيقونة">`;
+  qs("#invoiceLogoWrap").style.position = "relative";
+  qs("#invoiceLogoWrap").appendChild(iconBadge);
 }
 
-/* تحويل الأرقام العربية إلى إنجليزية داخل الفاتورة */
-#invoiceCard,
-#invoiceCard * {
-    unicode-bidi: plaintext;
+qs("#shopNameInv").textContent = settings.shopName || "أمان للديون";
+qs("#shopAddrInv").textContent = settings.address || "";
+qs("#shopPhoneInv").textContent = settings.phone ? "هاتف: " + settings.phone : "";
+if (!settings.address) qs("#shopAddrInv").style.display = "none";
+if (!settings.phone) qs("#shopPhoneInv").style.display = "none";
+
+/* ---------- مقاس الطباعة ---------- */
+const invoiceWrap = qs(".invoice-wrap");
+function applyPaperSize(size) {
+  invoiceWrap.classList.remove("paper-58", "paper-80", "paper-a4", "paper-a5");
+  invoiceWrap.classList.add("paper-" + String(size).toLowerCase());
+  qsa("#paperSizeBar .chip").forEach((c) => c.classList.toggle("active", c.dataset.size === size));
 }
-</style>
-</head>
-<body>
+applyPaperSize(getParam("paper") || printSettings.defaultPaperSize || "58");
+qsa("#paperSizeBar .chip").forEach((chip) => chip.addEventListener("click", () => applyPaperSize(chip.dataset.size)));
 
-<div class="invoice-wrap">
-  <div class="invoice-top no-print">
-    <div class="icon-btn" onclick="window.print()" title="طباعة"><i class="fa-solid fa-print"></i></div>
-    <div style="font-weight:800;" id="invTopTitle">فاتورة الدين</div>
-    <a class="icon-btn" href="javascript:history.back()"><i class="fa-solid fa-arrow-right"></i></a>
-  </div>
+qs("#invoiceCard").classList.add("font-" + (printSettings.fontSize || "md"));
+qs("#invoiceCard").classList.add("margin-" + (printSettings.margin || "md"));
 
-  <!-- شريط اختيار مقاس الطباعة -->
-  <div class="paper-size-bar no-print" id="paperSizeBar">
-    <span class="text-muted-app" style="font-size:.78rem;">مقاس الطباعة:</span>
-    <div class="chip-row" style="flex:1;">
-      <div class="chip" data-size="58">حراري 58مم</div>
-      <div class="chip" data-size="80">حراري 80مم</div>
-      <div class="chip" data-size="A4">A4</div>
-      <div class="chip" data-size="A5">A5</div>
-    </div>
-  </div>
+/* ---------- تحميل بيانات الفاتورة ---------- */
+const customer = DB.getCustomer(custId);
+const allTxns = DB.getTxnsFor(custId);
+const txn = allTxns.find((t) => t.id === txnId) || allTxns[0];
 
-  <div class="invoice-card" id="invoiceCard">
+if (!customer || !txn) {
+  qs("#invoiceCard").innerHTML = `<div class="empty-state"><i class="fa-regular fa-file"></i>لا توجد بيانات كافية لعرض الفاتورة</div>`;
+  qs(".inv-actions").style.display = "none";
+  qs("#paperSizeBar").style.display = "none";
+} else {
+  const isDebt = type === "debt";
+  const invoiceTypeVal = isDebt ? (txn.invoiceType || "credit") : "cash"; // نقدية | آجلة
+  document.title = (isDebt ? "فاتورة الدين" : "فاتورة السداد") + " - " + (settings.shopName || "أمان للديون");
+  qs("#invTopTitle").textContent = isDebt ? "فاتورة الدين" : "فاتورة السداد";
 
-    <!-- شعار وهوية النشاط -->
-    <div class="invoice-logo" id="invoiceLogoWrap"><i class="fa-solid fa-shield-halved"></i></div>
-    <h3 id="shopNameInv">أمان للديون</h3>
-    <div class="inv-sub" id="shopAddrInv">—</div>
-    <div class="inv-sub" id="shopPhoneInv">—</div>
+  const invNoFormatted = "#" + DB.formatInvoiceNo(txn.invoiceNo);
+  qs("#invNumber").textContent = invNoFormatted;
+  qs("#invDate").textContent = txn.date;
+  qs("#invTime").textContent = txn.time || "—";
+  if (txn.issuedBy) { qs("#invEmployee").textContent = txn.issuedBy; }
+  else { qs("#invEmployeeRow").style.display = "none"; }
 
-    <!-- صندوق نوع الفاتورة والحالة -->
-    <div class="inv-info-box" id="invInfoBox">
-      <div class="inv-info-row">
-        <span>نوع الفاتورة</span>
-        <b id="invType" class="inv-type-badge">—</b>
-      </div>
-      <div class="inv-info-row"><span>رقم الفاتورة</span><b id="invNumber">#MT-2026-885</b></div>
-      <div class="inv-info-row"><span>التاريخ</span><b id="invDate">—</b></div>
-      <div class="inv-info-row"><span>الوقت</span><b id="invTime">—</b></div>
-      <div class="inv-info-row" id="invEmployeeRow"><span>أصدرها</span><b id="invEmployee">—</b></div>
-      <div class="inv-info-row" id="invDueRow" style="display:none;"><span>تاريخ الاستحقاق</span><b id="invDueDate">—</b></div>
-      <div class="inv-info-row" style="margin-bottom:0;">
-        <span>حالة الدين</span>
-        <span id="invDebtStatus" class="debt-status-pill">—</span>
-      </div>
-    </div>
+  // نوع الفاتورة
+  const typeBadge = qs("#invType");
+  typeBadge.textContent = invoiceTypeVal === "cash" ? "نقدية" : "آجلة";
+  typeBadge.className = "inv-type-badge " + (invoiceTypeVal === "cash" ? "type-cash" : "type-credit");
 
-    <div class="inv-debt-notice no-empty" id="invDebtNotice"></div>
+  // تاريخ الاستحقاق (اختياري)
+  if (isDebt && txn.dueDate) {
+    qs("#invDueRow").style.display = "flex";
+    qs("#invDueDate").textContent = txn.dueDate;
+  }
 
-    <hr class="inv-divider">
+  // بند الفاتورة
+  const desc = isDebt ? (txn.reason || "دين جديد") : `تسديد دفعة (${txn.method || "نقدية"})`;
+  qs("#invItemsBody").innerHTML = `<tr><td>${desc}</td><td>1</td><td>${fmtMoney(txn.amount)} ريال</td></tr>`;
 
-    <div class="inv-row"><span>اسم العميل</span><b id="invCustName">—</b></div>
-    <div class="inv-row" id="invCustPhoneRow"><span>رقم الهاتف</span><b id="invCustPhone">—</b></div>
+  // اسم العميل وهاتفه
+  qs("#invCustName").textContent = customer.name;
+  if (customer.phone) qs("#invCustPhone").textContent = customer.phone;
+  else qs("#invCustPhoneRow").style.display = "none";
 
-    <hr class="inv-divider">
+  // حساب الرصيد السابق (كل العمليات قبل هذه العملية زمنياً)
+  const idx = allTxns.findIndex((t) => t.id === txn.id);
+  const priorTxns = allTxns.slice(idx + 1);
+  const prevBalance = priorTxns.reduce((s, t) => s + (t.type === "debt" ? t.amount - (t.discount || 0) : -t.amount), 0);
+  const discount = isDebt ? Number(txn.discount || 0) : 0;
+  const netAmount = txn.amount - discount;
+  const paidAmount = isDebt ? (invoiceTypeVal === "cash" ? netAmount : 0) : txn.amount;
+  const remainingThisInvoice = isDebt ? (invoiceTypeVal === "cash" ? 0 : netAmount) : 0;
+  const currentBalanceAfter = isDebt ? prevBalance + netAmount - (invoiceTypeVal === "cash" ? netAmount : 0) : prevBalance - txn.amount;
+  const totalOwedNow = DB.balanceFor(custId);
 
-    <table class="inv-table">
-      <thead><tr><th>الوصف</th><th>الكمية</th><th>المبلغ</th></tr></thead>
-      <tbody id="invItemsBody"></tbody>
-    </table>
+  qs("#invPrevBalance").textContent = `${fmtMoney(Math.max(prevBalance, 0))} ريال`;
+  qs("#invNewTotal").textContent = `${fmtMoney(txn.amount)} ريال`;
+  if (discount > 0) { qs("#invDiscount").textContent = `${fmtMoney(discount)} ريال`; }
+  else qs("#invDiscountRow").style.display = "none";
+  qs("#invPaid").textContent = `${fmtMoney(paidAmount)} ريال`;
+  qs("#invRemainingRow").textContent = `${fmtMoney(remainingThisInvoice)} ريال`;
+  qs("#invGrandTotal").textContent = `${fmtMoney(Math.max(currentBalanceAfter, 0))} ريال`;
+  qs("#invRemaining").textContent = `${fmtMoney(Math.max(totalOwedNow, 0))} ريال`;
 
-    <div class="inv-total-box">
-      <div class="inv-row"><span>إجمالي الفاتورة</span><b id="invNewTotal">0 ريال</b></div>
-      <div class="inv-row" id="invDiscountRow"><span>إجمالي الخصم</span><b id="invDiscount" style="color:var(--red)">0 ريال</b></div>
-      <div class="inv-row"><span>المبلغ المدفوع</span><b id="invPaid" style="color:var(--green-darker)">0 ريال</b></div>
-      <div class="inv-row" style="margin-bottom:0;"><span>الرصيد بعد الخصم</span><b id="invGrandTotal" style="font-size:1.05rem;">0 ريال</b></div>
-    </div>
+  // حالة الدين
+  const status = DB.debtStatusFor(custId, txn);
+  const statusEl = qs("#invDebtStatus");
+  const statusMap = {
+    paid: { text: "🟢 مسدد", cls: "status-paid" },
+    due: { text: "🟡 مستحق", cls: "status-due" },
+    late: { text: "🔴 متأخر", cls: "status-late" },
+  };
+  statusEl.textContent = statusMap[status].text;
+  statusEl.className = "debt-status-pill " + statusMap[status].cls;
 
-    <div class="inv-remain">
-      <div class="inv-qr" id="qrCanvasWrap"></div>
-      <div style="text-align:left;">
-        <div class="text-muted-app" style="font-size:.8rem;">المتبقي للتحصيل من إجمالي حساب العميل</div>
-        <div style="font-weight:800;color:var(--red);font-size:1.1rem;" id="invRemaining">0 ريال</div>
-      </div>
-    </div>
+  // إشعار الدين التلقائي (فواتير آجلة غير مسددة)
+  if (isDebt && invoiceTypeVal === "credit" && status !== "paid") {
+    qs("#invDebtNotice").textContent = settings.debtNoticeText || "إشعار دين: نأمل التكرم بسداد المبلغ المستحق في أقرب وقت. شكرًا لكم.";
+    qs("#invDebtNotice").classList.add("show");
+  }
 
-    <div class="inv-notes-box" id="invNotesBox" style="display:none;">
-      <div class="text-muted-app" style="font-size:.78rem;margin-bottom:4px;"><i class="fa-regular fa-note-sticky"></i> ملاحظات خاصة بالفاتورة</div>
-      <div id="invNotesText" style="font-size:.85rem;"></div>
-    </div>
+  // ملاحظات خاصة بالفاتورة
+  if (txn.notes) {
+    qs("#invNotesBox").style.display = "block";
+    qs("#invNotesText").textContent = txn.notes;
+  }
 
-    <!-- قسم طرق السداد -->
-    <div class="inv-payment-section" id="invPaymentSection">
-      <div class="inv-payment-title">طرق السداد</div>
-      <div class="inv-payment-methods" id="invPaymentMethods"></div>
-      <div class="inv-payment-note" id="invPaymentNote"></div>
-    </div>
+  // ------------ قسم طرق السداد ------------
+  const isCreditInvoice = isDebt && invoiceTypeVal === "credit";
+  const sectionShouldShow = settings.paymentMethodsEnabled !== false &&
+    (settings.paymentMethodsScope !== "creditOnly" || isCreditInvoice);
+  if (sectionShouldShow) {
+    const methods = DB.getPaymentMethods().filter((m) => m.visible !== false && (m.scope !== "credit" || isCreditInvoice));
+    if (methods.length) {
+      qs("#invPaymentMethods").innerHTML = methods.map((m) => `
+        <div class="pm-item">
+          <div class="pm-item-head">
+            ${m.logo ? `<img src="${m.logo}" class="pm-logo">` : `<div class="pm-icon"><i class="${m.icon || 'fa-solid fa-circle-dot'}"></i></div>`}
+            <div class="pm-name">${m.name}</div>
+          </div>
+          ${(m.details || []).filter(d => d.value).map(d => `<div class="pm-detail"><span>${d.label}</span><b>${d.value}</b></div>`).join("")}
+          ${m.qr ? `<img src="${m.qr}" class="pm-qr" alt="QR">` : ""}
+        </div>`).join("");
+      qs("#invPaymentNote").textContent = settings.paymentNote || "";
+      qs("#invPaymentSection").classList.add("show");
+    } else {
+      qs("#invPaymentSection").style.display = "none";
+    }
+  } else {
+    qs("#invPaymentSection").style.display = "none";
+  }
 
-    <!-- توقيع / ختم -->
-    <div class="inv-sign-row" id="invSignRow" style="display:none;">
-      <div class="inv-sign-box">
-        <div class="text-muted-app" style="font-size:.72rem;">توقيع العميل</div>
-        <canvas id="custSignCanvas" width="140" height="60"></canvas>
-      </div>
-      <div class="inv-sign-box" id="invStampBox" style="display:none;">
-        <div class="text-muted-app" style="font-size:.72rem;">ختم / توقيع المسؤول</div>
-        <img id="invStampImg" alt="ختم" style="max-height:60px;max-width:140px;">
-      </div>
-    </div>
-    <div class="no-print" id="signClearWrap" style="display:none;text-align:center;margin-top:4px;">
-      <a href="#" onclick="clearSignature();return false;" style="font-size:.75rem;color:var(--text-muted);">مسح التوقيع</a>
-    </div>
+  // ------------ التوقيع والختم ------------
+  if (printSettings.showSignature !== false) {
+    qs("#invSignRow").style.display = "flex";
+    if (identity.stamp) {
+      qs("#invStampBox").style.display = "block";
+      qs("#invStampImg").src = identity.stamp;
+    }
+    initSignaturePad(txn);
+  }
 
-    <div class="inv-thanks" id="invThanks">شكرًا لتعاملكم معنا، نأمل مراجعة الحساب باستمرار.</div>
-    <div style="text-align:center;margin-top:10px;" id="barcodeWrap"></div>
-    <div class="inv-verify no-empty" id="invVerifyText" style="text-align:center;font-size:.68rem;color:var(--text-muted);margin-top:6px;"></div>
-  </div>
-
-  <div class="inv-actions no-print">
-    <div class="inv-action-grid">
-      <button class="btn-app btn-navy" onclick="downloadPdf()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
-      <button class="btn-app btn-outline" onclick="downloadWord()"><i class="fa-solid fa-file-word"></i> Word</button>
-      <button class="btn-app btn-outline" onclick="downloadPng()"><i class="fa-solid fa-file-image"></i> صورة PNG</button>
-      <button class="btn-app btn-outline" onclick="window.print()"><i class="fa-solid fa-print"></i> طباعة</button>
-    </div>
-    <div class="inv-action-grid" style="margin-top:10px;">
-      <button class="btn-app btn-light" onclick="shareWhatsapp()"><i class="fa-brands fa-whatsapp"></i> واتساب</button>
-      <button class="btn-app btn-light" onclick="shareTelegram()"><i class="fa-brands fa-telegram"></i> تيليجرام</button>
-      <button class="btn-app btn-light" onclick="shareEmail()"><i class="fa-regular fa-envelope"></i> إيميل</button>
-      <button class="btn-app btn-light" onclick="copyInvoiceLink()"><i class="fa-solid fa-link"></i> نسخ رابط</button>
-    </div>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="js/app.js"></script>
-<script src="js/android-bridge.js"></script>
-<script src="js/firebase.js"></script>
-<script>
-function convertArabicNumbersToEnglish(text) {
-    if (!text) return text;
-
-    return String(text).replace(/[٠-٩]/g, function(number) {
-        return "٠١٢٣٤٥٦٧٨٩".indexOf(number);
+  // ------------ QR + Barcode ------------
+  if (printSettings.showQR !== false && window.QRCode) {
+    new QRCode(qs("#qrCanvasWrap"), {
+      text: `AMAN-VERIFY:${invNoFormatted}:${customer.name}:${txn.amount}:${txn.date}`,
+      width: 56, height: 56, colorDark: "#0B2A5B", colorLight: "#ffffff",
     });
+    qs("#invVerifyText").textContent = `رمز التحقق من صحة الفاتورة: ${invNoFormatted}`;
+  } else {
+    qs("#qrCanvasWrap").style.display = "none";
+  }
+  if (window.JsBarcode) {
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    qs("#barcodeWrap").appendChild(svg);
+    JsBarcode(svg, invNoFormatted.replace("#", ""), { height: 36, displayValue: false, margin: 0 });
+  }
+
+  qs("#invThanks").textContent = "شكرًا لتعاملكم معنا، نأمل مراجعة الحساب باستمرار.";
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    const observer = new MutationObserver(function () {
-
-        document.querySelectorAll("#invoiceCard *").forEach(function(el){
-
-            if (el.childNodes.length === 1 &&
-                el.childNodes[0].nodeType === 3) {
-
-                el.textContent = convertArabicNumbersToEnglish(
-                    el.textContent
-                );
-
-            }
-
-        });
-
-    });
-
-    observer.observe(document.getElementById("invoiceCard"), {
-        childList: true,
-        subtree: true
-    });
-
-});
-</script>
-
-<script src="js/invoices.js"></script>
-</body>
-</html>
-list)); }
+/* ------------------- توقيع العميل (Canvas) ------------------- */
+function initSignaturePad(txn) {
+  const box = qs("#custSignCanvas");
+  if (!box) return;
+  if (txn.custSignature) {
+    const img = document.createElement("img");
+    img.src = txn.custSignature;
+    img.style.maxWidth = "140px";
+    img.style.maxHeight = "60px";
+    box.replaceWith(img);
+    return;
+  }
+  qs("#signClearWrap").style.display = "block";
+  const ctx = box.getContext("2d");
+  ctx.strokeStyle = "#0B2A5B";
+  ctx.lineWidth = 2;
+  let drawing = false;
+  function pos(e) {
+    const r = box.getBoundingClientRect();
+    const p = e.touches ? e.touches[0] : e;
+    return { x: p.clientX - r.left, y: p.clientY - r.top };
+  }
+  function start(e) { drawing = true; const p = pos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); }
+  function move(e) { if (!drawing) return; const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+  function end() {
+    if (!drawing) return;
+    drawing = false;
+    try {
+      const list = DB.getTxns();
+      const idx = list.findIndex((t) => t.id === txn.id);
+      if (idx > -1) { list[idx].custSignature = box.toDataURL("image/png"); localStorage.setItem("aman_txns", JSON.stringify(list)); }
     } catch (e) {}
   }
   box.addEventListener("mousedown", start); box.addEventListener("mousemove", move); window.addEventListener("mouseup", end);
@@ -222,7 +240,13 @@ async function downloadPdf() {
   const { jsPDF } = window.jspdf;
   const pdf = new jsPDF({ unit: "px", format: [canvas.width, canvas.height] });
   pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, canvas.width, canvas.height);
-  pdf.save(invoiceFileName("pdf"));
+  if (window.IS_ANDROID_APP) {
+    const dataUrl = pdf.output("datauristring");
+    const res = await androidSaveFile(dataUrl, invoiceFileName("pdf"), "application/pdf");
+    toast(res && res.success ? "success" : "error", res && res.success ? "تم حفظ الملف في مجلد التنزيلات" : "تعذر حفظ الملف");
+  } else {
+    pdf.save(invoiceFileName("pdf"));
+  }
 }
 
 /* ------------------- تصدير صورة PNG ------------------- */
@@ -231,39 +255,53 @@ async function downloadPng() {
   toast("info", "جاري تجهيز الصورة...");
   const card = qs("#invoiceCard");
   const canvas = await html2canvas(card, { scale: 2, backgroundColor: "#ffffff" });
-  const link = document.createElement("a");
-  link.href = canvas.toDataURL("image/png");
-  link.download = invoiceFileName("png");
-  link.click();
+  const dataUrl = canvas.toDataURL("image/png");
+  if (window.IS_ANDROID_APP) {
+    const res = await androidSaveFile(dataUrl, invoiceFileName("png"), "image/png");
+    toast(res && res.success ? "success" : "error", res && res.success ? "تم حفظ الصورة في مجلد التنزيلات" : "تعذر حفظ الصورة");
+  } else {
+    const link = document.createElement("a");
+    link.href = dataUrl;
+    link.download = invoiceFileName("png");
+    link.click();
+  }
 }
 
 /* ------------------- تصدير Word (.doc متوافق مع Word) ------------------- */
-function downloadWord() {
+async function downloadWord() {
   const card = qs("#invoiceCard");
   const html = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
   <head><meta charset="utf-8"><title>فاتورة</title></head>
   <body dir="rtl" style="font-family:Cairo,Tahoma,sans-serif;">${card.outerHTML}</body></html>`;
   const blob = new Blob(['\ufeff', html], { type: "application/msword" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = invoiceFileName("doc");
-  link.click();
-  toast("success", "تم تجهيز ملف Word");
+  if (window.IS_ANDROID_APP) {
+    const res = await androidSaveFile(blob, invoiceFileName("doc"), "application/msword");
+    toast(res && res.success ? "success" : "error", res && res.success ? "تم حفظ ملف Word في مجلد التنزيلات" : "تعذر حفظ الملف");
+  } else {
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = invoiceFileName("doc");
+    link.click();
+    toast("success", "تم تجهيز ملف Word");
+  }
 }
 
 /* ------------------- المشاركة ------------------- */
 function shareWhatsapp() {
-  const text = encodeURIComponent(`فاتورة من ${settings.shopName || "أمان للديون"} - العميل: ${customer?.name || ""} - المبلغ: ${fmtMoney(txn?.amount || 0)} ريال - رقم الفاتورة: #${DB.formatInvoiceNo(txn?.invoiceNo)}`);
-  window.open(`https://wa.me/?text=${text}`, "_blank");
+  const text = `فاتورة من ${settings.shopName || "أمان للديون"} - العميل: ${customer?.name || ""} - المبلغ: ${fmtMoney(txn?.amount || 0)} ريال - رقم الفاتورة: #${DB.formatInvoiceNo(txn?.invoiceNo)}`;
+  if (window.IS_ANDROID_APP) return androidOpenWhatsapp(text);
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
 }
 function shareTelegram() {
-  const text = encodeURIComponent(`فاتورة من ${settings.shopName || "أمان للديون"} - العميل: ${customer?.name || ""} - المبلغ: ${fmtMoney(txn?.amount || 0)} ريال`);
-  window.open(`https://t.me/share/url?url=${encodeURIComponent(location.href)}&text=${text}`, "_blank");
+  const text = `فاتورة من ${settings.shopName || "أمان للديون"} - العميل: ${customer?.name || ""} - المبلغ: ${fmtMoney(txn?.amount || 0)} ريال`;
+  if (window.IS_ANDROID_APP) return androidOpenTelegram(text);
+  window.open(`https://t.me/share/url?url=${encodeURIComponent(location.href)}&text=${encodeURIComponent(text)}`, "_blank");
 }
 function shareEmail() {
-  const subject = encodeURIComponent(`فاتورة #${DB.formatInvoiceNo(txn?.invoiceNo)} - ${settings.shopName || "أمان للديون"}`);
-  const body = encodeURIComponent(`مرفق تفاصيل الفاتورة:\nالعميل: ${customer?.name || ""}\nالمبلغ: ${fmtMoney(txn?.amount || 0)} ريال\nالتاريخ: ${txn?.date || ""}`);
-  window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  const subject = `فاتورة #${DB.formatInvoiceNo(txn?.invoiceNo)} - ${settings.shopName || "أمان للديون"}`;
+  const body = `مرفق تفاصيل الفاتورة:\nالعميل: ${customer?.name || ""}\nالمبلغ: ${fmtMoney(txn?.amount || 0)} ريال\nالتاريخ: ${txn?.date || ""}`;
+  if (window.IS_ANDROID_APP) return androidSendEmail(subject, body);
+  window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 async function copyInvoiceLink() {
   try {

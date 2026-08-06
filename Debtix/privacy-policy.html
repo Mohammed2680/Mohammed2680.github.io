@@ -249,7 +249,7 @@
       position: relative;
       z-index: 5;
       width: min(1000px, calc(100% - 30px));
-      margin: -56px auto 0;
+      margin: -56px auto 40px;
     }
 
     .privacy-card {
@@ -481,105 +481,44 @@
       color: var(--accent-dark);
     }
 
-    /* Footer */
+   /* Footer */
     .footer {
-      margin-top: 46px;
-      padding: 44px 16px 24px;
-      color: rgba(255, 255, 255, 0.90);
-      background:
-        radial-gradient(circle at 80% 0%, rgba(76, 175, 80, 0.15), transparent 30%),
-        linear-gradient(135deg, #071c3e, var(--primary), var(--secondary));
+      margin-top: 60px;
+      padding: 40px 16px 24px;
+      color: rgba(255, 255, 255, 0.9);
+      background: linear-gradient(135deg, #061A3A, #0B2A5B);
     }
 
     .footer-content {
       width: min(1100px, 100%);
       margin: 0 auto;
-      display: grid;
-      gap: 30px;
-    }
-
-    @media (min-width: 768px) {
-      .footer-content {
-        grid-template-columns: 1.15fr .85fr;
-      }
-    }
-
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 13px;
-      color: #fff;
-      font-size: 22px;
-      font-weight: 900;
-    }
-
-    .footer-logo i {
-      color: var(--accent);
-    }
-
-    .footer-desc {
-      max-width: 640px;
-      font-size: 14px;
+      text-align: center;
     }
 
     .footer-links {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-      gap: 10px;
-      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 24px;
+      margin-bottom: 24px;
     }
 
     .footer-links a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 10px;
-      color: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.08);
-      transition: background var(--fast), transform var(--fast);
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 15px;
+      font-weight: 700;
+      transition: color var(--fast);
     }
 
     .footer-links a:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .footer-section-title {
-      position: relative;
-      margin-bottom: 14px;
-      padding-bottom: 8px;
-      color: #fff;
-      font-size: 18px;
-      font-weight: 900;
-    }
-
-    .footer-section-title::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 48px;
-      height: 3px;
-      border-radius: 99px;
-      background: var(--accent);
-    }
-
-    html[dir="ltr"] .footer-section-title::after {
-      right: auto;
-      left: 0;
+      color: var(--accent-light);
     }
 
     .copyright {
-      width: min(1100px, 100%);
-      margin: 28px auto 0;
-      padding-top: 22px;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.78);
-      font-size: 13px;
-      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
     }
 
     @keyframes shine {
@@ -739,6 +678,44 @@
           </p>
         </article>
 
+<article class="policy-section">
+  <h2 class="policy-heading">
+    <span class="policy-icon">
+      <i class="fab fa-google"></i>
+    </span>
+    خدمات Google
+  </h2>
+
+  <p>
+    قد يستخدم تطبيق <strong>ديوني (Debtix)</strong> خدمات مقدمة من شركة Google لتحسين الأداء وتوفير بعض الميزات داخل التطبيق، ومنها:
+  </p>
+
+  <ul class="policy-list">
+    <li><strong>Google Play Services:</strong> لتوفير خدمات النظام الأساسية وتحسين تجربة التطبيق.</li>
+    <li><strong>Firebase Authentication:</strong> لإدارة تسجيل الدخول وحماية حسابات المستخدمين.</li>
+    <li><strong>Firebase Cloud Firestore:</strong> لتخزين ومزامنة البيانات بشكل آمن.</li>
+    <li><strong>Firebase Cloud Storage:</strong> لحفظ الملفات والنسخ الاحتياطية عند الحاجة.</li>
+    <li><strong>Firebase Analytics:</strong> لتحليل استخدام التطبيق وتحسين الأداء.</li>
+    <li><strong>Firebase Crashlytics:</strong> لمراقبة الأخطاء ومعالجة الأعطال وتحسين استقرار التطبيق.</li>
+  </ul>
+
+  <p>
+    قد تقوم هذه الخدمات بجمع بعض المعلومات التقنية، مثل:
+  </p>
+
+  <ul class="policy-list">
+    <li>نوع الجهاز المستخدم.</li>
+    <li>إصدار نظام التشغيل.</li>
+    <li>معرفات التطبيق.</li>
+    <li>سجلات الأعطال والأخطاء.</li>
+    <li>معلومات الأداء والاستخدام.</li>
+  </ul>
+
+  <p>
+    يتم التعامل مع هذه البيانات وفقًا لسياسات الخصوصية الخاصة بشركة Google، بهدف تحسين أداء التطبيق وتوفير تجربة أكثر أمانًا واستقرارًا للمستخدم.
+  </p>
+</article>
+
         <article class="policy-section">
           <h2 class="policy-heading">
             <span class="policy-icon"><i class="fas fa-file-invoice-dollar"></i></span>
@@ -855,6 +832,44 @@
           </p>
         </article>
 
+<article class="policy-section">
+  <h2 class="policy-heading">
+    <span class="policy-icon">
+      <i class="fab fa-google"></i>
+    </span>
+    Google Services
+  </h2>
+
+  <p>
+    The <strong>Debtix</strong> application may use services provided by Google to improve performance and provide certain features within the app, including:
+  </p>
+
+  <ul class="policy-list">
+    <li><strong>Google Play Services:</strong> To provide essential system services and improve app functionality.</li>
+    <li><strong>Firebase Authentication:</strong> To manage user sign-in and protect user accounts.</li>
+    <li><strong>Firebase Cloud Firestore:</strong> To securely store and synchronize application data.</li>
+    <li><strong>Firebase Cloud Storage:</strong> To store files and backups when required.</li>
+    <li><strong>Firebase Analytics:</strong> To analyze app usage and improve performance.</li>
+    <li><strong>Firebase Crashlytics:</strong> To detect crashes, fix errors, and improve application stability.</li>
+  </ul>
+
+  <p>
+    These services may collect certain technical information, including:
+  </p>
+
+  <ul class="policy-list">
+    <li>Device type.</li>
+    <li>Operating system version.</li>
+    <li>Application identifiers.</li>
+    <li>Crash and error logs.</li>
+    <li>Performance and usage information.</li>
+  </ul>
+
+  <p>
+    This information is handled according to Google's Privacy Policy to improve application performance and provide a safer and more reliable user experience.
+  </p>
+</article>
+
         <article class="policy-section">
           <h2 class="policy-heading">
             <span class="policy-icon"><i class="fas fa-file-invoice-dollar"></i></span>
@@ -923,62 +938,14 @@
     </section>
   </main>
 
+ <!-- Footer -->
   <footer class="footer">
-    <div class="footer-content">
-      <div>
-        <div class="footer-logo">
-          <i class="fas fa-wallet"></i>
-          <span data-lang="ar">ديوني | Debtix</span>
-          <span data-lang="en">Debtix</span>
-        </div>
+    <div class="footer-content"> 
 
-        <p class="footer-desc" data-lang="ar">
-          التطبيق المتكامل لإدارة العملاء والديون والمدفوعات اليومية والتجارية بسهولة وأمان. نسعى لتقديم أسرع وأبسط تجربة لتنظيم حساباتك مع ضمان أعلى مستويات الخصوصية والنسخ الاحتياطي.
-        </p>
-
-        <p class="footer-desc" data-lang="en">
-          The comprehensive solution for managing customers, debts, and payments effortlessly and securely. We aim to provide a reliable ledger tracking experience with top-tier privacy and data safety.
-        </p>
+      <div class="copyright">
+        <p data-lang="ar">&copy; 2026 ديوني | Debtix جميع الحقوق محفوظة</p>
+        <p data-lang="en">&copy; 2026 Debtix. All Rights Reserved</p>
       </div>
-
-      <div>
-        <h3 class="footer-section-title" data-lang="ar">روابط سريعة</h3>
-        <h3 class="footer-section-title" data-lang="en">Quick Links</h3>
-
-        <div class="footer-links">
-          <a href="index.html">
-            <i class="fas fa-house"></i>
-            <span data-lang="ar">الرئيسية</span>
-            <span data-lang="en">Home</span>
-          </a>
-
-          <a href="privacy-policy.html">
-            <i class="fas fa-shield-alt"></i>
-            <span data-lang="ar">سياسة الخصوصية</span>
-            <span data-lang="en">Privacy Policy</span>
-          </a>
-
-          <a href="terms.html">
-            <i class="fas fa-file-contract"></i>
-            <span data-lang="ar">الشروط والأحكام</span>
-            <span data-lang="en">Terms & Conditions</span>
-          </a>
-
-          <a href="contact.html">
-            <i class="fas fa-envelope"></i>
-            <span data-lang="ar">التواصل مع المطور</span>
-            <span data-lang="en">Contact Developer</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="copyright">
-      <p>
-        &copy; 2026 ديوني | Debtix.
-        <span data-lang="ar">جميع الحقوق محفوظة</span>
-        <span data-lang="en">All Rights Reserved</span>
-      </p>
     </div>
   </footer>
 

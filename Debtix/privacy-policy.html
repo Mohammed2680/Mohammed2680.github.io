@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <title>سياسة الخصوصية - ديوني | Debtix</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <meta name="robots" content="index,follow" />
+  <meta name="description" content="سياسة الخصوصية لتطبيق ديوني (Debtix) لإدارة العملاء والديون والمدفوعات، وكيفية حماية بياناتك والنسخ الاحتياطي." />
+  <meta name="keywords" content="ديوني, Debtix, إدارة الديون, إدارة العملاء, متابعة المدفوعات, سياسة الخصوصية, حماية البيانات" />
+  <meta name="theme-color" content="#0B2A5B" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ديوني | Debtix" />
+  <meta property="og:locale" content="ar_AR" />
+  <meta property="og:title" content="سياسة الخصوصية - ديوني | Debtix" />
+  <meta property="og:description" content="تعرف على سياسة الخصوصية وكيفية حماية بياناتك المالية والتجارية عند استخدام تطبيق ديوني." />
+  <meta property="og:image" content="debtix-preview.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="سياسة الخصوصية - ديوني | Debtix" />
+  <meta name="twitter:description" content="تعرف على سياسة الخصوصية وكيفية حماية بياناتك المالية والتجارية عند استخدام تطبيق ديوني." />
+  <meta name="twitter:image" content="debtix-preview.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #0B2A5B;
+      --secondary: #123A78;
+      --accent: #4CAF50;
+      --accent-dark: #2E7D32;
+      --bg: #F5F7FB;
+      --text: #1F2937;
+      --muted: #4B5563;
+      --glass: rgba(255, 255, 255, 0.72);
+      --border: rgba(255, 255, 255, 0.8);
+      --shadow: 0 20px 55px rgba(11, 42, 91, 0.08);
+      --shadow-hover: 0 28px 70px rgba(11, 42, 91, 0.15);
+      --radius: 28px;
+      --fast: 220ms ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family: "Tajawal", system-ui, sans-serif;
+      font-weight: 500;
+      line-height: 1.8;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(76, 175, 80, 0.15), transparent 30%),
+        radial-gradient(circle at 88% 12%, rgba(18, 58, 120, 0.12), transparent 32%),
+        radial-gradient(circle at 50% 100%, rgba(11, 42, 91, 0.08), transparent 38%),
+        linear-gradient(135deg, #eef3fb 0%, #f5f7fb 48%, #e8f5e9 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(11, 42, 91, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11, 42, 91, 0.03) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, #000 0%, transparent 88%);
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 88%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    [data-lang] {
+      display: none;
+    }
+
+    .top-bar,
+    .privacy-card {
+      backdrop-filter: blur(12px) saturate(140%);
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
+    }
+
+    /* Top bar */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px clamp(14px, 3vw, 34px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(11, 42, 91, 0.88);
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: #fff;
+      font-size: 23px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .logo-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 24px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--accent), var(--secondary), var(--primary));
+      box-shadow: 0 10px 24px rgba(76, 175, 80, 0.25);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .btn-control {
+      width: auto;
+      height: auto;
+      min-width: 0;
+      min-height: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 15px;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      border-radius: 999px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 900;
+      line-height: 1.2;
+      background: rgba(255, 255, 255, 0.16);
+      transition: transform var(--fast), background var(--fast);
+    }
+
+    .btn-control:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.26);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 52px 16px 92px;
+      text-align: center;
+      color: #fff;
+      background:
+        radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.15), transparent 24%),
+        linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, #1a4993 100%);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero::before {
+      width: 230px;
+      height: 230px;
+      top: -80px;
+      right: -70px;
+    }
+
+    .hero::after {
+      width: 320px;
+      height: 320px;
+      left: -130px;
+      bottom: -120px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      margin: auto;
+    }
+
+    .hero-icon {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 16px;
+      display: grid;
+      place-items: center;
+      font-size: 31px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      margin-bottom: 12px;
+      font-size: clamp(30px, 5vw, 50px);
+      font-weight: 900;
+      line-height: 1.2;
+      text-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .hero-subtitle {
+      max-width: 650px;
+      margin: auto;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: clamp(15px, 2vw, 18px);
+    }
+
+    /* Main */
+    .main-content {
+      position: relative;
+      z-index: 5;
+      width: min(1000px, calc(100% - 30px));
+      margin: -56px auto 0;
+    }
+
+    .privacy-card {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(22px, 4vw, 38px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--glass);
+      box-shadow: var(--shadow);
+    }
+
+    .privacy-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.94), transparent);
+    }
+
+    .intro-box {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+      padding: 20px;
+      border: 1px solid rgba(76, 175, 80, 0.25);
+      border-radius: 22px;
+      background: rgba(232, 245, 233, 0.7);
+    }
+
+    .intro-box::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -80%;
+      width: 48%;
+      height: 100%;
+      pointer-events: none;
+      transform: skewX(-25deg);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+      animation: shine 4s ease-in-out infinite;
+    }
+
+    .intro-title {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 9px;
+      color: var(--primary);
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+    .intro-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+      box-shadow: 0 9px 20px rgba(76, 175, 80, 0.25);
+    }
+
+    .intro-box p {
+      position: relative;
+      z-index: 2;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .policy-section {
+      position: relative;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(11, 42, 91, 0.08);
+    }
+
+    .policy-section:last-of-type {
+      border-bottom: 0;
+    }
+
+    .policy-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      color: var(--primary);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .policy-icon {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 8px 18px rgba(11, 42, 91, 0.18);
+    }
+
+    .policy-section p {
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .policy-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .policy-list {
+      display: grid;
+      gap: 10px;
+      margin: 14px 0;
+      list-style: none;
+    }
+
+    .policy-list li {
+      position: relative;
+      padding: 13px 46px 13px 15px;
+      color: var(--muted);
+      border: 1px solid rgba(18, 58, 120, 0.12);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.65);
+      font-size: 14px;
+    }
+
+    html[dir="ltr"] .policy-list li {
+      padding: 13px 15px 13px 46px;
+    }
+
+    .policy-list li::before {
+      content: "\f00c";
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      border-radius: 8px;
+      transform: translateY(-50%);
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      font-family: "Font Awesome 6 Free";
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    html[dir="ltr"] .policy-list li::before {
+      right: auto;
+      left: 15px;
+    }
+
+    .policy-section strong {
+      color: var(--text);
+      font-weight: 900;
+    }
+
+    .contact-box {
+      margin-top: 14px;
+      padding: 18px;
+      text-align: center;
+      border: 1px solid rgba(11, 42, 91, 0.12);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.65);
+    }
+
+    .contact-box p {
+      margin-bottom: 13px;
+    }
+
+    .contact-btn {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 50px;
+      padding: 11px 22px;
+      color: #fff;
+      border-radius: 16px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 14px 28px rgba(11, 42, 91, 0.22);
+      transition: transform var(--fast), box-shadow var(--fast);
+    }
+
+    .contact-btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -80%;
+      width: 55%;
+      height: 100%;
+      pointer-events: none;
+      transform: skewX(-25deg);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+      animation: shine 2.8s ease-in-out infinite;
+    }
+
+    .contact-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .update-date {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 26px;
+      padding: 13px;
+      color: var(--muted);
+      border-radius: 16px;
+      background: rgba(11, 42, 91, 0.05);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .update-date i {
+      color: var(--accent-dark);
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 46px;
+      padding: 44px 16px 24px;
+      color: rgba(255, 255, 255, 0.90);
+      background:
+        radial-gradient(circle at 80% 0%, rgba(76, 175, 80, 0.15), transparent 30%),
+        linear-gradient(135deg, #071c3e, var(--primary), var(--secondary));
+    }
+
+    .footer-content {
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: 30px;
+    }
+
+    @media (min-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1.15fr .85fr;
+      }
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 13px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .footer-logo i {
+      color: var(--accent);
+    }
+
+    .footer-desc {
+      max-width: 640px;
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .footer-links a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 10px;
+      color: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      transition: background var(--fast), transform var(--fast);
+    }
+
+    .footer-links a:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .footer-section-title {
+      position: relative;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .footer-section-title::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 48px;
+      height: 3px;
+      border-radius: 99px;
+      background: var(--accent);
+    }
+
+    html[dir="ltr"] .footer-section-title::after {
+      right: auto;
+      left: 0;
+    }
+
+    .copyright {
+      width: min(1100px, 100%);
+      margin: 28px auto 0;
+      padding-top: 22px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 13px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    @keyframes shine {
+      0%, 45% { right: -80%; }
+      75%, 100% { right: 135%; }
+    }
+
+    @media (max-width: 560px) {
+      .top-bar {
+        padding: 11px 12px;
+      }
+
+      .logo {
+        gap: 9px;
+        font-size: 17px;
+      }
+
+      .logo-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+        border-radius: 15px;
+      }
+
+      .btn-control {
+        padding: 7px 12px;
+      }
+
+      .hero {
+        padding-top: 38px;
+        padding-bottom: 82px;
+      }
+
+      .main-content {
+        width: min(100% - 22px, 1000px);
+      }
+
+      .privacy-card {
+        padding: 21px 15px;
+        border-radius: 24px;
+      }
+
+      .hero-icon {
+        width: 67px;
+        height: 67px;
+        border-radius: 20px;
+      }
+
+      .policy-heading {
+        font-size: 18px;
+      }
+
+      .policy-section p,
+      .intro-box p {
+        font-size: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top-bar">
+    <a href="index.html" class="logo" aria-label="ديوني | Debtix">
+      <div class="logo-icon">
+        <i class="fas fa-wallet"></i>
+      </div>
+      <span data-lang="ar">ديوني | Debtix</span>
+      <span data-lang="en">Debtix</span>
+    </a>
+
+    <div class="top-actions">
+      <button class="btn-control" type="button" onclick="toggleLang()" aria-label="Change language">
+        <span id="langLabel">EN</span>
+        <i class="fas fa-globe"></i>
+      </button>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-icon">
+        <i class="fas fa-shield-halved"></i>
+      </div>
+
+      <h1 data-lang="ar">سياسة الخصوصية</h1>
+      <h1 data-lang="en">Privacy Policy</h1>
+
+      <p class="hero-subtitle" data-lang="ar">
+        نوضح لك كيفية التعامل مع بيانات العملاء والديون والمدفوعات والخدمات المستخدمة لحماية خصوصيتك وأمان بياناتك المالية في تطبيق ديوني (Debtix).
+      </p>
+
+      <p class="hero-subtitle" data-lang="en">
+        This page explains how your customer, debt, payment, and financial data are handled to ensure privacy and security in the Debtix application.
+      </p>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section class="privacy-card">
+      <div class="privacy-content" data-lang="ar">
+        <div class="intro-box">
+          <div class="intro-title">
+            <span class="intro-icon"><i class="fas fa-shield"></i></span>
+            <span>مقدمة</span>
+          </div>
+
+          <p>
+            نحن في تطبيق <strong>ديوني (Debtix)</strong> نضع حماية الخصوصية وأمان سجلاتك المالية والتجارية على رأس أولوياتنا. توضح هذه السياسة كيفية إدارة بيانات العمليات المالية والعملاء، وكيفية حمايتها والنسخ الاحتياطي لها عند استخدام التطبيق.
+          </p>
+        </div>
+
+        <article class="policy-section">
+          <h2 class="policy-heading">
+            <span class="policy-icon"><i class="fas fa-users"></i></span>
+            إدارة بيانات العملاء والديون
+          </h2>
+
+          <p>
+            تطبيق ديوني مصمم لمساعدتك على تنظيم أعمالك وحساباتك بسهولة. نحن نلتزم بأعلى معايير الخصوصية في التعامل مع أسماء العملاء، أرقام الهواتف، وسجلات الديون والمدفوعات الخاصة بك.
+          </p>
+
+          <ul class="policy-list">
+            <li><strong>سجلات العملاء والديون:</strong> يتم الاحتفاظ بسجلات العملاء والحركات المالية بشكل مشفر لتسهيل المتابعة والاسترجاع.</li>
+            <li><strong>بيانات المدفوعات:</strong> تُستخدم بيانات المدفوعات والتحصيلات فقط لإصدار التقارير المالية الخاصة بك داخل التطبيق.</li>
+            <li><strong>الملكية الكاملة:</strong> تبقى جميع السجلات المالية والعملاء ملكاً خاصاً للمستخدم ولا يتم مشاركتها أو بيعها لأي أطراف خارجية.</li>
+          </ul>
+        </article>
+
+        <article class="policy-section">
+          <h2 class="policy-heading">
+            <span class="policy-icon"><i class="fas fa-database"></i></span>
+            الحماية والنسخ الاحتياطي
+          </h2>
+
+          <p>
+            حرصاً على عدم ضياع بياناتك المالية وسجلات الديون الخاصة بك، يوفر التطبيق آليات محصنة للنسخ الاحتياطي وحماية السجلات.
+          </p>
+
+          <ul class="policy-list">
+            <li><strong>النسخ الاحتياطي السحابي/المحلي:</strong> يتم تشفير النسخ الاحتياطية لضمان استعادتها بأمان عند تغيير الجهاز أو إعادة التثبيت.</li>
+            <li><strong>التشفير والأمان:</strong> نستخدم تقنيات تشفير حديثة لحماية قواعد البيانات وسجلات المعاملات المالية من الوصول غير المصرح به.</li>
+            <li><strong>التقارير وسجلات الحسابات:</strong> تُولّد جميع التقارير (مثل ملفات PDF و Excel) محلياً وبصيغ آمنة للاستخدام الشخصي والتجاري فقط.</li>
+          </ul>
+
+          <p>
+            تخضع الخدمات السحابية للتشفير الكامل لضمان عدم اطلاع أي شخص غير مصرح له على بيانات عملائك أو مدفوعاتك.
+          </p>
+        </article>
+
+        <article class="policy-section">
+          <h2 class="policy-heading">
+            <span class="policy-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+            متابعة المدفوعات والتقارير
+          </h2>
+
+          <p>
+            يقوم التطبيق بمعالجة التواريخ وقيم الديون والمبالغ المسددة بهدف تقديم تحليلات دقيقة لحركة الأموال والذمم المالية، دون التدخل في القرارات المالية الخاصة بك.
+          </p>
+        </article>
+
+        <article class="policy-section">
+          <h2 class="policy-heading">
+            <span class="policy-icon"><i class="fas fa-money-check"></i></span>
+            الأذونات داخل التطبيق
+          </h2>
+
+          <p>
+            قد يطلب التطبيق بعض الأذونات الأساسية اللازمة لتأدية وظائفه، مثل الوصول إلى وحدة التخزين لحفظ أو تصدير التقارير المالية والنسخ الاحتياطية، أو الوصول لسجل جهات الاتصال لإضافة عميل بسهولة. يمكنك إدارة هذه الأذونات في أي وقت من إعدادات جهازك.
+          </p>
+        </article>
+
+        <article class="policy-section">
+          <h2 class="policy-heading">
+            <span class="policy-icon"><i class="fas fa-chart-line"></i></span>
+            أمان البيانات والتحديثات
+          </h2>
+
+          <p>
+            نعمل باستمرار على تحديث أنظمة التطبيق وسد أي ثغرات قد تؤثر على سلامة بياناتك. ننصحك دائماً بالتأكد من تحديث التطبيق إلى آخر إصدار لضمان الحماية القصوى لبياناتك المالية.
+          </p>
+        </article>
+
+        <article class="policy-section">
+          <h2 class="policy-heading">
+            <span class="policy-icon"><i class="fas fa-rotate"></i></span>
+            التغييرات على سياسة الخصوصية
+          </h2>
+
+          <p>
+            قد يتم تحديث سياسة الخصوصية هذه من وقت لآخر لتعكس التحسينات في ميزات تطبيق ديوني أو متطلبات حماية البيانات. سيتم إخطار المستخدمين بأي تغييرات رئيسية عبر تحديث هذه الصفحة.
+          </p>
+        </article>
+
+        <article class="policy-section">
+          <h2 class="policy-heading">
+            <span class="policy-icon"><i class="fas fa-envelope"></i></span>
+            التواصل مع المطور
+          </h2>
+
+          <div class="contact-box">
+            <p>إذا كان لديك أي استفسارات أو اقتراحات بشأن سياسة الخصوصية أو إدارة بياناتك في تطبيق ديوني، يمكنك التواصل معنا مباشرة.</p>
+
+            <a href="contact.html" class="contact-btn">
+              <i class="fas fa-headset"></i>
+              التواصل مع المطور
+            </a>
+          </div>
+        </article>
+
+        <div class="update-date">
+          <i class="fas fa-calendar-check"></i>
+          <span><strong>آخر تحديث:</strong> 7 أغسطس 2026</span>
+        </div>
+      </div>
+
+      <div class="privacy-content" data-lang="en">
+        <div class="intro-box">
+          <div class="intro-title">
+            <span class="intro-icon"><i class="fas fa-shield"></i></span>
+            <span>Introduction</span>
+          </div>
+
+          <p>
+            At <strong>Debtix</strong>, protecting your financial records, customer data, and privacy is our highest priority. This policy outlines how your customer, debt, and payment data are managed, secured, and backed up when using the app.
+          </p>
+        </div>
+
+        <article class="policy-section">
+          <h2 class="policy-heading">
+            <span class="policy-icon"><i class="fas fa-users"></i></span>
+            Customer & Debt Data Management
+          </h2>
+
+          <p>
+            Debtix is built to simplify your business and ledger tracking. We comply with strict privacy standards when handling customer names, phone numbers, debt transactions, and payment histories.
+          </p>
+
+          <ul class="policy-list">
+            <li><strong>Customer & Debt Records:</strong> Records are stored securely to enable seamless tracking and quick retrieval.</li>
+            <li><strong>Payment Records:</strong> Payment and collection entries are strictly used to generate your personal/business financial reports.</li>
+            <li><strong>Complete Ownership:</strong> All ledger entries remain your exclusive property and are never shared or sold to third parties.</li>
+          </ul>
+        </article>
+
+        <article class="policy-section">
+          <h2 class="policy-heading">
+            <span class="policy-icon"><i class="fas fa-database"></i></span>
+            Data Security & Backups
+          </h2>
+
+          <p>
+            To prevent data loss, Debtix offers fortified mechanisms for backing up and safeguarding your business ledgers.
+          </p>
+
+          <ul class="policy-list">
+            <li><strong>Cloud & Local Backups:</strong> Backup files are encrypted to ensure safe restoration when switching devices or reinstalling.</li>
+            <li><strong>Encryption & Protection:</strong> Modern encryption protocols are used to shield databases and transaction logs from unauthorized access.</li>
+            <li><strong>Financial Reports:</strong> Generated reports (such as PDF and Excel files) are stored locally for your official/personal use.</li>
+          </ul>
+
+          <p>
+            Cloud services employ full encryption to guarantee that no unauthorized party can access your financial data.
+          </p>
+        </article>
+
+        <article class="policy-section">
+          <h2 class="policy-heading">
+            <span class="policy-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+            Payment Tracking & Analytics
+          </h2>
+
+          <p>
+            The app processes dates, debt amounts, and payments solely to display accurate cash flow analytics, without interfering with your financial operations.
+          </p>
+        </article>
+
+        <article class="policy-section">
+          <h2 class="policy-heading">
+            <span class="policy-icon"><i class="fas fa-money-check"></i></span>
+            App Permissions
+          </h2>
+
+          <p>
+            Debtix may request essential permissions required for its operations, such as storage access for exporting reports and backups, or contact list access for quick customer addition. You can control these permissions at any time via device settings.
+          </p>
+        </article>
+
+        <article class="policy-section">
+          <h2 class="policy-heading">
+            <span class="policy-icon"><i class="fas fa-chart-line"></i></span>
+            Data Integrity & Updates
+          </h2>
+
+          <p>
+            We continuously update the application to strengthen security measures. Keeping your app updated ensures maximum protection for your data and transactions.
+          </p>
+        </article>
+
+        <article class="policy-section">
+          <h2 class="policy-heading">
+            <span class="policy-icon"><i class="fas fa-rotate"></i></span>
+            Changes to This Privacy Policy
+          </h2>
+
+          <p>
+            This Privacy Policy may be updated periodically to reflect app enhancements or data protection requirements. Updates will be communicated on this page with an updated revision date.
+          </p>
+        </article>
+
+        <article class="policy-section">
+          <h2 class="policy-heading">
+            <span class="policy-icon"><i class="fas fa-envelope"></i></span>
+            Contact Developer
+          </h2>
+
+          <div class="contact-box">
+            <p>For any questions or suggestions regarding the Privacy Policy or data management in Debtix, please reach out to us directly.</p>
+
+            <a href="contact.html" class="contact-btn">
+              <i class="fas fa-headset"></i>
+              Contact Developer
+            </a>
+          </div>
+        </article>
+
+        <div class="update-date">
+          <i class="fas fa-calendar-check"></i>
+          <span><strong>Last updated:</strong> August 7, 2026</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <div class="footer-logo">
+          <i class="fas fa-wallet"></i>
+          <span data-lang="ar">ديوني | Debtix</span>
+          <span data-lang="en">Debtix</span>
+        </div>
+
+        <p class="footer-desc" data-lang="ar">
+          التطبيق المتكامل لإدارة العملاء والديون والمدفوعات اليومية والتجارية بسهولة وأمان. نسعى لتقديم أسرع وأبسط تجربة لتنظيم حساباتك مع ضمان أعلى مستويات الخصوصية والنسخ الاحتياطي.
+        </p>
+
+        <p class="footer-desc" data-lang="en">
+          The comprehensive solution for managing customers, debts, and payments effortlessly and securely. We aim to provide a reliable ledger tracking experience with top-tier privacy and data safety.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="footer-section-title" data-lang="ar">روابط سريعة</h3>
+        <h3 class="footer-section-title" data-lang="en">Quick Links</h3>
+
+        <div class="footer-links">
+          <a href="index.html">
+            <i class="fas fa-house"></i>
+            <span data-lang="ar">الرئيسية</span>
+            <span data-lang="en">Home</span>
+          </a>
+
+          <a href="privacy-policy.html">
+            <i class="fas fa-shield-alt"></i>
+            <span data-lang="ar">سياسة الخصوصية</span>
+            <span data-lang="en">Privacy Policy</span>
+          </a>
+
+          <a href="terms.html">
+            <i class="fas fa-file-contract"></i>
+            <span data-lang="ar">الشروط والأحكام</span>
+            <span data-lang="en">Terms & Conditions</span>
+          </a>
+
+          <a href="contact.html">
+            <i class="fas fa-envelope"></i>
+            <span data-lang="ar">التواصل مع المطور</span>
+            <span data-lang="en">Contact Developer</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <p>
+        &copy; 2026 ديوني | Debtix.
+        <span data-lang="ar">جميع الحقوق محفوظة</span>
+        <span data-lang="en">All Rights Reserved</span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    let lang = "ar";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedLang = localStorage.getItem("debtix_language");
+      const browserLang =
+        navigator.languages && navigator.languages.length
+          ? navigator.languages[0]
+          : navigator.language || "ar";
+
+      const selectedLang =
+        savedLang ||
+        (browserLang.toLowerCase().startsWith("ar") ? "ar" : "en");
+
+      setLanguage(selectedLang, false);
+    });
+
+    function setLanguage(selectedLang, savePreference = true) {
+      lang = selectedLang === "en" ? "en" : "ar";
+
+      if (savePreference) {
+        try {
+          localStorage.setItem("debtix_language", lang);
+        } catch (error) {}
+      }
+
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+      document.querySelectorAll("[data-lang]").forEach((element) => {
+        element.style.display =
+          element.dataset.lang === lang ? "revert" : "none";
+      });
+
+      updateLangLabel();
+    }
+
+    function toggleLang() {
+      setLanguage(lang === "ar" ? "en" : "ar");
+    }
+
+    function updateLangLabel() {
+      const label = document.getElementById("langLabel");
+      if (label) {
+        label.textContent = lang === "ar" ? "EN" : "ع";
+      }
+    }
+  </script>
+</body>
+</html>

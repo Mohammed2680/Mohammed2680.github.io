@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <title>اتصل بنا - ديوني | Debtix</title>
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="preload" href="favicon.ico" as="image" />
+
+  <meta name="robots" content="index,follow" />
+  <meta name="description" content="تواصل مع فريق ديوني | Debtix للاستفسارات والملاحظات والدعم الفني." />
+  <meta name="keywords" content="Debtix, ديوني, اتصل بنا, دعم Debtix" />
+  <meta name="theme-color" content="#0B2A5B" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ديوني | Debtix" />
+  <meta property="og:locale" content="ar_AR" />
+  <meta property="og:title" content="اتصل بنا - ديوني | Debtix" />
+  <meta property="og:description" content="تواصل مع فريق ديوني | Debtix عبر النموذج أو القنوات الرسمية." />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="اتصل بنا - ديوني | Debtix" />
+  <meta name="twitter:description" content="تواصل مع فريق ديوني | Debtix عبر النموذج أو القنوات الرسمية." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #0B2A5B;
+      --primary-light: #123F7A;
+      --accent: #00C853;
+      --accent-light: #69F0AE;
+      --text: #1E293B;
+      --muted: #64748B;
+      --background: #F8FAFC;
+      --card: rgba(255,255,255,0.75);
+      --border: rgba(255,255,255,0.45);
+      --shadow: 0 20px 50px rgba(11,42,91,0.12);
+      --shadow-hover: 0 28px 70px rgba(11,42,91,0.20);
+      --danger: #e5484d;
+      --fast: 220ms ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family: "Tajawal", system-ui, sans-serif;
+      font-weight: 500;
+      line-height: 1.75;
+      background:
+        radial-gradient(circle at top right, rgba(0,200,83,.15), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(11,42,91,.18), transparent 40%),
+        linear-gradient(135deg, #F8FAFC, #FFFFFF);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(11,42,91,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11,42,91,.03) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, #000 0%, transparent 88%);
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 88%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    [data-lang] {
+      display: none;
+    }
+
+    .glass,
+    .top-bar,
+    .contact-card,
+    .form-card,
+    .info-item,
+    .support-note,
+    .toast {
+      backdrop-filter: blur(15px) saturate(135%);
+      -webkit-backdrop-filter: blur(15px) saturate(135%);
+    }
+
+    /* Top bar */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px clamp(14px, 3vw, 34px);
+      border-bottom: 1px solid var(--border);
+      background: rgba(11, 42, 91, 0.92);
+      box-shadow: 0 4px 20px rgba(11, 42, 91, 0.15);
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 22px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--primary-light));
+      box-shadow: 0 8px 20px rgba(0, 200, 83, 0.25);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .btn-control {
+      width: auto !important;
+      height: auto !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
+      padding: 8px 16px !important;
+      border: 1px solid rgba(255, 255, 255, 0.25) !important;
+      border-radius: 999px !important;
+      color: #fff !important;
+      background: rgba(255, 255, 255, 0.12) !important;
+      font-family: inherit !important;
+      font-size: 14px !important;
+      font-weight: 800 !important;
+      line-height: 1.2 !important;
+      box-shadow: none !important;
+      cursor: pointer;
+      transition: transform var(--fast), background var(--fast);
+    }
+
+    .btn-control i {
+      font-size: 14px !important;
+      line-height: 1 !important;
+    }
+
+    .btn-control:hover {
+      transform: translateY(-2px) !important;
+      background: rgba(255, 255, 255, 0.22) !important;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 60px 16px 100px;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(135deg, #0B2A5B, #00C853);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero::before {
+      width: 260px;
+      height: 260px;
+      top: -90px;
+      right: -80px;
+    }
+
+    .hero::after {
+      width: 350px;
+      height: 350px;
+      left: -140px;
+      bottom: -130px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      margin: auto;
+    }
+
+    .hero-icon {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 20px;
+      display: grid;
+      place-items: center;
+      font-size: 32px;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.12);
+    }
+
+    h1 {
+      margin-bottom: 12px;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 900;
+      line-height: 1.2;
+      text-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-subtitle {
+      max-width: 620px;
+      margin: auto;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: clamp(15px, 2vw, 18px);
+    }
+
+    /* Main Content */
+    .main-content {
+      position: relative;
+      z-index: 5;
+      width: min(1100px, calc(100% - 30px));
+      margin: -60px auto 0;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (min-width: 900px) {
+      .content-grid {
+        grid-template-columns: 0.85fr 1.15fr;
+      }
+    }
+
+    .contact-card,
+    .form-card {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card::before,
+    .form-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+    }
+
+    .section-title {
+      position: relative;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      text-align: center;
+      color: var(--primary);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 60px;
+      height: 4px;
+      border-radius: 99px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+    }
+
+    .section-desc {
+      margin: 0 auto 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .contact-info-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .info-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.65);
+      box-shadow: 0 10px 25px rgba(11, 42, 91, 0.04);
+      transition: transform var(--fast), box-shadow var(--fast), background var(--fast);
+    }
+
+    .info-item:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 15px 35px rgba(11, 42, 91, 0.12);
+    }
+
+.gmail-icon {
+  background: linear-gradient(
+    135deg,
+    #EA4335,
+    #FBBC05,
+    #34A853,
+    #4285F4
+  );
+  box-shadow: 0 12px 30px rgba(234,67,53,.35);
+}
+
+.gmail-icon i {
+  font-size: 26px;
+  color: white;
+}
+
+   .info-icon {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 22px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #EA4335, #D93025);
+box-shadow: 0 8px 20px rgba(234,67,53,.25);
+}
+
+    .info-item.instagram .info-icon {
+  background: linear-gradient(
+    135deg,
+    #833AB4,
+    #E1306C,
+    #F77737,
+    #FCAF45
+  );
+  box-shadow: 0 9px 20px rgba(225,48,108,.25);
+}
+
+    .info-content {
+      min-width: 0;
+    }
+
+    .info-title {
+      margin-bottom: 2px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .info-value {
+      display: inline-block;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      color: var(--primary);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .support-note {
+      position: relative;
+      margin-top: 20px;
+      padding: 16px 18px;
+      color: var(--primary);
+      font-size: 14px;
+      border: 1px solid rgba(0, 200, 83, 0.3);
+      border-radius: 18px;
+      background: rgba(0, 200, 83, 0.06);
+    }
+
+    .support-note i {
+      margin-inline-end: 8px;
+      color: var(--accent);
+    }
+
+    /* Form Styles */
+    .form-card form {
+      margin-top: 6px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 650px) {
+      .form-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      top: 50%;
+      inset-inline-start: 16px;
+      z-index: 2;
+      color: var(--muted);
+      transform: translateY(-50%);
+      pointer-events: none;
+      transition: color var(--fast);
+    }
+
+    .textarea-wrap .input-icon {
+      top: 20px;
+      transform: none;
+    }
+
+    .form-control {
+      width: 100%;
+      min-height: 54px;
+      padding: 13px 48px 13px 16px;
+      color: var(--text);
+      font-size: 15px;
+      border: 1px solid rgba(100, 116, 139, 0.25);
+      border-radius: 16px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+      transition: border-color var(--fast), box-shadow var(--fast), background var(--fast);
+    }
+
+    html[dir="ltr"] .form-control {
+      padding: 13px 16px 13px 48px;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent);
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(0, 200, 83, 0.15);
+    }
+
+    .form-control:focus + .input-icon,
+    .input-wrap:focus-within .input-icon {
+      color: var(--accent);
+    }
+
+    .form-control::placeholder {
+      color: #94A3B8;
+    }
+
+    textarea.form-control {
+      min-height: 140px;
+      resize: vertical;
+      padding-top: 14px;
+      line-height: 1.7;
+    }
+
+    .char-counter {
+      display: block;
+      margin-top: 6px;
+      text-align: end;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .honeypot {
+      position: absolute !important;
+      left: -9999px !important;
+      width: 1px !important;
+      height: 1px !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    .submit-btn {
+      position: relative;
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 900;
+      border: none;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #00C853, #0B2A5B);
+      box-shadow: 0 12px 28px rgba(0, 200, 83, 0.25);
+      transition: transform var(--fast), box-shadow var(--fast), opacity var(--fast);
+    }
+
+    .submit-btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -80%;
+      width: 55%;
+      height: 100%;
+      pointer-events: none;
+      transform: skewX(-25deg);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: shine 3s ease-in-out infinite;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 36px rgba(11, 42, 91, 0.3);
+    }
+
+    .submit-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.72;
+    }
+
+    .form-status {
+      min-height: 24px;
+      margin-top: 12px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      top: 84px;
+      inset-inline-end: 24px;
+      z-index: 100000;
+      width: min(390px, calc(100vw - 30px));
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 18px;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 18px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-18px) scale(0.96);
+      box-shadow: 0 20px 50px rgba(11, 42, 91, 0.25);
+      transition: opacity 0.28s ease, visibility 0.28s ease, transform 0.28s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .toast.success {
+      background: linear-gradient(135deg, #0B2A5B, #00C853);
+    }
+
+    .toast.error {
+      background: linear-gradient(135deg, #a71c22, #e5484d);
+    }
+
+    .toast-icon {
+      margin-top: 2px;
+      font-size: 21px;
+    }
+
+    .toast-title {
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .toast-message {
+      margin-top: 2px;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 60px;
+      padding: 40px 16px 24px;
+      color: rgba(255, 255, 255, 0.9);
+      background: linear-gradient(135deg, #061A3A, #0B2A5B);
+    }
+
+    .footer-content {
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 24px;
+      margin-bottom: 24px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 15px;
+      font-weight: 700;
+      transition: color var(--fast);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-light);
+    }
+
+    .copyright {
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+    }
+
+    @keyframes shine {
+      0%, 45% { right: -80%; }
+      75%, 100% { right: 135%; }
+    }
+
+    @media (max-width: 560px) {
+      .top-bar {
+        padding: 12px 14px;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      .logo-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 18px;
+        border-radius: 12px;
+      }
+
+      .btn-control {
+        padding: 7px 12px !important;
+        font-size: 13px !important;
+      }
+
+      .hero {
+        padding-top: 40px;
+        padding-bottom: 85px;
+      }
+
+      .hero-icon {
+        width: 64px;
+        height: 64px;
+        font-size: 26px;
+        border-radius: 18px;
+      }
+
+      .main-content {
+        width: min(100% - 24px, 1100px);
+      }
+
+      .contact-card,
+      .form-card {
+        padding: 22px 16px;
+        border-radius: 22px;
+      }
+
+      .toast {
+        top: 72px;
+        inset-inline: 15px;
+        width: auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <a href="index.html" class="logo" aria-label="Debtix">
+      <div class="logo-icon">
+        <i class="fas fa-wallet"></i>
+      </div>
+      <span data-lang="ar">ديوني | Debtix</span>
+      <span data-lang="en">Debtix</span>
+    </a>
+
+    <div class="top-actions">
+      <button class="btn-control" type="button" onclick="toggleLang()" aria-label="Change language">
+        <span id="langLabel">EN</span>
+        <i class="fas fa-globe"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-icon">
+        <i class="fas fa-headset"></i>
+      </div>
+
+      <h1 data-lang="ar">اتصل بنا</h1>
+      <h1 data-lang="en">Contact Us</h1>
+
+      <p class="hero-subtitle" data-lang="ar">
+        نحن هنا لمساعدتك. تواصل معنا للاستفسارات أو الدعم الفني.
+      </p>
+
+      <p class="hero-subtitle" data-lang="en">
+        We are here to help you. Contact us for inquiries or technical support.
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="content-grid">
+      <!-- Contact Channels Section -->
+      <section class="contact-card glass">
+        <h2 class="section-title" data-lang="ar">قنوات التواصل</h2>
+        <h2 class="section-title" data-lang="en">Contact Channels</h2>
+
+        <p class="section-desc" data-lang="ar">
+          يمكنك التواصل معنا عبر القنوات الرسمية التالية:
+        </p>
+
+        <p class="section-desc" data-lang="en">
+          You can reach us through the following official channels:
+        </p>
+
+        <div class="contact-info-grid">
+          <a class="info-item" href="mailto:support@mtaltawaf.com">
+            <div class="info-icon gmail-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+
+            <div class="info-content">
+              <div class="info-title" data-lang="ar">البريد الإلكتروني</div>
+              <div class="info-title" data-lang="en">Email</div>
+              <div class="info-value">support@mtaltawaf.com</div>
+            </div>
+          </a>
+
+          <a class="info-item instagram" href="https://www.instagram.com/moaltawaf" target="_blank" rel="noopener">
+            <div class="info-icon">
+              <i class="fab fa-instagram"></i>
+            </div>
+
+            <div class="info-content">
+              <div class="info-title" data-lang="ar">إنستقرام</div>
+              <div class="info-title" data-lang="en">Instagram</div>
+              <div class="info-value">@moaltawaf</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="support-note">
+          <span data-lang="ar">
+            <i class="fas fa-circle-info"></i>
+            يرجى توضيح استفسارك أو مشكلتك بدقة لنسرّع عملية الرد عليك.
+          </span>
+
+          <span data-lang="en">
+            <i class="fas fa-circle-info"></i>
+            Please describe your inquiry or issue clearly for a faster response.
+          </span>
+        </div>
+      </section>
+
+      <!-- Contact Form Section -->
+      <section class="form-card glass">
+        <h2 class="section-title" data-lang="ar">أرسل رسالتك</h2>
+        <h2 class="section-title" data-lang="en">Send Your Message</h2>
+
+        <p class="section-desc" data-lang="ar">
+          املأ البيانات التالية وسنرد عليك في أقرب وقت.
+        </p>
+
+        <p class="section-desc" data-lang="en">
+          Fill in the details below and we will reply as soon as possible.
+        </p>
+
+        <form id="contactForm" novalidate>
+          <input class="honeypot" type="text" name="website" id="website" tabindex="-1" autocomplete="off" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="name">
+                <span data-lang="ar">الاسم الكامل</span>
+                <span data-lang="en">Full Name</span>
+              </label>
+
+              <div class="input-wrap">
+                <i class="fas fa-user input-icon"></i>
+                <input
+                  class="form-control"
+                  type="text"
+                  id="name"
+                  name="name"
+                  minlength="2"
+                  maxlength="70"
+                  autocomplete="name"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">
+                <span data-lang="ar">البريد الإلكتروني</span>
+                <span data-lang="en">Email Address</span>
+              </label>
+
+              <div class="input-wrap">
+                <i class="fas fa-at input-icon"></i>
+                <input
+                  class="form-control"
+                  type="email"
+                  id="email"
+                  name="email"
+                  maxlength="120"
+                  autocomplete="email"
+                  inputmode="email"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="subject">
+              <span data-lang="ar">عنوان الرسالة</span>
+              <span data-lang="en">Subject</span>
+            </label>
+
+            <div class="input-wrap">
+              <i class="fas fa-pen input-icon"></i>
+              <input
+                class="form-control"
+                type="text"
+                id="subject"
+                name="subject"
+                minlength="3"
+                maxlength="100"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">
+              <span data-lang="ar">تفاصيل الرسالة</span>
+              <span data-lang="en">Message Details</span>
+            </label>
+
+            <div class="input-wrap textarea-wrap">
+              <i class="fas fa-message input-icon"></i>
+              <textarea
+                class="form-control"
+                id="message"
+                name="message"
+                minlength="10"
+                maxlength="1500"
+                required
+              ></textarea>
+            </div>
+
+            <span class="char-counter">
+              <span id="messageCount">0</span>/1500
+            </span>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <i class="fas fa-paper-plane"></i>
+            <span data-lang="ar">إرسال الرسالة</span>
+            <span data-lang="en">Send Message</span>
+          </button>
+
+          <div class="form-status" id="formStatus" aria-live="polite"></div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-hidden="true">
+    <i id="toastIcon" class="fas fa-check-circle toast-icon"></i>
+    <div>
+      <div id="toastTitle" class="toast-title"></div>
+      <div id="toastMessage" class="toast-message"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content"> 
+
+      <div class="copyright">
+        <p data-lang="ar">&copy; 2026 ديوني | Debtix جميع الحقوق محفوظة</p>
+        <p data-lang="en">&copy; 2026 Debtix. All Rights Reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let lang = "ar";
+    let toastTimer = null;
+    let lastSubmitAt = 0;
+
+    const EMAILJS_PUBLIC_KEY = "xQotXC1RlBg75ntAJ";
+    const EMAILJS_SERVICE_ID = "service_90r3ot8";
+    const EMAILJS_TEMPLATE_ID = "template_2tumo7c";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedLang = localStorage.getItem("debtix_language");
+      const browserLang =
+        navigator.languages && navigator.languages.length
+          ? navigator.languages[0]
+          : navigator.language || "ar";
+
+      const userLang = savedLang || (browserLang.toLowerCase().startsWith("ar") ? "ar" : "en");
+
+      setLanguage(userLang, false);
+      initializeEmailJS();
+      initializeForm();
+    });
+
+    function initializeEmailJS() {
+      try {
+        if (window.emailjs) {
+          emailjs.init({
+            publicKey: EMAILJS_PUBLIC_KEY
+          });
+        }
+      } catch (error) {
+        console.error("EmailJS initialization error:", error);
+      }
+    }
+
+    function setLanguage(selectedLang, savePreference = true) {
+      lang = selectedLang === "en" ? "en" : "ar";
+
+      if (savePreference) {
+        try {
+          localStorage.setItem("debtix_language", lang);
+        } catch (error) {}
+      }
+
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+      document.querySelectorAll("[data-lang]").forEach((element) => {
+        element.style.display =
+          element.dataset.lang === lang ? "revert" : "none";
+      });
+
+      updateLangLabel();
+      updatePlaceholders();
+    }
+
+    function toggleLang() {
+      setLanguage(lang === "ar" ? "en" : "ar");
+    }
+
+    window.addEventListener("languagechange", () => {
+      const savedLang = localStorage.getItem("debtix_language");
+      if (savedLang) return;
+
+      const browserLang =
+        navigator.languages && navigator.languages.length
+          ? navigator.languages[0]
+          : navigator.language || "ar";
+
+      setLanguage(browserLang.toLowerCase().startsWith("ar") ? "ar" : "en", false);
+    });
+
+    function updateLangLabel() {
+      const label = document.getElementById("langLabel");
+      if (label) label.textContent = lang === "ar" ? "EN" : "ع";
+    }
+
+    function updatePlaceholders() {
+      const placeholders = {
+        ar: {
+          name: "اكتب اسمك الكامل",
+          email: "example@email.com",
+          subject: "اكتب عنوانًا مختصرًا",
+          message: "اكتب تفاصيل استفسارك أو ملاحظتك هنا..."
+        },
+        en: {
+          name: "Enter your full name",
+          email: "example@email.com",
+          subject: "Enter a short subject",
+          message: "Write your question or feedback here..."
+        }
+      };
+
+      const values = placeholders[lang];
+
+      Object.keys(values).forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) element.placeholder = values[id];
+      });
+    }
+
+    function initializeForm() {
+      const form = document.getElementById("contactForm");
+      const message = document.getElementById("message");
+      const counter = document.getElementById("messageCount");
+
+      if (message && counter) {
+        message.addEventListener("input", () => {
+          counter.textContent = String(message.value.length);
+        });
+      }
+
+      if (form) {
+        form.addEventListener("submit", handleFormSubmit);
+      }
+    }
+
+    async function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const form = event.currentTarget;
+      const submitBtn = document.getElementById("submitBtn");
+      const formStatus = document.getElementById("formStatus");
+      const honeypot = document.getElementById("website");
+      const now = Date.now();
+
+      if (honeypot && honeypot.value.trim() !== "") return;
+
+      if (now - lastSubmitAt < 15000) {
+        showToast(
+          lang === "ar" ? "يرجى الانتظار" : "Please wait",
+          lang === "ar"
+            ? "انتظر قليلًا قبل إرسال رسالة أخرى."
+            : "Please wait before sending another message.",
+          "error"
+        );
+        return;
+      }
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+
+        showToast(
+          lang === "ar" ? "البيانات غير مكتملة" : "Incomplete Information",
+          lang === "ar"
+            ? "يرجى تعبئة جميع الحقول المطلوبة بصورة صحيحة."
+            : "Please complete all required fields correctly.",
+          "error"
+        );
+        return;
+      }
+
+      if (!window.emailjs) {
+        showToast(
+          lang === "ar" ? "تعذر الاتصال" : "Connection Error",
+          lang === "ar"
+            ? "خدمة الإرسال غير متاحة حاليًا. استخدم البريد الإلكتروني أو تيليجرام."
+            : "The sending service is currently unavailable. Please use email or Telegram.",
+          "error"
+        );
+        return;
+      }
+
+      setSubmittingState(true);
+
+      if (formStatus) {
+        formStatus.textContent =
+          lang === "ar" ? "جاري إرسال رسالتك..." : "Sending your message...";
+        formStatus.style.color = "var(--primary)";
+      }
+
+      try {
+        await emailjs.sendForm(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          form
+        );
+
+        lastSubmitAt = Date.now();
+        form.reset();
+
+        const counter = document.getElementById("messageCount");
+        if (counter) counter.textContent = "0";
+
+        showToast(
+          lang === "ar" ? "تم إرسال الرسالة" : "Message Sent",
+          lang === "ar"
+            ? "شكرًا لك، تم استلام رسالتك بنجاح."
+            : "Thank you. Your message was sent successfully.",
+          "success"
+        );
+
+        if (formStatus) {
+          formStatus.textContent =
+            lang === "ar"
+              ? "تم الإرسال بنجاح."
+              : "Sent successfully.";
+          formStatus.style.color = "var(--accent)";
+        }
+      } catch (error) {
+        console.error("EmailJS error:", error);
+
+        showToast(
+          lang === "ar" ? "فشل الإرسال" : "Sending Failed",
+          lang === "ar"
+            ? "تعذر إرسال الرسالة. تحقق من اتصالك وحاول مرة أخرى."
+            : "The message could not be sent. Check your connection and try again.",
+          "error"
+        );
+
+        if (formStatus) {
+          formStatus.textContent =
+            lang === "ar"
+              ? "حدث خطأ أثناء الإرسال."
+              : "An error occurred while sending.";
+          formStatus.style.color = "var(--danger)";
+        }
+      } finally {
+        setSubmittingState(false);
+      }
+    }
+
+    function setSubmittingState(isSubmitting) {
+      const submitBtn = document.getElementById("submitBtn");
+      if (!submitBtn) return;
+
+      submitBtn.disabled = isSubmitting;
+
+      submitBtn.innerHTML = isSubmitting
+        ? lang === "ar"
+          ? '<i class="fas fa-spinner fa-spin"></i><span>جاري الإرسال...</span>'
+          : '<i class="fas fa-spinner fa-spin"></i><span>Sending...</span>'
+        : '<i class="fas fa-paper-plane"></i>' +
+          '<span data-lang="ar">إرسال الرسالة</span>' +
+          '<span data-lang="en">Send Message</span>';
+
+      if (!isSubmitting) {
+        document.querySelectorAll("#submitBtn [data-lang]").forEach((element) => {
+          element.style.display =
+            element.dataset.lang === lang ? "revert" : "none";
+        });
+      }
+    }
+
+    function showToast(title, message, type = "success") {
+      const toast = document.getElementById("toast");
+      const toastIcon = document.getElementById("toastIcon");
+      const toastTitle = document.getElementById("toastTitle");
+      const toastMessage = document.getElementById("toastMessage");
+
+      if (!toast || !toastIcon || !toastTitle || !toastMessage) return;
+
+      clearTimeout(toastTimer);
+
+      toast.className = "toast " + type;
+      toastIcon.className =
+        "fas " +
+        (type === "success"
+          ? "fa-check-circle"
+          : "fa-triangle-exclamation") +
+        " toast-icon";
+
+      toastTitle.textContent = title;
+      toastMessage.textContent = message;
+      toast.setAttribute("aria-hidden", "false");
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+        toast.setAttribute("aria-hidden", "true");
+      }, 4500);
+    }
+  </script>
+</body>
+  </html>

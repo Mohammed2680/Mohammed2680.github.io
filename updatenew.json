@@ -1,12 +1,11 @@
 {
-  "latestVersionCode": 10,
-  "latestVersionName": "23",
+  "latestVersionCode": 32,
+  "latestVersionName": "29",
   "whatsNew": {
-	"ar": "- إصلاح مشكلة تسجيل الدخول إلى التطبيق المساعد (microG).\n\n- إصلاحات وتحسينات عامة أخرى.",
-
-	"en": "- Fixed issue logging into the microG app.\n\n- More fixes and general improvements."
-},
-  "downloadUrl": "https://www.mtaltawaf.com/2022/05/mtyoutube-gold.html",
-  "forceUpdate": false,
-  "showIntervalHours": 0
+    "ar": "⚡️ تحسين السرعة وإصلاح البطء والتعليق\n⬇️ تنزيل مباشر للوسائط من المحادثات\n👁️ تحسين وسائط العرض لمرة واحدة\n🤖 إضافة أيقونات Instagram Plus والتمويه\n⬇️ إضافة التمرير التلقائي للريلز\n🗑️ تحسين الرسائل المحذوفة والمنشن في القصص\n▶️ تحسين وإصلاح تحويل الفيديو إلى صوت\n😀 إصلاح الإيموجي وصوت القصص\n🔐 استعادة إخفاء المحادثات\n🛡️ إصلاح تجاوز قفل التطبيق\n🌙 تحسين الوضع الليلي\n🔄 إضافة إعادة ضبط إعدادات MTInsta\n✨ إصلاحات وتحسينات شاملة للأداء والاستقرار",
+    "en": "⚡️ Improved speed and fixed lag & freezing\n⬇️ Direct media downloads in chats\n👁️ Improved View-Once media\n🤖 Added Instagram Plus & disguise icons\n⬇️ Added automatic Reels scrolling\n🗑️ Improved Deleted Messages & Story Mentions\n▶️ Improved Video-to-Voice conversion\n😀 Fixed emojis & Story audio\n🔐 Restored Hidden Chats\n🛡️ Fixed App Lock bypass\n🌙 Improved Dark Mode\n🔄 Added MTInsta Settings Reset\n✨ More fixes, improvements & stability enhancements"
+  },
+  "downloadUrl": "https://www.mtaltawaf.com/2020/11/mtinstagram.html",
+  "forceUpdate": true,
+  "showIntervalHours": 3
 }
